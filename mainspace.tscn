@@ -8,10 +8,10 @@
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Parallax2D"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 1158.0
-offset_bottom = 651.0
+offset_left = -2677.0
+offset_top = -2074.0
+offset_right = 4138.0
+offset_bottom = 2565.0
 texture = ExtResource("1_xb1gi")
 expand_mode = 3
 
