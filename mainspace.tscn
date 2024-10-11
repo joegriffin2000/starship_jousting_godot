@@ -8,14 +8,14 @@
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Parallax2D"]
-offset_left = -2677.0
-offset_top = -2074.0
-offset_right = 4138.0
-offset_bottom = 2565.0
+offset_left = -3407.0
+offset_top = -2311.0
+offset_right = 3408.0
+offset_bottom = 2328.0
 texture = ExtResource("1_xb1gi")
 expand_mode = 3
 
 [node name="Ship" parent="." instance=ExtResource("1_31b5h")]
-position = Vector2(581, 328)
+position = Vector2(-8, -10)
 
 [node name="Camera2D" type="Camera2D" parent="Ship"]
