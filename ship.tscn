@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3hkdy6eamjdt"]
+[gd_scene load_steps=6 format=3 uid="uid://b3hkdy6eamjdt"]
 
 [ext_resource type="Script" path="res://logic/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="2_edqxu"]
 [ext_resource type="PackedScene" uid="uid://ehiblb2qp5qn" path="res://dash.tscn" id="3_to48q"]
+[ext_resource type="Script" path="res://logic/dash.gd" id="4_aff75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etytm"]
 size = Vector2(128, 126)
@@ -18,3 +19,8 @@ texture = ExtResource("2_edqxu")
 shape = SubResource("RectangleShape2D_etytm")
 
 [node name="Dash" parent="." instance=ExtResource("3_to48q")]
+
+[node name="dashtimer" type="Timer" parent="."]
+script = ExtResource("4_aff75")
+
+[connection signal="timeout" from="dashtimer" to="dashtimer" method="_on_timeout"]
