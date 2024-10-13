@@ -1,10 +1,20 @@
-extends Node2D
+extends Timer
 
 @onready var timer = $dashtimer
+@export var knockback = false
 
 func start_dash(dur):
-	timer.wait_time = dur
-	timer.start()
+	#wait_time = dur
+	start(dur)
 	
-func is_dashing():
-	return !timer.is_stopped()
+func is_in_action():
+	return !is_stopped()
+	
+func start_knockback(dur):
+	stop()
+	start(dur)
+	knockback = true
+
+func _on_timeout() -> void:
+	stop()
+	knockback = false

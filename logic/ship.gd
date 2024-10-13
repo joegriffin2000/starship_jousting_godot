@@ -4,16 +4,20 @@ extends CharacterBody2D
 @export var rotation_speed = 3
 @export var dash_speed = 900
 @export var dash_length = 0.3
-@export var push_force = 80
+@export var knock_back_time = 0.3
 
 @onready var dash = $dashtimer
 var rotation_direction = 0
 
 func get_input():
-	if Input.is_action_pressed("dash"):
+	rotation_direction = Input.get_axis("left", "right")
+	if Input.is_action_pressed("dash") and dash.knockback == false:
 		dash.start_dash(dash_length)
-	rotation_direction = 0 if dash.is_dashing() else Input.get_axis("left", "right")
-	velocity = transform.y * -Input.get_action_strength("up") * dash_speed if dash.is_dashing() else transform.y * -Input.get_action_strength("up") * speed
+		rotation_direction = 0
+		velocity = -transform.y * dash_speed 
+		
+	if !dash.is_in_action():
+		velocity = transform.y * -Input.get_action_strength("up") * speed
 	
 
 func _physics_process(delta):
@@ -23,6 +27,10 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+			c.get_collider().apply_central_impulse(-c.get_normal() * 10)
+			
+	if get_slide_collision_count() != 0:
+		dash.start_knockback(knock_back_time)
+		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
