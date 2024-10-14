@@ -5,8 +5,9 @@
 [ext_resource type="Script" path="res://logic/dash.gd" id="4_aff75"]
 [ext_resource type="Script" path="res://logic/action.gd" id="5_rp1k1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etytm"]
-size = Vector2(128, 126)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pg804"]
+radius = 60.0
+height = 126.0
 
 [node name="Ship" type="CharacterBody2D"]
 position = Vector2(-1, 0)
@@ -16,7 +17,7 @@ script = ExtResource("1_i8hbr")
 texture = ExtResource("2_edqxu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_etytm")
+shape = SubResource("CapsuleShape2D_pg804")
 
 [node name="Action_Timer" type="Timer" parent="."]
 script = ExtResource("5_rp1k1")

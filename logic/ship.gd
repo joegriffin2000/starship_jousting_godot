@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var rotation_speed = 3
 @export var dash_speed = 900
 @export var dash_length = 0.3
-@export var dash_cd = 4
+@export var dash_cd = 1
 @export var knock_back_time = 0.3
 
 @onready var action = $Action_Timer
@@ -40,5 +40,5 @@ func _physics_process(delta):
 	if get_slide_collision_count() != 0:
 		action.start_knockback(knock_back_time)
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
-			
+		
 	move_and_slide()
