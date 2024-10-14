@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8lx6yipfnux4"]
+
+[ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Dash" parent="." instance=ExtResource("1_cifeo")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -162.0
+offset_right = -40.0
+offset_bottom = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8

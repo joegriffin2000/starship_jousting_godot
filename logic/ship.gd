@@ -4,19 +4,27 @@ extends CharacterBody2D
 @export var rotation_speed = 3
 @export var dash_speed = 900
 @export var dash_length = 0.3
+@export var dash_cd = 4
 @export var knock_back_time = 0.3
 
-@onready var dash = $dashtimer
+@onready var action = $Action_Timer
+@onready var dash = $Dash_Cooldown
+
+
 var rotation_direction = 0
 
 func get_input():
-	rotation_direction = Input.get_axis("left", "right")
-	if Input.is_action_pressed("dash") and dash.knockback == false:
-		dash.start_dash(dash_length)
+	
+	if Input.is_action_pressed("dash") and !dash.is_in_cd() and action.knockback == false:
+		action.start_dash(dash_length)
+		dash.start_cd(dash_cd)
 		rotation_direction = 0
 		velocity = -transform.y * dash_speed 
+	
+	if !action.dash:
+		rotation_direction = Input.get_axis("left", "right")
 		
-	if !dash.is_in_action():
+	if !action.is_in_action():
 		velocity = transform.y * -Input.get_action_strength("up") * speed
 	
 
@@ -30,7 +38,7 @@ func _physics_process(delta):
 			c.get_collider().apply_central_impulse(-c.get_normal() * 10)
 			
 	if get_slide_collision_count() != 0:
-		dash.start_knockback(knock_back_time)
+		action.start_knockback(knock_back_time)
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
