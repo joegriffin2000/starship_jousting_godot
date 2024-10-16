@@ -15,6 +15,11 @@ run/main_scene="res://mainspace.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
+[autoload]
+
+Hud="*res://HUD.tscn"
+ShipData="*res://logic/ship_data.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

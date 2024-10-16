@@ -1,22 +1,27 @@
 extends Timer
 
-@export var knockback = false
-@export var dash = false
+signal dash
+#
+func _ready() -> void:
+	print("action ready")
+	#dash.connect(Callable(Hud.get_node("Dash"),"dash_start"))
 
 func start_dash(dur):
 	#wait_time = dur
 	start(dur)
-	dash = true
+	ShipData.dash = true
+	dash.emit(ShipData.dash_cd)
 	
 func is_in_action():
 	return !is_stopped()
 	
 func start_knockback(dur):
 	stop()
+	ShipData.dash = false
 	start(dur)
-	knockback = true
+	ShipData.knockback = true
 
 func _on_action_timeout() -> void:
 	stop()
-	knockback = false
-	dash = false
+	ShipData.knockback = false
+	ShipData.dash = false

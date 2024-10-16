@@ -3,20 +3,21 @@ class_name AbilityButton
 
 @onready var time_label = $Counter/Value
 
-@export var cooldown = 4
-
 func _ready():
 	time_label.hide()
 	$Sweep.value = 0
 	$Sweep.texture_progress = texture_normal
-	$Sweep/Timer.wait_time = cooldown
 	set_process(false)
 	
 func _process(_delta):
 	time_label.text = "%3.1f" % $Sweep/Timer.time_left
-	$Sweep.value = int(($Sweep/Timer.time_left / cooldown) * 100)
+	$Sweep.value = int(($Sweep/Timer.time_left / ShipData.dash_cd) * 100)
 	
 func _on_AbilityButton_pressed():
+	dash_start(ShipData.dash_cd)
+	
+func dash_start(cd):
+	$Sweep/Timer.wait_time = cd
 	disabled = true
 	set_process(true)
 	$Sweep/Timer.start()
