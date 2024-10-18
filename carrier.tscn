@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwtvkp2vnyevp"]
+
+[ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_sxrk5"]
+
+[sub_resource type="Gradient" id="Gradient_ty7mj"]
+offsets = PackedFloat32Array(0, 0.197842, 0.985611, 0.989209, 0.992806, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.763, 0.861, 0.996, 0.211, 0.133713, 0.133713, 0.133713, 0.866287, 0.154676, 0.154676, 0.154676, 0.845324, 0.0821541, 0.0821541, 0.0821541, 0.917846, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vj1xu"]
+gradient = SubResource("Gradient_ty7mj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_myd4u"]
+radius = 679.294
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpu2p"]
+radius = 124.0
+height = 416.0
+
+[node name="Carrier" type="StaticBody2D"]
+position = Vector2(696, 294)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(25, 25)
+texture = SubResource("GradientTexture2D_vj1xu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_myd4u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(1.99, 3.25)
+texture = ExtResource("1_sxrk5")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fpu2p")
+metadata/_edit_lock_ = true

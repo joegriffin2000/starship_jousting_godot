@@ -17,7 +17,6 @@ config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
-Hud="*res://HUD.tscn"
 ShipData="*res://logic/ship_data.gd"
 
 [editor]
