@@ -34,11 +34,6 @@ position = Vector2(393, -218)
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(0, 8)
-polygon = PackedVector2Array(200, -2326, 44, -2343, -3395, -2307, -3395, 2333, 3407, 2321, 3421, -2306, 45, -2303, 3381, -2267, 3368, 2280, -3355, 2293, -3355, -2267, 43, -2302)
 [node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
 process_mode = 3
 visible = false
