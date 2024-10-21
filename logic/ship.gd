@@ -35,3 +35,6 @@ func _physics_process(delta):
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
+
+func shop_entered():
+	pass
