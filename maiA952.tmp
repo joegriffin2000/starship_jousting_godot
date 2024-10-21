@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://logic/mainspace.gd" id="1_yv7y7"]
 [ext_resource type="PackedScene" uid="uid://cq1e813uoit5d" path="res://rock.tscn" id="3_ajql6"]
 [ext_resource type="PackedScene" uid="uid://b8lx6yipfnux4" path="res://HUD.tscn" id="4_m7kfs"]
-[ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://carrier.tscn" id="6_t3k5q"]
 [ext_resource type="PackedScene" uid="uid://qfk517d7abfi" path="res://dmg_rock.tscn" id="5_ysiwv"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/gameOverScreen.tscn" id="6_bpwyg"]
 
@@ -15,17 +14,12 @@ script = ExtResource("1_yv7y7")
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Parallax2D"]
-offset_left = -4255.0
-offset_top = -2896.0
-offset_right = 4336.0
-offset_bottom = 2752.0
+offset_left = -3189.0
+offset_top = -2314.0
+offset_right = 3626.0
+offset_bottom = 2325.0
 texture = ExtResource("1_xb1gi")
 expand_mode = 3
-stretch_mode = 1
-
-[node name="Carrier" parent="." instance=ExtResource("6_t3k5q")]
-position = Vector2(-1579, -384)
-rotation = 0.390954
 
 [node name="Ship" parent="." instance=ExtResource("1_31b5h")]
 position = Vector2(-8, -10)
@@ -39,12 +33,6 @@ position = Vector2(-3, -508)
 position = Vector2(393, -218)
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(0, 8)
-polygon = PackedVector2Array(200, -2326, 44, -2343, -3395, -2307, -3395, 2333, 3407, 2321, 3421, -2306, 45, -2303, 3381, -2267, 3368, 2280, -3355, 2293, -3355, -2267, 43, -2302)
 
 [node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
 process_mode = 3
