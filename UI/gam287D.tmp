@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://b11glto6yoca8"]
+
+[ext_resource type="Script" path="res://UI/gameOverScreen.gd" id="1_ivkvd"]
+[ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://fonts/pixelFont.tres" id="2_hqkl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20lhd"]
+bg_color = Color(0.164706, 0.152941, 0.211765, 0.647059)
+
+[node name="game_over_screen" type="CanvasLayer"]
+script = ExtResource("1_ivkvd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_20lhd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="GameOverTxt" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hqkl0")
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TotalScoreTxt" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hqkl0")
+theme_override_font_sizes/font_size = 30
+text = "Total Score: "
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="MainMenuBtn" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hqkl0")
+theme_override_font_sizes/font_size = 30
+text = " Main Menu "
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]

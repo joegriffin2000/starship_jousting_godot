@@ -1,25 +1,37 @@
 extends CharacterBody2D
 
+const gameOverScreen = preload("res://UI/gameOverScreen.tscn")
+
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
+@onready var iframes = 0 # Put a timer here I need to ask how to set that up
 
-
+var health = 1
+var credits = 0
+var totalScore = 100
 var rotation_direction = 0
 
+signal player_died(score)
+
+func _on_ready() -> void:
+	pass
+
 func get_input():
-	
-	if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
-		action.start_dash(ShipData.dash_length)
-		dash.start_cd(ShipData.dash_cd)
-		rotation_direction = 0
-		velocity = -transform.y * ShipData.dash_speed 
-	
-	if !ShipData.dash:
-		rotation_direction = Input.get_axis("left", "right")
+	if health >= 1:
+		if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
+			action.start_dash(ShipData.dash_length)
+			dash.start_cd(ShipData.dash_cd)
+			rotation_direction = 0
+			velocity = -transform.y * ShipData.dash_speed 
 		
-	if !action.is_in_action():
-		velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
-	
+		if !ShipData.dash:
+			rotation_direction = Input.get_axis("left", "right")
+			
+		if !action.is_in_action():
+			velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
+	else: # Player is dead and cannot move anymore
+		velocity = transform.y * 0
+		rotation_direction = 0
 
 func _physics_process(delta):
 	get_input()
@@ -35,3 +47,19 @@ func _physics_process(delta):
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
+
+
+# This function handles taking damage.
+# Note: Put timer here for i-frames.
+func take_damage():
+	health -= 1
+	if health < 1:
+		death()
+
+# This function handles when the player reaches 0 HP.
+func death():
+	# Need a better solution for how to freeze player inputs
+	player_died.emit(totalScore)
+
+func _on_dmg_rock_took_damage() -> void:
+	take_damage()
