@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8lx6yipfnux4"]
+[gd_scene load_steps=2 format=3 uid="uid://csce5kf7ob4fa"]
 
-[ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
+[ext_resource type="PackedScene" path="res://ability.tscn" id="1_cifeo"]
 
 [node name="HUD" type="CanvasLayer"]
 

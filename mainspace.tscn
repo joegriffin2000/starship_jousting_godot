@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://di43x1lpcmhc6"]
 
-[ext_resource type="PackedScene" uid="uid://b3hkdy6eamjdt" path="res://ship.tscn" id="1_31b5h"]
+[ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://ship.tscn" id="1_31b5h"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
 [ext_resource type="Script" path="res://logic/mainspace.gd" id="1_yv7y7"]
-[ext_resource type="PackedScene" uid="uid://cq1e813uoit5d" path="res://rock.tscn" id="3_ajql6"]
-[ext_resource type="PackedScene" uid="uid://b8lx6yipfnux4" path="res://HUD.tscn" id="4_m7kfs"]
+[ext_resource type="PackedScene" path="res://rock.tscn" id="3_ajql6"]
+[ext_resource type="PackedScene" uid="uid://csce5kf7ob4fa" path="res://HUD.tscn" id="4_m7kfs"]
 [ext_resource type="PackedScene" uid="uid://civgrrcpy8lw5" path="res://dmg_rock.tscn" id="5_ysiwv"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/gameOverScreen.tscn" id="6_bpwyg"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://carrier.tscn" id="6_t3k5q"]
