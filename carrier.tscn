@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwtvkp2vnyevp"]
+[gd_scene load_steps=7 format=3 uid="uid://dwtvkp2vnyevp"]
 
 [ext_resource type="Script" path="res://carrier.gd" id="1_173kj"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_sxrk5"]
-[ext_resource type="PackedScene" uid="uid://btbb3t0k66qi8" path="res://shop_menu.tscn" id="2_dm7ei"]
 
 [sub_resource type="Gradient" id="Gradient_ty7mj"]
 offsets = PackedFloat32Array(0, 0.197842, 0.985611, 0.989209, 0.992806, 1)
@@ -43,9 +42,6 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fpu2p")
 metadata/_edit_lock_ = true
-
-[node name="Shop Menu" parent="." instance=ExtResource("2_dm7ei")]
-visible = false
 
 [connection signal="body_entered" from="Shop" to="." method="_on_shop_area_entered"]
 [connection signal="body_exited" from="Shop" to="." method="_on_shop_area_exited"]

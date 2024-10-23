@@ -1,12 +1,108 @@
-[gd_scene load_steps=2 format=3 uid="uid://btbb3t0k66qi8"]
+[gd_scene load_steps=4 format=3 uid="uid://btbb3t0k66qi8"]
 
 [ext_resource type="Script" path="res://shop_menu.gd" id="1_ce6tv"]
+[ext_resource type="Script" path="res://draggable.gd" id="2_ejygc"]
+[ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="2_ljxat"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ce6tv")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 162.0
-offset_top = 72.0
-offset_right = 988.0
-offset_bottom = 554.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 1.2
+
+[node name="Upgrades" type="Panel" parent="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.133
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.32
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="Panel/Upgrades"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -256.0
+offset_right = 416.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ejygc")
+
+[node name="upgrade" type="TextureButton" parent="Panel/Upgrades/Control"]
+layout_mode = 2
+anchor_left = 0.481
+anchor_top = 0.5
+anchor_right = 0.481
+anchor_bottom = 0.5
+offset_left = -64.192
+offset_top = -64.0
+offset_right = 63.808
+offset_bottom = 64.0
+texture_normal = ExtResource("2_ljxat")
+stretch_mode = 0
+
+[node name="Quests" type="Panel" parent="Panel"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -256.0
+offset_right = 448.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="QuestButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.133
+anchor_bottom = 0.5
+offset_right = 0.32
+grow_vertical = 2
+texture_normal = ExtResource("2_ljxat")
+stretch_mode = 0
+
+[node name="UpgradeButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.133
+anchor_bottom = 1.0
+offset_right = 0.32
+grow_vertical = 2
+texture_normal = ExtResource("2_ljxat")
+stretch_mode = 0
+
+[connection signal="gui_input" from="Panel/Upgrades" to="." method="_on_upgrades_gui_input"]
+[connection signal="pressed" from="Panel/Upgrades/Control/upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="Panel/QuestButton" to="." method="_on_quest_button_pressed"]
+[connection signal="pressed" from="Panel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

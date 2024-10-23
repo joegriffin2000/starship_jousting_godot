@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://qfk517d7abfi"]
+[gd_scene load_steps=4 format=3 uid="uid://civgrrcpy8lw5"]
 
 [ext_resource type="Script" path="res://logic/dmg_rock.gd" id="1_aoo3n"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_ywv3o"]
@@ -10,6 +10,7 @@ size = Vector2(128, 129)
 script = ExtResource("1_aoo3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(100, 1, 1, 1)
 texture = ExtResource("1_ywv3o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
