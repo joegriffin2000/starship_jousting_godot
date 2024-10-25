@@ -14,3 +14,23 @@ extends Node
 
 #Ship resources
 @export var credits = 0
+@export var health = 1
+@export var totalScore = 100
+
+func reset():
+	speed = 300
+	rotation_speed = 3
+	dash_speed = 900
+	dash_length = 0.3
+	dash_cd = 0.5
+	knock_back_time = 0.3
+
+	#Ship states
+	knockback = false
+	dash = false
+
+	#Ship resources
+	credits = 0
+	health = 1
+	totalScore = 100
+	

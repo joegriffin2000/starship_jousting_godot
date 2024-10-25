@@ -6,9 +6,6 @@ const gameOverScreen = preload("res://UI/gameOverScreen.tscn")
 @onready var dash = $Dash_Cooldown
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
 
-var health = 1
-var credits = 0
-var totalScore = 100
 var rotation_direction = 0
 
 signal player_died(score)
@@ -17,7 +14,7 @@ func _on_ready() -> void:
 	pass
 
 func get_input():
-	if health >= 1:
+	if ShipData.health >= 1:
 		if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
 			action.start_dash(ShipData.dash_length)
 			dash.start_cd(ShipData.dash_cd)
@@ -54,14 +51,14 @@ func shop_entered():
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage():
-	health -= 1
-	if health < 1:
+	ShipData.health -= 1
+	if ShipData.health < 1:
 		death()
 
 # This function handles when the player reaches 0 HP.
 func death():
 	# Need a better solution for how to freeze player inputs
-	player_died.emit(totalScore)
+	player_died.emit(ShipData.totalScore)
 
 func _on_dmg_rock_took_damage() -> void:
 	take_damage()
