@@ -13,4 +13,4 @@ extends Node
 @export var dash = false
 
 #Ship resources
-@export var credits = 0
+@export var credits = 500
