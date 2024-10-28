@@ -1,13 +1,19 @@
 extends "draggable.gd"
 
 @onready var questlist = $ItemList
+signal quest_received(content)
 var icon = preload("res://Sprites/icon.svg")
 var last_mouse_pos = Vector2(0,0)
 
 func _ready():
+	#set offset default value
 	offset = Vector2(0,0)
-	for i in range(10):
-		questlist.add_item(str(i),icon)
+	var file = FileAccess.open("res://file.txt",FileAccess.READ).get_as_text()
+	var contents = file.split("\n")
+	contents.remove_at(len(contents)-1)
+	#Fill in quests
+	for i in contents:
+		questlist.add_item(i,icon)
 		
 func _process(delta):
 	if dragging:
@@ -35,3 +41,6 @@ func _on_item_list_gui_input(event: InputEvent) -> void:
 	if dragging and event.is_action_released("left_click"):
 		dragging = false
 		
+
+func _on_item_list_item_selected(index: int) -> void:
+	quest_received.emit(questlist.get_item_text(index))

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6qaubponwo3u"]
+[gd_scene load_steps=3 format=3 uid="uid://c6qaubponwo3u"]
 
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_336qm"]
+[ext_resource type="Script" path="res://UI/upgrade.gd" id="1_so4nk"]
 
 [node name="Upgrade" type="Control"]
 layout_mode = 3
@@ -9,10 +10,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_so4nk")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

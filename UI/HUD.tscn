@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://csce5kf7ob4fa"]
+[gd_scene load_steps=4 format=3 uid="uid://csce5kf7ob4fa"]
 
 [ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="2_wks4l"]
+[ext_resource type="Script" path="res://UI/quest_detail.gd" id="3_7204j"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -34,3 +35,4 @@ offset_bottom = 175.0
 theme_override_fonts/normal_font = ExtResource("2_wks4l")
 text = "Do this stuff"
 fit_content = true
+script = ExtResource("3_7204j")
