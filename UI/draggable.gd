@@ -1,5 +1,5 @@
-extends Control
 class_name Draggable
+extends Control
 
 var dragging = false
 var offset: Vector2

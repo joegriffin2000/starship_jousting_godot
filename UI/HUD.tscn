@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://csce5kf7ob4fa"]
+[gd_scene load_steps=3 format=3 uid="uid://csce5kf7ob4fa"]
 
 [ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="2_wks4l"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -18,3 +19,18 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
+
+[node name="QuestLabel" type="RichTextLabel" parent="."]
+offset_right = 295.0
+offset_bottom = 51.0
+theme_override_fonts/normal_font = ExtResource("2_wks4l")
+text = "Quest:
+"
+
+[node name="QuestDetail" type="RichTextLabel" parent="."]
+offset_top = 51.0
+offset_right = 356.0
+offset_bottom = 175.0
+theme_override_fonts/normal_font = ExtResource("2_wks4l")
+text = "Do this stuff"
+fit_content = true

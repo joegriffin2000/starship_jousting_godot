@@ -10,3 +10,4 @@ func _on_ship_player_died(score: Variant) -> void:
 
 func _on_main_menu_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://mainspace.tscn")
+	ShipData.reset()
