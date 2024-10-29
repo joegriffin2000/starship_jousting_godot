@@ -8,7 +8,7 @@ func _ready() -> void:
 func update_font_size():
 	var m = int(get_viewport_rect().size.y / 25)
 	m = m if m <= 50 else 50
-	m = m if m >= 30 else 30
+	m = m if m >= 35 else 35
 	add_theme_font_size_override("font_size",m) 
 
 #Function to update label text with new amount
