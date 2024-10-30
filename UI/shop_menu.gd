@@ -14,6 +14,7 @@ func _on_upgrade_button_pressed() -> void:
 
 
 func _on_upgrade_pressed() -> void:
+	ShipData.speed += 1
 	print("upgrade bought")
 
 
