@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://btbb3t0k66qi8"]
+[gd_scene load_steps=7 format=3 uid="uid://btbb3t0k66qi8"]
 
 [ext_resource type="Script" path="res://UI/shop_menu.gd" id="1_71syl"]
 [ext_resource type="Script" path="res://UI/upgrade.gd" id="2_32nsl"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="3_vhqgl"]
 [ext_resource type="PackedScene" uid="uid://5ljy53wtfp4g" path="res://UI/quest.tscn" id="4_h1yxy"]
+[ext_resource type="Texture2D" uid="uid://dfo3dhjbefiga" path="res://Sprites/quest_btn.png" id="5_n2y5n"]
+[ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_71syl")
 
 [node name="Panel" type="Panel" parent="."]
@@ -24,6 +25,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 1.2
 
 [node name="Upgrades" type="Panel" parent="Panel"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 clip_contents = true
 layout_mode = 1
@@ -67,7 +69,6 @@ texture_normal = ExtResource("3_vhqgl")
 stretch_mode = 0
 
 [node name="Quests" type="Panel" parent="Panel"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 clip_contents = true
 layout_mode = 1
@@ -86,16 +87,18 @@ size_flags_vertical = 4
 layout_mode = 1
 
 [node name="QuestButton" type="TextureButton" parent="Panel"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.133
 anchor_bottom = 0.5
 offset_right = 0.32
 grow_vertical = 2
-texture_normal = ExtResource("3_vhqgl")
+texture_normal = ExtResource("5_n2y5n")
 stretch_mode = 0
 
 [node name="UpgradeButton" type="TextureButton" parent="Panel"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -103,7 +106,7 @@ anchor_right = 0.133
 anchor_bottom = 1.0
 offset_right = 0.32
 grow_vertical = 2
-texture_normal = ExtResource("3_vhqgl")
+texture_normal = ExtResource("6_kyxv6")
 stretch_mode = 0
 
 [connection signal="gui_input" from="Panel/Upgrades" to="." method="_on_upgrades_gui_input"]

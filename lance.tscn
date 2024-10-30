@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://j7jr5qp7ch07"]
+
+[ext_resource type="Script" path="res://logic/hitbox.gd" id="1_fkdir"]
+[ext_resource type="Texture2D" uid="uid://c5cri7mb6umyu" path="res://Sprites/lance.png" id="1_gcfi3"]
+
+[node name="Hitbox" type="Area2D"]
+script = ExtResource("1_fkdir")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(7.875, 7.875)
+texture = ExtResource("1_gcfi3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 11.5)
+scale = Vector2(1, 0.818452)
+polygon = PackedVector2Array(33, 63, 8, -63, -8, -63, -33, 63)

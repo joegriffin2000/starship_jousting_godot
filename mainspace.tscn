@@ -27,16 +27,16 @@ stretch_mode = 1
 position = Vector2(-1579, -384)
 rotation = 0.390954
 
-[node name="Ship" parent="." instance=ExtResource("1_31b5h")]
-position = Vector2(-8, -10)
-
-[node name="Camera2D" type="Camera2D" parent="Ship"]
-
 [node name="Rock" parent="." instance=ExtResource("3_ajql6")]
 position = Vector2(-3, -508)
 
 [node name="DmgRock" parent="." instance=ExtResource("5_ysiwv")]
 position = Vector2(393, -218)
+
+[node name="Ship" parent="." instance=ExtResource("1_31b5h")]
+position = Vector2(-8, -10)
+
+[node name="Camera2D" type="Camera2D" parent="Ship"]
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 
@@ -50,5 +50,5 @@ polygon = PackedVector2Array(200, -2326, 44, -2343, -3395, -2307, -3395, 2333, 3
 process_mode = 3
 visible = false
 
-[connection signal="player_died" from="Ship" to="GameOverScreen" method="_on_ship_player_died"]
 [connection signal="took_damage" from="DmgRock" to="Ship" method="_on_dmg_rock_took_damage"]
+[connection signal="player_died" from="Ship" to="GameOverScreen" method="_on_ship_player_died"]
