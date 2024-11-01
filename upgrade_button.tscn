@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc3qciss8l58m"]
+
+[ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_vc13a"]
+[ext_resource type="Script" path="res://upgrade_button.gd" id="2_uptse"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("1_vc13a")
+script = ExtResource("2_uptse")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -5
