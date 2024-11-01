@@ -27,6 +27,7 @@ script = ExtResource("1_173kj")
 [node name="Shop" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Shop"]
+texture_filter = 1
 scale = Vector2(14.4375, 14.4375)
 texture = SubResource("GradientTexture2D_vj1xu")
 
