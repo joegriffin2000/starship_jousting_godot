@@ -1,6 +1,5 @@
 extends Timer
 
-signal dash
 #
 func _ready() -> void:
 	print("action ready")
@@ -10,7 +9,7 @@ func start_dash(dur):
 	#wait_time = dur
 	start(dur)
 	ShipData.dash = true
-	dash.emit(ShipData.dash_cd)
+	SignalBus.dash.emit(ShipData.dash_cd)
 	
 func is_in_action():
 	return !is_stopped()

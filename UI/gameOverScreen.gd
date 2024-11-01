@@ -2,6 +2,9 @@ extends CanvasLayer
 
 @onready var displayScore = $PanelContainer/MarginContainer/Rows/TotalScoreTxt
 
+func _ready() -> void:
+	SignalBus.player_died.connect(_on_ship_player_died)
+
 func _on_ship_player_died(score: Variant) -> void:
 	var newText = str("Total Score: ", score)
 	displayScore.set_text(newText)
