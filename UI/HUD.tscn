@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://csce5kf7ob4fa"]
+[gd_scene load_steps=6 format=3 uid="uid://csce5kf7ob4fa"]
 
 [ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
+[ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://fonts/pixelFont.tres" id="2_fsvj7"]
+[ext_resource type="Script" path="res://UI/credits.gd" id="2_pk0r0"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="2_wks4l"]
 [ext_resource type="Script" path="res://UI/quest_detail.gd" id="3_7204j"]
 
@@ -36,3 +38,23 @@ theme_override_fonts/normal_font = ExtResource("2_wks4l")
 text = "Do this stuff"
 fit_content = true
 script = ExtResource("3_7204j")
+
+[node name="Credits" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.987
+anchor_right = 1.0
+offset_left = -178.0
+offset_top = 1.0
+offset_right = -16.0
+offset_bottom = 117.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.874785, 0.758122, 0.336018, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("2_fsvj7")
+theme_override_font_sizes/font_size = 36
+text = "$0"
+horizontal_alignment = 2
+script = ExtResource("2_pk0r0")

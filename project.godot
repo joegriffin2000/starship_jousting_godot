@@ -19,6 +19,7 @@ config/icon="res://Sprites/icon.svg"
 
 ShipData="*res://logic/ship_data.gd"
 ShopMenu="*res://UI/shop_menu.tscn"
+SignalBus="*res://logic/signal_bus.gd"
 
 [editor]
 
