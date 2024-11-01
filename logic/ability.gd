@@ -4,6 +4,7 @@ class_name AbilityButton
 @onready var time_label = $Counter/Value
 
 func _ready():
+	SignalBus.dash.connect(dash_start)
 	time_label.hide()
 	$Sweep.value = 0
 	$Sweep.texture_progress = texture_normal

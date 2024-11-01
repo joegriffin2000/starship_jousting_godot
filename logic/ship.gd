@@ -8,10 +8,8 @@ const gameOverScreen = preload("res://UI/gameOverScreen.tscn")
 
 var rotation_direction = 0
 
-signal player_died(score)
-
-func _on_ready() -> void:
-	pass
+func _ready() -> void:
+	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 
 func get_input():
 	if ShipData.health >= 1:
@@ -60,7 +58,7 @@ func take_damage():
 # This function handles when the player reaches 0 HP.
 func death():
 	# Need a better solution for how to freeze player inputs
-	player_died.emit(ShipData.totalScore)
+	SignalBus.player_died.emit(ShipData.totalScore)
 
 func _on_dmg_rock_took_damage() -> void:
 	take_damage()
