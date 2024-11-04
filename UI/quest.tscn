@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://5ljy53wtfp4g"]
 
-[ext_resource type="Script" path="res://UI/quest.gd" id="1_mqoed"]
+[ext_resource type="Script" path="res://UI/quest_ui.gd" id="1_mqoed"]
 
-[node name="Quest" type="Control"]
+[node name="QuestUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

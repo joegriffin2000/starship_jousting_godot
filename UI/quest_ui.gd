@@ -2,17 +2,22 @@ extends "draggable.gd"
 
 @onready var questlist = $ItemList
 var icon = preload("res://Sprites/icon.svg")
+var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
 var last_mouse_pos = Vector2(0,0)
+var json = JSON.new()
+
+var filecontents = json.parse_string(file)
 
 func _ready():
 	#set offset default value
 	offset = Vector2(0,0)
-	var file = FileAccess.open("res://file.txt",FileAccess.READ).get_as_text()
-	var contents = file.split("\n")
-	contents.remove_at(len(contents)-1)
+	
+	#getting only the quests we have already (level 1 quests)
+	var lvl1quests = filecontents["quests"]
+	
 	#Fill in quests
-	for i in contents:
-		questlist.add_item(i,icon)
+	for i in lvl1quests:
+		questlist.add_item(i["desc"],icon)
 		
 func _process(delta):
 	if dragging:
