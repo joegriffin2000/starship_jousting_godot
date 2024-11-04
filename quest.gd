@@ -7,12 +7,18 @@ class_name Quest
 @export var progress : int #number progress for quest completion
 
 # Called when the node enters the scene tree for the first time.
-
-#I DONT KNOW IF THIS IS WHERE THIS BELONGS
+func _init(faction,description,type,total,progress) -> void:
+	self.faction = faction
+	self.description = description
+	self.type = type
+	self.total = total
+	self.progress = progress
+	
 func _ready() -> void:
+	#I DONT KNOW IF THIS LOGIC IS SUPPOSED TO GO HERE
 	if (faction == "goat"):
 		#each of these is a different quest type
-		match type:
+		match int(type):
 			1: 
 				#SignalBus.rock_mined.connect(update_progress)
 				pass 
@@ -24,7 +30,7 @@ func _ready() -> void:
 		pass
 	elif (faction == "fjb"):
 		#each of these is a different quest type
-		match type:
+		match int(type):
 			1: 
 				#SignalBus.rock_mined.connect(update_progress)
 				pass 
@@ -33,7 +39,7 @@ func _ready() -> void:
 		pass
 	elif (faction == "seu"):
 		#each of these is a different quest type
-		match type:
+		match int(type):
 			1: 
 				#SignalBus.rock_mined.connect(update_progress)
 				pass 
@@ -49,6 +55,8 @@ func _ready() -> void:
 func update_progress():
 	if progress != total:
 		progress += 1
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
