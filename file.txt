@@ -1,4 +1,0 @@
-mine 5 rocks
-mine 6 rocks
-mine 7 rocks
-kill god
