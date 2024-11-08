@@ -7,16 +7,16 @@ class_name Quest
 @export var progress : int #number progress for quest completion
 
 # Called when the node enters the scene tree for the first time.
-func _init(faction,description,type,total,progress) -> void:
+func _init(faction, description, type, total) -> void:
 	self.faction = faction
 	self.description = description
 	self.type = type
 	self.total = total
-	self.progress = progress
+	self.progress = 0
 	
 func _ready() -> void:
 	#I DONT KNOW IF THIS LOGIC IS SUPPOSED TO GO HERE
-	if (faction == "goat"):
+	if (faction == "GOAT"):
 		#each of these is a different quest type
 		match int(type):
 			1: 
@@ -26,18 +26,18 @@ func _ready() -> void:
 				#SignalBus.rock_mined.connect(update_progress)
 				pass
 			_: #default
-				print("No type for quest of faction 'goat'.")
+				print("No type for quest of faction 'GOAT'.")
 		pass
-	elif (faction == "fjb"):
+	elif (faction == "FJB"):
 		#each of these is a different quest type
 		match int(type):
 			1: 
 				#SignalBus.rock_mined.connect(update_progress)
 				pass 
 			_: #default
-				print("No type for quest of faction 'fjb'.")
+				print("No type for quest of faction 'FJB'.")
 		pass
-	elif (faction == "seu"):
+	elif (faction == "SEU"):
 		#each of these is a different quest type
 		match int(type):
 			1: 
@@ -47,7 +47,7 @@ func _ready() -> void:
 				#SignalBus.rock_mined.connect(update_progress)
 				pass
 			_: #default
-				print("No type for quest of faction 'seu'.")
+				print("No type for quest of faction 'SEU'.")
 	else:
 		print("No faction for quest")
 

@@ -26,20 +26,20 @@ script = ExtResource("1_173kj")
 
 [node name="Shop" type="Area2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Shop"]
+[node name="ShopBoundSprite" type="Sprite2D" parent="Shop"]
 scale = Vector2(14.4375, 14.4375)
 texture = SubResource("GradientTexture2D_vj1xu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop"]
+[node name="ShopBound" type="CollisionShape2D" parent="Shop"]
 shape = SubResource("CircleShape2D_myd4u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CarrierSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(1.99, 3.25)
 texture = ExtResource("1_sxrk5")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CarrierHitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fpu2p")
 metadata/_edit_lock_ = true
 

@@ -5,19 +5,13 @@ var icon = preload("res://Sprites/icon.svg")
 var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
 var last_mouse_pos = Vector2(0,0)
 var json = JSON.new()
+var rng = RandomNumberGenerator.new()
 
 var filecontents = json.parse_string(file)
 
 func _ready():
-	#set offset default value
+	# Set offset default value
 	offset = Vector2(0,0)
-	
-	#getting only the quests we have already (level 1 quests)
-	var lvl1quests = filecontents["quests"]
-	
-	#Fill in quests
-	for i in lvl1quests:
-		questlist.add_item(i["desc"],icon)
 		
 func _process(delta):
 	if dragging:
@@ -28,6 +22,41 @@ func _process(delta):
 	#experimenting with bouncing back down if move up too much
 	#elif questlist.get_item_rect(9).position.y < (get_viewport_rect().size.y):
 		#questlist.position.y += 15
+
+func generateQuests() -> void:
+	# Getting only the quests we have already (level 1 quests)
+	var lvl1quests = filecontents["quests"]
+	
+	# Generate quests
+	var goatQuests = []
+	var fjbQuests = []
+	var seuQuests = []
+	for quest in lvl1quests:
+		if quest.faction == "GOAT":
+			goatQuests.append(quest)
+		if quest.faction == "FJB":
+			fjbQuests.append(quest)
+		if quest.faction == "SEU":
+			seuQuests.append(quest)
+	var generatedQuests = []
+	
+	# Generate a quest for each quest faction:
+	# TODO: Replace quest[0] with randomizing from the list
+	var total = rng.randi_range(3, 7)
+	var q1 = Quest.new(seuQuests[0].faction, seuQuests[0].desc.replace("x", str(total)), seuQuests[0].type, total)
+	total = rng.randi_range(2, 5)
+	var q2 = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total)
+	total = rng.randi_range(3, 7)
+	var q3 = Quest.new(goatQuests[0].faction, goatQuests[0].desc.replace("x", str(total)), goatQuests[0].type, total)
+	generatedQuests.append(q1)
+	generatedQuests.append(q2)
+	generatedQuests.append(q3)
+	print(generatedQuests)
+	
+	# Fill in quest list on UI
+	questlist.clear()
+	for i in generatedQuests:
+		questlist.add_item(i.description,icon)
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action("scroll_up"):

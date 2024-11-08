@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://csce5kf7ob4fa"]
 
 [ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
-[ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://fonts/pixelFont.tres" id="2_fsvj7"]
+[ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://Fonts/pixelFont.tres" id="2_fsvj7"]
 [ext_resource type="Script" path="res://UI/credits.gd" id="2_pk0r0"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="2_wks4l"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="2_wks4l"]
 [ext_resource type="Script" path="res://UI/quest_detail.gd" id="3_7204j"]
 
 [node name="HUD" type="CanvasLayer"]

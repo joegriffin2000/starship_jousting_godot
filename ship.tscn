@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://logic/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://om46hfkv7o05" path="res://Sprites/ship.png" id="2_g8wrt"]
 [ext_resource type="Script" path="res://logic/dash.gd" id="4_aff75"]
-[ext_resource type="PackedScene" path="res://lance.tscn" id="5_aex22"]
+[ext_resource type="PackedScene" uid="uid://j7jr5qp7ch07" path="res://lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://logic/action.gd" id="5_rp1k1"]
 
 [node name="Ship" type="CharacterBody2D"]
