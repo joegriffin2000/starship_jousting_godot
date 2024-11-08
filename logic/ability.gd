@@ -25,7 +25,7 @@ func dash_start(cd):
 	time_label.show()
 
 func _on_Timer_timeout():
-	print("ability ready")
+	#print("ability ready")
 	$Sweep.value = 0
 	disabled = false
 	time_label.hide()

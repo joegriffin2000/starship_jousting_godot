@@ -16,6 +16,3 @@ func on_area_entered(hitbox: Hitbox):
 		return
 	if owner.has_method("take_damage"):
 		owner.take_damage()
-	else:
-		if ShipData.dash:
-			print("DASHING")

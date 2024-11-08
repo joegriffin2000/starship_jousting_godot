@@ -6,6 +6,7 @@ signal dash
 #connected from damage rock to ship
 signal damage_taken
 
+#Other object signals
 
 #UI signals
 #connected from ship to game over screen

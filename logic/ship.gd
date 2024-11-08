@@ -18,11 +18,11 @@ func get_input():
 			dash.start_cd(ShipData.dash_cd)
 			rotation_direction = 0
 			velocity = -transform.y * ShipData.dash_speed 
-			$Lance.show()
+			$Lance.activate()
 		
 		if !ShipData.dash:
 			rotation_direction = Input.get_axis("left", "right")
-			$Lance.hide()
+			$Lance.deactivate()
 			
 		if !action.is_in_action():
 			velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
