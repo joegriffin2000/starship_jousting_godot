@@ -67,3 +67,4 @@ func _on_dmg_rock_took_damage() -> void:
 func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
 	print("Quest: ", ShipData.quest)
+	ShipData.quest.activate()

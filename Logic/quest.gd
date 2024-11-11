@@ -5,6 +5,7 @@ class_name Quest
 @export var type : int #type of faction quest (1,2,3,...)
 @export var total : int #number requirement for quest completion
 @export var progress : int #number progress for quest completion
+var sig : Signal #number progress for quest completion
 
 # Called when the node enters the scene tree for the first time.
 func _init(faction, description, type, total) -> void:
@@ -14,16 +15,13 @@ func _init(faction, description, type, total) -> void:
 	self.total = total
 	self.progress = 0
 	
-	#I DONT KNOW IF THIS LOGIC IS SUPPOSED TO GO HERE
 	if (faction == "GOAT"):
 		#each of these is a different quest type
 		match int(type):
 			1: 
-				#SignalBus.rock_mined.connect(update_progress)
-				pass 
+				self.sig = SignalBus.rock_mined
 			2: 
-				#SignalBus.rock_mined.connect(update_progress)
-				pass
+				self.sig = SignalBus.rock_mined
 			_: #default
 				print("No type for quest of faction 'GOAT'.")
 		pass
@@ -31,8 +29,7 @@ func _init(faction, description, type, total) -> void:
 		#each of these is a different quest type
 		match int(type):
 			1: 
-				#SignalBus.rock_mined.connect(update_progress)
-				pass 
+				self.sig = SignalBus.rock_mined 
 			_: #default
 				print("No type for quest of faction 'FJB'.")
 		pass
@@ -40,23 +37,27 @@ func _init(faction, description, type, total) -> void:
 		#each of these is a different quest type
 		match int(type):
 			1: 
-				#SignalBus.rock_mined.connect(update_progress)
-				pass 
+				self.sig = SignalBus.rock_mined
 			2: 
-				#SignalBus.rock_mined.connect(update_progress)
-				pass
+				self.sig = SignalBus.rock_mined
 			_: #default
 				print("No type for quest of faction 'SEU'.")
 	else:
 		print("No faction for quest")
-
+	
+func activate():
+	self.sig.connect(update_progress)
+	
+func deactivate():
+	self.sig.disconnect(update_progress)
 
 #called everytime the signal is caught 
 func update_progress():
+	print("quest triggered, progress:",progress,"/",total)
 	if progress != total:
 		progress += 1
-	
-	
+	else:
+		print("quest complete")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

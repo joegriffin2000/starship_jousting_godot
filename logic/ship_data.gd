@@ -29,9 +29,13 @@ func reset():
 	#Ship states
 	knockback = false
 	dash = false
+	
+	#Ship Quest deactivation logic
+	if quest!= null:
+		quest.deactive()
+		quest = null
 
 	#Ship resources
-	quest = null
 	credits = 0
 	health = 1
 	totalScore = 100

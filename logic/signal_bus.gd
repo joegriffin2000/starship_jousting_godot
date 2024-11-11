@@ -6,6 +6,7 @@ signal dash
 #connected from damage rock to ship
 signal damage_taken
 
+signal rock_mined
 
 #UI signals
 # Connected from ship to gameOverScreen
