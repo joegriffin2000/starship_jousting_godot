@@ -49,6 +49,3 @@ polygon = PackedVector2Array(200, -2326, 44, -2343, -3395, -2307, -3395, 2333, 3
 [node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
 process_mode = 3
 visible = false
-
-[connection signal="took_damage" from="DmgRock" to="Ship" method="_on_dmg_rock_took_damage"]
-[connection signal="player_died" from="Ship" to="GameOverScreen" method="_on_ship_player_died"]

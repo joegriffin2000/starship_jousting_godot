@@ -1,7 +1,6 @@
 extends "draggable.gd"
 
 @onready var questlist = $ItemList
-signal quest_received(content)
 var icon = preload("res://Sprites/icon.svg")
 var last_mouse_pos = Vector2(0,0)
 
@@ -43,4 +42,4 @@ func _on_item_list_gui_input(event: InputEvent) -> void:
 		
 
 func _on_item_list_item_selected(index: int) -> void:
-	quest_received.emit(questlist.get_item_text(index))
+	SignalBus.quest_received.emit(questlist.get_item_text(index))
