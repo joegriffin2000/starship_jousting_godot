@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://yxlkx1fyp8bu"]
 
 [ext_resource type="Script" path="res://UI/shop_menu.gd" id="1_71syl"]
-[ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="3_vhqgl"]
+[ext_resource type="PackedScene" uid="uid://c6qaubponwo3u" path="res://UI/upgrade.tscn" id="2_3xdl7"]
 [ext_resource type="PackedScene" uid="uid://5ljy53wtfp4g" path="res://UI/quest.tscn" id="4_h1yxy"]
 [ext_resource type="Texture2D" uid="uid://dfo3dhjbefiga" path="res://Sprites/quest_btn.png" id="5_n2y5n"]
 [ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
@@ -40,32 +40,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 1
 
-[node name="Control" type="Control" parent="Panel/Upgrades"]
+[node name="Upgrade" parent="Panel/Upgrades" instance=ExtResource("2_3xdl7")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -768.0
-offset_top = -536.0
-offset_right = 832.0
-offset_bottom = 528.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="upgrade" type="TextureButton" parent="Panel/Upgrades/Control"]
-layout_mode = 2
-anchor_left = 0.481
-anchor_top = 0.5
-anchor_right = 0.481
-anchor_bottom = 0.5
-offset_left = -64.192
-offset_top = -64.0
-offset_right = 63.808
-offset_bottom = 64.0
-texture_normal = ExtResource("3_vhqgl")
-stretch_mode = 0
 
 [node name="Quests" type="Panel" parent="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -109,6 +85,5 @@ texture_normal = ExtResource("6_kyxv6")
 stretch_mode = 0
 
 [connection signal="gui_input" from="Panel/Upgrades" to="." method="_on_upgrades_gui_input"]
-[connection signal="pressed" from="Panel/Upgrades/Control/upgrade" to="." method="_on_upgrade_pressed"]
 [connection signal="pressed" from="Panel/QuestButton" to="." method="_on_quest_button_pressed"]
 [connection signal="pressed" from="Panel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

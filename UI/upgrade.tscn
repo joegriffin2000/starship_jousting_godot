@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6qaubponwo3u"]
 
 [ext_resource type="Script" path="res://UI/upgrade.gd" id="1_so4nk"]
-[ext_resource type="PackedScene" uid="uid://cc3qciss8l58m" path="res://upgrade_button.tscn" id="2_bb8r7"]
+[ext_resource type="PackedScene" uid="uid://cc3qciss8l58m" path="res://UI/upgrade_button.tscn" id="2_bb8r7"]
 
 [node name="Upgrade" type="Control"]
 layout_mode = 3
@@ -15,12 +15,7 @@ script = ExtResource("1_so4nk")
 [node name="BaseButton" parent="." instance=ExtResource("2_bb8r7")]
 self_modulate = Color(1.92523e-07, 0.665771, 0.957815, 1)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.503
-anchor_top = 0.5
-anchor_right = 0.503
-anchor_bottom = 0.5
-offset_left = -67.4561
-offset_top = -68.0
-offset_right = 68.5439
-offset_bottom = 68.0
+offset_left = 328.0
+offset_top = 192.0
+offset_right = 464.0
+offset_bottom = 328.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cc3qciss8l58m"]
 
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_vc13a"]
-[ext_resource type="Script" path="res://upgrade_button.gd" id="2_uptse"]
+[ext_resource type="Script" path="res://UI/upgrade_button.gd" id="2_uptse"]
 
 [node name="Button" type="Button"]
 offset_right = 8.0

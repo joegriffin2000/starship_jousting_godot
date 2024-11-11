@@ -1,20 +1,23 @@
 extends "draggable.gd"
 
-var e_button = preload("res://upgrade_button.tscn")
+var e_button = preload("res://UI/upgrade_button.tscn")
 
 func _ready() -> void:
 	super()
 	#var button = e_button.instantiate()
 	var baseButton = get_node("BaseButton")
 	for i in range(4):
-		var button = e_button.instantiate()
+		#var button = e_button.instantiate()
+		var button = UpgradeButton.new()
+		var line = Line2D.new()
+		button.add_child(line)
 		add_button(baseButton, button, i)
 	
-func add_button(parent_button: UpgradeButton, button_to_add: UpgradeButton, index: int):
+func add_button(parent_button, button_to_add, index: int):
 	if parent_button.connect_count >= parent_button.max_connect_count:
 		return
 		
-	if button_to_add.has_node("Line2D"):
+	if button_to_add.has_child("Line2D"):
 		var line = button_to_add.get_node("Line2D")
 		var start_line_offset = Vector2(0,0)
 		var end_line_offset = Vector2(75,75)
