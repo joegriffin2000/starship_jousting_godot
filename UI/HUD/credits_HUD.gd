@@ -1,4 +1,4 @@
-extends "scaleable.gd"
+extends ScaleableLabel
 
 #Function to update label text with new amount
 func update_score(score):

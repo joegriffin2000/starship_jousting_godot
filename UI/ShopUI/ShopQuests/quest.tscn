@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5ljy53wtfp4g"]
 
-[ext_resource type="Script" path="res://UI/quest_ui.gd" id="1_mqoed"]
+[ext_resource type="Script" path="res://UI/ShopUI/ShopQuests/shop_quests.gd" id="1_mqoed"]
 
 [node name="QuestUI" type="Control"]
 layout_mode = 3

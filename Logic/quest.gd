@@ -14,7 +14,6 @@ func _init(faction, description, type, total) -> void:
 	self.total = total
 	self.progress = 0
 	
-func _ready() -> void:
 	#I DONT KNOW IF THIS LOGIC IS SUPPOSED TO GO HERE
 	if (faction == "GOAT"):
 		#each of these is a different quest type
@@ -50,6 +49,7 @@ func _ready() -> void:
 				print("No type for quest of faction 'SEU'.")
 	else:
 		print("No faction for quest")
+
 
 #called everytime the signal is caught 
 func update_progress():

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6qaubponwo3u"]
 
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_336qm"]
-[ext_resource type="Script" path="res://UI/upgrade.gd" id="1_so4nk"]
+[ext_resource type="Script" path="res://UI/ShopUI/ShopUpgrades/upgrade.gd" id="1_so4nk"]
 
 [node name="Upgrade" type="Control"]
 layout_mode = 3

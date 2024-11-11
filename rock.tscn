@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cq1e813uoit5d"]
 
-[ext_resource type="Script" path="res://logic/rock.gd" id="1_1wogh"]
+[ext_resource type="Script" path="res://Logic/rock.gd" id="1_1wogh"]
 [ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_vgtg2"]
-[ext_resource type="Script" path="res://logic/hurtbox.gd" id="3_68cq6"]
+[ext_resource type="Script" path="res://Logic/hurtbox.gd" id="3_68cq6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6h3ik"]
 radius = 72.2496

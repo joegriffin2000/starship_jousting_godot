@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
 [ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://Fonts/pixelFont.tres" id="2_fsvj7"]
-[ext_resource type="Script" path="res://UI/credits.gd" id="2_pk0r0"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="2_wks4l"]
-[ext_resource type="Script" path="res://UI/quest_detail.gd" id="3_7204j"]
+[ext_resource type="Script" path="res://UI/HUD/credits_HUD.gd" id="2_pk0r0"]
+[ext_resource type="Texture2D" uid="uid://d0tub6h0hhhmm" path="res://Sprites/quest_icon.png" id="4_ormaa"]
+[ext_resource type="Script" path="res://UI/scaleableLabel.gd" id="5_a7k7e"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -22,22 +22,6 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-
-[node name="QuestLabel" type="RichTextLabel" parent="."]
-offset_right = 295.0
-offset_bottom = 51.0
-theme_override_fonts/normal_font = ExtResource("2_wks4l")
-text = "Quest:
-"
-
-[node name="QuestDetail" type="RichTextLabel" parent="."]
-offset_top = 51.0
-offset_right = 356.0
-offset_bottom = 175.0
-theme_override_fonts/normal_font = ExtResource("2_wks4l")
-text = "Do this stuff"
-fit_content = true
-script = ExtResource("3_7204j")
 
 [node name="Credits" type="Label" parent="."]
 anchors_preset = -1
@@ -58,3 +42,34 @@ theme_override_font_sizes/font_size = 36
 text = "$0"
 horizontal_alignment = 2
 script = ExtResource("2_pk0r0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 30.0
+offset_top = 23.0
+offset_right = 366.0
+offset_bottom = 96.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+justification_flags = 35
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -36.5
+offset_right = 54.0
+offset_bottom = 36.5
+grow_vertical = 2
+texture = ExtResource("4_ormaa")
+
+[node name="ScaleableLabel2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Go to nearest carrier ship."
+vertical_alignment = 3
+script = ExtResource("5_a7k7e")

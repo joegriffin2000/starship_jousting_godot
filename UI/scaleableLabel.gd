@@ -1,4 +1,4 @@
-class_name Scaleable
+class_name ScaleableLabel
 extends Label
 
 # Re-scale content when window size changes

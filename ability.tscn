@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://cumfp14w3h8un"]
 
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_r2xtb"]
-[ext_resource type="Script" path="res://logic/ability.gd" id="2_ln6lw"]
+[ext_resource type="Script" path="res://Logic/ability.gd" id="2_ln6lw"]
+
 
 [node name="Dash" type="TextureButton"]
 offset_right = 40.0

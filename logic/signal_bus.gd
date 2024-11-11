@@ -8,7 +8,7 @@ signal damage_taken
 
 
 #UI signals
-#connected from ship to game over screen
+# Connected from ship to gameOverScreen
 signal player_died(score)
-#connected from quest menu to HUD label
+# Connected from shop Quest menu to HUD Quest label and ShipData
 signal quest_received(content)

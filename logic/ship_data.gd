@@ -13,6 +13,7 @@ extends Node
 @export var dash = false
 
 #Ship resources
+@export var quest = null
 @export var credits = 0
 @export var health = 1
 @export var totalScore = 100
@@ -30,7 +31,7 @@ func reset():
 	dash = false
 
 	#Ship resources
+	quest = null
 	credits = 0
 	health = 1
 	totalScore = 100
-	

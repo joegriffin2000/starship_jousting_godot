@@ -1,13 +1,17 @@
-extends "draggable.gd"
+extends Draggable
 
-@onready var questlist = $ItemList
-var icon = preload("res://Sprites/icon.svg")
+@onready var UIQuestList = $ItemList
+var icon = preload("res://Sprites/quest_icon.png")
 var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
-var last_mouse_pos = Vector2(0,0)
 var json = JSON.new()
+var filecontents = json.parse_string(file)
+
+var last_mouse_pos = Vector2(0,0)
+
 var rng = RandomNumberGenerator.new()
 
-var filecontents = json.parse_string(file)
+var generatedQuests = []
+var selectedQuest = null
 
 func _ready():
 	# Set offset default value
@@ -15,13 +19,10 @@ func _ready():
 		
 func _process(delta):
 	if dragging:
-		questlist.position.y = (get_viewport().get_mouse_position() - offset).y
+		UIQuestList.position.y = (get_viewport().get_mouse_position() - offset).y
 	#If the menu moves down too much it bounces back
-	elif questlist.position.y > 0:
-		questlist.position.y -= 15
-	#experimenting with bouncing back down if move up too much
-	#elif questlist.get_item_rect(9).position.y < (get_viewport_rect().size.y):
-		#questlist.position.y += 15
+	elif UIQuestList.position.y > 0:
+		UIQuestList.position.y -= 15
 
 func generateQuests() -> void:
 	# Getting only the quests we have already (level 1 quests)
@@ -38,7 +39,6 @@ func generateQuests() -> void:
 			fjbQuests.append(quest)
 		if quest.faction == "SEU":
 			seuQuests.append(quest)
-	var generatedQuests = []
 	
 	# Generate a quest for each quest faction:
 	# TODO: Replace quest[0] with randomizing from the list
@@ -48,26 +48,28 @@ func generateQuests() -> void:
 	var q2 = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total)
 	total = rng.randi_range(3, 7)
 	var q3 = Quest.new(goatQuests[0].faction, goatQuests[0].desc.replace("x", str(total)), goatQuests[0].type, total)
+	generatedQuests = []
 	generatedQuests.append(q1)
 	generatedQuests.append(q2)
 	generatedQuests.append(q3)
 	print(generatedQuests)
 	
+	# Clear quest list on UI
+	UIQuestList.clear()
 	# Fill in quest list on UI
-	questlist.clear()
 	for i in generatedQuests:
-		questlist.add_item(i.description,icon)
+		UIQuestList.add_item(i.description, icon)
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action("scroll_up"):
-		questlist.position.y -= 10
+		UIQuestList.position.y -= 10
 	if event.is_action("scroll_down"):
-		questlist.position.y += 10
+		UIQuestList.position.y += 10
 
 func _on_item_list_gui_input(event: InputEvent) -> void:
 	if !dragging and event.is_action_pressed("left_click"):
 		var mouse_pos = get_viewport().get_mouse_position()
-		offset = mouse_pos - questlist.position
+		offset = mouse_pos - UIQuestList.position
 		dragging = true
 		#get_tree().set_input_as_handled()
 		
@@ -76,4 +78,6 @@ func _on_item_list_gui_input(event: InputEvent) -> void:
 		
 
 func _on_item_list_item_selected(index: int) -> void:
-	SignalBus.quest_received.emit(questlist.get_item_text(index))
+	selectedQuest = generatedQuests[index]
+	# TODO: Make this a separate button
+	SignalBus.quest_received.emit(selectedQuest)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://btbb3t0k66qi8"]
 
-[ext_resource type="Script" path="res://UI/shop_menu.gd" id="1_71syl"]
-[ext_resource type="Script" path="res://UI/upgrade.gd" id="2_32nsl"]
+[ext_resource type="Script" path="res://UI/ShopUI/shop_menu.gd" id="1_71syl"]
+[ext_resource type="Script" path="res://UI/ShopUI/ShopUpgrades/upgrade.gd" id="2_32nsl"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="3_vhqgl"]
-[ext_resource type="PackedScene" uid="uid://5ljy53wtfp4g" path="res://UI/quest.tscn" id="4_h1yxy"]
+[ext_resource type="PackedScene" uid="uid://5ljy53wtfp4g" path="res://UI/ShopUI/ShopQuests/quest.tscn" id="4_h1yxy"]
 [ext_resource type="Texture2D" uid="uid://dfo3dhjbefiga" path="res://Sprites/quest_btn.png" id="5_n2y5n"]
 [ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
 

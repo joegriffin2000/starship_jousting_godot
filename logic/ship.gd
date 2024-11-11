@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const gameOverScreen = preload("res://UI/gameOverScreen.tscn")
+const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
@@ -10,6 +10,7 @@ var rotation_direction = 0
 
 func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
+	SignalBus.quest_received.connect(_on_quest_received)
 
 func get_input():
 	if ShipData.health >= 1:
@@ -62,3 +63,7 @@ func death():
 
 func _on_dmg_rock_took_damage() -> void:
 	take_damage()
+	
+func _on_quest_received(q: Variant) -> void:
+	ShipData.quest = q
+	print("Quest: ", ShipData.quest)
