@@ -1,3 +1,42 @@
-[gd_scene format=3 uid="uid://bes030ss6u4hd"]
+[gd_scene load_steps=3 format=3 uid="uid://bes030ss6u4hd"]
+
+[ext_resource type="Script" path="res://UI/TitleScreen/title_screen.gd" id="1_trl2a"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="2_5q5m3"]
 
 [node name="TitleScreen" type="Node2D"]
+position = Vector2(612, 338)
+script = ExtResource("1_trl2a")
+
+[node name="PlayButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_5q5m3")
+theme_override_font_sizes/font_size = 14
+button_mask = 0
+text = "Play"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -55.0
+offset_right = 96.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Name"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

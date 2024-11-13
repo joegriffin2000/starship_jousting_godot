@@ -1,5 +1,8 @@
 extends Node
 
+#Player name
+@export var playerName : String = "player1"
+
 #Ship stats
 @export var speed = 300
 @export var rotation_speed = 3
