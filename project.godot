@@ -21,6 +21,11 @@ ShipData="*res://Logic/ship_data.gd"
 ShopMenu="*res://UI/ShopUI/shop_menu.tscn"
 SignalBus="*res://Logic/signal_bus.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

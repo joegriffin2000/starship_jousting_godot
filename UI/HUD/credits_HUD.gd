@@ -1,11 +1,8 @@
 extends ScaleableLabel
 
-#Function to update label text with new amount
-func update_score(score):
-	text = "$"+str(score)
+func _ready():
+	SignalBus.credits_updated.connect(update_credits)
 
-# TODO: Replace this with a signal instead of using _process
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	update_score(ShipData.credits)
-# ----------------------------------------
+#Function to update label text with new amount
+func update_credits():
+	text = "$"+str(ShipData.credits)

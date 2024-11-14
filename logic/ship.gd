@@ -46,9 +46,6 @@ func _physics_process(delta):
 			
 	move_and_slide()
 
-func shop_entered():
-	pass
-
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage():
@@ -63,7 +60,10 @@ func death():
 
 func _on_dmg_rock_took_damage() -> void:
 	take_damage()
-	
+
+func shop_entered():
+	pass
+
 func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
 	print("Quest: ", ShipData.quest)

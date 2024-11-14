@@ -37,6 +37,7 @@ position = Vector2(393, -218)
 position = Vector2(-8, -10)
 
 [node name="Camera2D" type="Camera2D" parent="Ship"]
+zoom = Vector2(0.5, 0.5)
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 

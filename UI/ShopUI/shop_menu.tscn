@@ -95,7 +95,7 @@ anchor_bottom = 0.5
 offset_right = 0.32
 grow_vertical = 2
 texture_normal = ExtResource("5_n2y5n")
-stretch_mode = 0
+stretch_mode = 5
 
 [node name="UpgradeButton" type="TextureButton" parent="Panel"]
 texture_filter = 1
@@ -107,7 +107,7 @@ anchor_bottom = 1.0
 offset_right = 0.32
 grow_vertical = 2
 texture_normal = ExtResource("6_kyxv6")
-stretch_mode = 0
+stretch_mode = 5
 
 [connection signal="gui_input" from="Panel/Upgrades" to="." method="_on_upgrades_gui_input"]
 [connection signal="pressed" from="Panel/Upgrades/Control/upgrade" to="." method="_on_upgrade_pressed"]
