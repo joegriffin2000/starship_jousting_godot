@@ -8,3 +8,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func take_damage():
 	SignalBus.rock_mined.emit()
+	#$GPUParticles2D.global_position = owner.get_node("Ship/Lance").global_position
+	#$GPUParticles2D.emitting = true
+	ShipData.rocks += 1
+	print("rock = ", ShipData.rocks)

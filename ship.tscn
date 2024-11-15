@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://e1bi5rviiufr"]
+[gd_scene load_steps=8 format=3 uid="uid://e1bi5rviiufr"]
 
 [ext_resource type="Script" path="res://Logic/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://om46hfkv7o05" path="res://Sprites/ship.png" id="2_g8wrt"]
 [ext_resource type="Script" path="res://Logic/dash.gd" id="4_aff75"]
-[ext_resource type="PackedScene" uid="uid://j7jr5qp7ch07" path="res://lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Logic/action.gd" id="5_rp1k1"]
+[ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://lance.tscn" id="5_aex22"]
+[ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl71k"]
+size = Vector2(142, 80)
 
 [node name="Ship" type="CharacterBody2D"]
 position = Vector2(-1, 0)
@@ -28,5 +32,12 @@ script = ExtResource("4_aff75")
 
 [node name="Lance" parent="." instance=ExtResource("5_aex22")]
 position = Vector2(0, -101)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("6_cf3ti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 30)
+shape = SubResource("RectangleShape2D_yl71k")
 
 [connection signal="timeout" from="Action_Timer" to="Action_Timer" method="_on_action_timeout"]

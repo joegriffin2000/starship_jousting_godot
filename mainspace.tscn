@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=10 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://ship.tscn" id="1_31b5h"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://civgrrcpy8lw5" path="res://dmg_rock.tscn" id="5_ysiwv"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/gameOverScreen.tscn" id="6_bpwyg"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://carrier.tscn" id="6_t3k5q"]
+[ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://enemy_ship.tscn" id="9_o34ng"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yv7y7")
@@ -51,3 +52,35 @@ polygon = PackedVector2Array(200, -2326, 44, -2343, -3395, -2307, -3395, 2333, 3
 [node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
 process_mode = 3
 visible = false
+
+[node name="Enemy1" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(220, -40)
+rotation = 0.832522
+
+[node name="Enemy2" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(-682, 568)
+rotation = 0.832522
+
+[node name="Enemy3" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(-1389, 597)
+rotation = 1.66504
+
+[node name="Enemy4" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(-874, -831)
+rotation = -2.9531
+
+[node name="Enemy5" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(1313, -753)
+rotation = -2.45393
+
+[node name="Enemy6" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(893, -306)
+rotation = -2.9531
+
+[node name="Enemy7" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(265, 1034)
+rotation = -1.28805
+
+[node name="Enemy8" parent="." instance=ExtResource("9_o34ng")]
+position = Vector2(627, -891)
+rotation = 0.376991

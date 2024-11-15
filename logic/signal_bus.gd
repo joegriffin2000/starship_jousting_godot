@@ -9,6 +9,8 @@ signal damage_taken
 # Quest signals
 signal rock_mined
 
+# Other object signals
+
 # UI signals
 # Connected from ship to gameOverScreen
 signal player_died(score)

@@ -10,12 +10,14 @@ extends Node
 @export var dash_length = 0.3
 @export var dash_cd = 0.5
 @export var knock_back_time = 0.3
+@export var health = 1
 
 #Ship resources
 @export var health = 1
 @export var quest = null
 @export var credits = 0
 @export var totalScore = 0
+@export var rocks = 0
 
 #Ship states
 @export var knockback = false
