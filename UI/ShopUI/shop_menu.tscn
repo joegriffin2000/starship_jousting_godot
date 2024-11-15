@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_71syl")
 
 [node name="Panel" type="Panel" parent="."]

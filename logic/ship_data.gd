@@ -1,5 +1,8 @@
 extends Node
 
+#Player name
+@export var playerName : String = "player_0"
+
 #Ship stats
 @export var speed = 300
 @export var rotation_speed = 3
@@ -39,5 +42,5 @@ func reset():
 	
 	# Ship Quest deactivation logic
 	if quest != null:
-		quest.deactive()
+		quest.deactivate()
 		quest = null
