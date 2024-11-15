@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b11glto6yoca8"]
 
 [ext_resource type="Script" path="res://UI/GameOverScreen/gameOverScreen.gd" id="1_ivkvd"]
-[ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://fonts/pixelFont.tres" id="2_hqkl0"]
+[ext_resource type="FontVariation" uid="uid://cqgxin5irqgf7" path="res://Fonts/pixelFont.tres" id="2_hqkl0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20lhd"]
 bg_color = Color(0.164706, 0.152941, 0.211765, 0.647059)

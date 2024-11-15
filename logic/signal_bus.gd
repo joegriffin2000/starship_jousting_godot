@@ -20,5 +20,7 @@ signal quest_received(content)
 signal quest_progressed
 # Connected from Quest class to HUD Quest labels
 signal quest_completed
+# Connected from Carrier to HUD Quest labels
+signal quest_removed
 # Connected from Carrier to HUD Credits label
 signal credits_updated

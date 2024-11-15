@@ -7,11 +7,11 @@ func _on_shop_area_entered(body):
 				# Handle completion (giving reward) if so.
 				ShipData.credits += ShipData.quest.reward
 				ShipData.totalScore += ShipData.quest.reward
-				print("UPDATE CREDITS")
 				print(ShipData.credits)
 				SignalBus.credits_updated.emit()
 				# Remove quest from ship so that we can take a new one.
 				ShipData.quest = null
+				SignalBus.quest_removed.emit()
 				
 		ShopMenu.visible = true
 		print("shop open")
