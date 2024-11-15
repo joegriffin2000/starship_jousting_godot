@@ -35,7 +35,7 @@ func reset():
 	
 	#Ship Quest deactivation logic
 	if quest!= null:
-		quest.deactive()
+		quest.deactivate()
 		quest = null
 
 	#Ship resources
