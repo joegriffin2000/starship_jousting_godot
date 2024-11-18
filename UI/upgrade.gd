@@ -12,7 +12,7 @@ func populate():
 	for i in range(4):
 		var button = e_button.instantiate()
 		#var button = UpgradeButton.new()
-		button.set_upgrade_stat_increase("speed", 100, 3)
+		button.set_upgrade_stat_increase("speed", 100, 3, 10)
 		add_button(baseButton, button, i)
 		
 func reset():
