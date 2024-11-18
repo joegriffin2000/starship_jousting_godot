@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://UI/ShopUI/shop_menu.gd" id="1_71syl"]
 [ext_resource type="Script" path="res://UI/ShopUI/ShopUpgrades/upgrade.gd" id="2_32nsl"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="3_vhqgl"]
-[ext_resource type="PackedScene" uid="uid://5ljy53wtfp4g" path="res://UI/ShopUI/ShopQuests/quest.tscn" id="4_h1yxy"]
 [ext_resource type="Texture2D" uid="uid://dfo3dhjbefiga" path="res://Sprites/quest_btn.png" id="5_n2y5n"]
 [ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
+[ext_resource type="PackedScene" uid="uid://dlbxkgga6wdmi" path="res://UI/ShopUI/ShopQuests/quest_menu.tscn" id="6_l2uha"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 visible = false
@@ -17,13 +17,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
 offset_top = 64.0
-offset_right = -64.0
+offset_right = -95.0
 offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-size_flags_stretch_ratio = 1.2
 
 [node name="Upgrades" type="Panel" parent="Panel"]
 visible = false
@@ -76,15 +75,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.133
 anchor_right = 1.0
-anchor_bottom = 0.984
+anchor_bottom = 1.0
 offset_left = 0.32
-offset_bottom = 8.19199
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Quest" parent="Panel/Quests" instance=ExtResource("4_h1yxy")]
+[node name="QuestMenu" parent="Panel/Quests" instance=ExtResource("6_l2uha")]
 layout_mode = 1
 
 [node name="QuestButton" type="TextureButton" parent="Panel"]

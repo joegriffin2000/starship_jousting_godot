@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cq1e813uoit5d"]
 
-[ext_resource type="Script" path="res://Logic/rock.gd" id="1_1wogh"]
-[ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_vgtg2"]
-[ext_resource type="Script" path="res://Logic/hurtbox.gd" id="3_68cq6"]
+[ext_resource type="Script" path="res://Logic/rock.gd" id="1_dwtis"]
+[ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_tjht8"]
+[ext_resource type="Script" path="res://Logic/hurtbox.gd" id="3_17h3t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6h3ik"]
 radius = 72.2496
@@ -17,18 +17,18 @@ gravity = Vector3(0, 0, 0)
 
 [node name="Rock" type="RigidBody2D"]
 mass = 200.0
-script = ExtResource("1_1wogh")
+script = ExtResource("1_dwtis")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(9.0625, 9.0625)
-texture = ExtResource("2_vgtg2")
+texture = ExtResource("2_tjht8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6h3ik")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-script = ExtResource("3_68cq6")
+script = ExtResource("3_17h3t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_6h3ik")
@@ -37,6 +37,6 @@ shape = SubResource("CircleShape2D_6h3ik")
 emitting = false
 amount = 5
 process_material = SubResource("ParticleProcessMaterial_0of2g")
-texture = ExtResource("2_vgtg2")
+texture = ExtResource("2_tjht8")
 one_shot = true
 explosiveness = 1.0

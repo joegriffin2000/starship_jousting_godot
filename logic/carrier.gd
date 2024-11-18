@@ -15,7 +15,7 @@ func _on_shop_area_entered(body):
 				
 		ShopMenu.visible = true
 		print("shop open")
-		ShopMenu.get_node("Panel/Quests/Quest").generateQuests()
+		ShopMenu.get_node("Panel/Quests/QuestMenu").generateQuests()
 
 func _on_shop_area_exited(body):
 	if body.has_method("shop_entered"):

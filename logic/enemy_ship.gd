@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var nameLabel = $Name_Label
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
 @onready var vision = $Vision
@@ -55,6 +56,7 @@ func turn_right():
 func _physics_process(delta):
 	enemy_logic_process()
 	rotation += rotation_direction * rotation_speed * delta
+	nameLabel.set_rotation(-1 * rotation)
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)

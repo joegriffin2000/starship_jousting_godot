@@ -1,0 +1,6 @@
+[gd_resource type="ButtonGroup" format=3 uid="uid://dok4vw3871d75"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = "QuestButtons"
+allow_unpress = true

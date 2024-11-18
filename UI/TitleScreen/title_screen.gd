@@ -13,7 +13,6 @@ func _on_play_button_pressed() -> void:
 		ShipData.playerName = playerName
 	else:
 		ShipData.playerName = "player_"+ str(rng.randi_range(0,1000))
-		
 	get_tree().change_scene_to_file("res://mainspace.tscn")
 
 func _on_line_edit_text_changed(new_text: String) -> void:

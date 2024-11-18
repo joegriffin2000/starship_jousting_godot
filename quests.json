@@ -9,13 +9,13 @@
 		{
 			"faction":"GOAT",
 			"type": 1,
-			"desc":"Go to x in certain time",
+			"desc":"Go to x in y time",
 			"credits":15
 		},
 		{
 			"faction":"FJB",
 			"type": 1,
-			"desc":"Kill x number of players",
+			"desc":"Kill x players",
 			"credits":20
 		},
 		{

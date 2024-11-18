@@ -1,7 +1,7 @@
 extends TextureButton
 class_name AbilityButton
 
-@onready var time_label = $Counter/Value
+@onready var time_label = $Value
 
 func _ready():
 	SignalBus.dash.connect(dash_start)
