@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq1e813uoit5d"]
+[gd_scene load_steps=5 format=3 uid="uid://b6mbwbwpnfgvp"]
 
-[ext_resource type="Script" path="res://logic/rock.gd" id="1_1wogh"]
+[ext_resource type="Script" path="res://Logic/rock.gd" id="1_utaeb"]
 [ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_vgtg2"]
-[ext_resource type="Script" path="res://logic/hurtbox.gd" id="3_68cq6"]
+[ext_resource type="Script" path="res://Logic/hurtbox.gd" id="3_vbqkl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6h3ik"]
 radius = 72.2496
 
 [node name="Rock" type="RigidBody2D"]
 mass = 200.0
-script = ExtResource("1_1wogh")
+script = ExtResource("1_utaeb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -20,7 +20,7 @@ texture = ExtResource("2_vgtg2")
 shape = SubResource("CircleShape2D_6h3ik")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-script = ExtResource("3_68cq6")
+script = ExtResource("3_vbqkl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_6h3ik")

@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://civgrrcpy8lw5"]
+[gd_scene load_steps=4 format=3 uid="uid://tk4l1yulx485"]
 
-[ext_resource type="Script" path="res://logic/dmg_rock.gd" id="1_aoo3n"]
+[ext_resource type="Script" path="res://Logic/dmg_rock.gd" id="1_45c6m"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_ywv3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17pel"]
 size = Vector2(128, 129)
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_aoo3n")
+script = ExtResource("1_45c6m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(100, 1, 1, 1)

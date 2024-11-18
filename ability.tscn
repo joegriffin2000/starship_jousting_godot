@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cumfp14w3h8un"]
+[gd_scene load_steps=3 format=3 uid="uid://b8ee4f12i4klm"]
 
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_r2xtb"]
-[ext_resource type="Script" path="res://logic/ability.gd" id="2_ln6lw"]
+[ext_resource type="Script" path="res://Logic/ability.gd" id="2_6070j"]
 
 [node name="Dash" type="TextureButton"]
 offset_right = 40.0
 offset_bottom = 40.0
 texture_normal = ExtResource("1_r2xtb")
-script = ExtResource("2_ln6lw")
+script = ExtResource("2_6070j")
 
 [node name="Sweep" type="TextureProgressBar" parent="."]
 modulate = Color(0.158472, 0.158472, 0.158472, 0.870588)
