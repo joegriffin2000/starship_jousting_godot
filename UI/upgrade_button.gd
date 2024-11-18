@@ -14,6 +14,12 @@ var current = 0
 func _init():
 	pressed.connect(on_button_pressed)
 	
+func reset():
+	queue_free()
+	
+func set_upgrade_modification():
+	pass
+	
 func set_upgrade_stat_increase(stat_to_increase: StringName, increase_value: int, max_purchase: int):
 	if stat_to_increase in ShipData:
 		stat = stat_to_increase

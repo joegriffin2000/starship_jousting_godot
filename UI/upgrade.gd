@@ -5,16 +5,23 @@ var e_button = preload("res://UI/upgrade_button.tscn")
 func _ready() -> void:
 	super()
 	#var button = e_button.instantiate()
+	populate()
+	
+func populate():
 	var baseButton = get_node("BaseButton")
 	for i in range(4):
 		var button = e_button.instantiate()
 		#var button = UpgradeButton.new()
-		button.set_upgrade_stat_increase("speed", 10, 3)
-		add_diagonal_button(baseButton, button, i)
-	
-func add_diagonal_button(parent_button, button_to_add, index: int):
-	if parent_button.connect_count >= parent_button.max_connect_count:
-		return
+		button.set_upgrade_stat_increase("speed", 100, 3)
+		add_button(baseButton, button, i)
+		
+func reset():
+	get_tree().call_group("upgradeButtons","reset")
+	populate()
+		
+func add_button(parent_button, button_to_add, index: int):
+	#if parent_button.connect_count >= parent_button.max_connect_count:
+		#return
 		
 	if button_to_add.has_node("Line2D"):
 		var line = button_to_add.get_node("Line2D")
@@ -37,6 +44,8 @@ func add_diagonal_button(parent_button, button_to_add, index: int):
 			start_line_offset.y += button_size.y
 			button_offset.y -= button_size.y
 			
+		#start point is on the button you're about to add
+		#end point is on the parent button
 		var starting_point = start_line_offset
 		var ending_point = starting_point + end_line_offset
 		
@@ -46,4 +55,5 @@ func add_diagonal_button(parent_button, button_to_add, index: int):
 		
 		parent_button.connect_count += 1
 		
+		button_to_add.add_to_group("upgradeButtons")
 		add_child(button_to_add)
