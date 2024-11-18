@@ -2,7 +2,7 @@ extends Hitbox
 
 func _ready() -> void:
 	set_collision_layer_value(2, false)
-	print(get_collision_layer_value(2))
+	#print(get_collision_layer_value(2))
 	
 func activate():
 	visible = true

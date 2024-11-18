@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlbxkgga6wdmi"]
+
+[ext_resource type="Script" path="res://UI/ShopUI/ShopQuests/shop_quests.gd" id="1_0yu5m"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="1_2go5a"]
+[ext_resource type="PackedScene" uid="uid://c45lo6t7ysxq2" path="res://UI/ShopUI/ShopQuests/quest_item.tscn" id="2_f8vuk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ycwqb"]
+font = ExtResource("1_2go5a")
+font_size = 20
+
+[sub_resource type="FontVariation" id="FontVariation_a2dqd"]
+base_font = ExtResource("1_2go5a")
+spacing_top = 10
+spacing_bottom = 10
+
+[node name="QuestMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("1_0yu5m")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="AvailableQuests" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+text = "Current Quest:"
+label_settings = SubResource("LabelSettings_ycwqb")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CurrentQuest" parent="." instance=ExtResource("2_f8vuk")]
+layout_mode = 2
+mouse_default_cursor_shape = 0
+disabled = true
+button_group = null
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="AvailableQuests" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Available Quests:"
+label_settings = SubResource("LabelSettings_ycwqb")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SEUQuest" parent="." instance=ExtResource("2_f8vuk")]
+layout_mode = 2
+
+[node name="FJBQuest" parent="." instance=ExtResource("2_f8vuk")]
+layout_mode = 2
+
+[node name="GOATQuest" parent="." instance=ExtResource("2_f8vuk")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TakeQuest" type="Button" parent="MarginContainer3"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_a2dqd")
+theme_override_font_sizes/font_size = 20
+text = "Accept Quest"
+
+[connection signal="toggled" from="SEUQuest" to="." method="_on_seu_quest_toggled"]
+[connection signal="toggled" from="FJBQuest" to="." method="_on_fjb_quest_toggled"]
+[connection signal="toggled" from="GOATQuest" to="." method="_on_goat_quest_toggled"]
+[connection signal="pressed" from="MarginContainer3/TakeQuest" to="." method="_on_take_quest_pressed"]

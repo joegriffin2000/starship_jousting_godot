@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cumfp14w3h8un"]
+
+[ext_resource type="Texture2D" uid="uid://bnhywq5k1e4jc" path="res://Sprites/dash icon.png" id="1_aoea5"]
+[ext_resource type="Script" path="res://Logic/ability.gd" id="2_ln6lw"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="3_pbfa5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmqgo"]
+font = ExtResource("3_pbfa5")
+font_size = 8
+
+[node name="Dash" type="TextureButton"]
+texture_filter = 1
+offset_right = 32.0
+offset_bottom = 32.0
+texture_normal = ExtResource("1_aoea5")
+stretch_mode = 5
+script = ExtResource("2_ln6lw")
+
+[node name="Sweep" type="TextureProgressBar" parent="."]
+modulate = Color(0.158472, 0.158472, 0.158472, 0.870588)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+fill_mode = 5
+
+[node name="Timer" type="Timer" parent="Sweep"]
+one_shot = true
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -6.0
+offset_right = 29.0
+offset_bottom = 2.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 8
+theme_override_constants/outline_size = 1
+text = "0.0"
+label_settings = SubResource("LabelSettings_fmqgo")
+vertical_alignment = 2
+clip_text = true
+
+[node name="Counter" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -7.0
+offset_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_bottom = 5
+
+[connection signal="pressed" from="." to="." method="_on_AbilityButton_pressed"]
+[connection signal="timeout" from="Sweep/Timer" to="." method="_on_Timer_timeout"]

@@ -1,34 +1,33 @@
-extends Draggable
+extends VBoxContainer
 
-@onready var UIQuestList = $ItemList
-var icon = preload("res://Sprites/quest_icon.png")
+#@onready var UIQuestList = $Panel/Quests/ItemList
+@onready var SEUQuest = $SEUQuest
+@onready var FJBQuest = $FJBQuest
+@onready var GOATQuest = $GOATQuest
 var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
 var json = JSON.new()
 var filecontents = json.parse_string(file)
-
-var last_mouse_pos = Vector2(0,0)
-
 var rng = RandomNumberGenerator.new()
 
 var generatedQuests = []
 var selectedQuest = null
 
 func _ready():
-	# Set offset default value
-	offset = Vector2(0,0)
-		
-func _process(delta):
-	if dragging:
-		UIQuestList.position.y = (get_viewport().get_mouse_position() - offset).y
-	#If the menu moves down too much it bounces back
-	elif UIQuestList.position.y > 0:
-		UIQuestList.position.y -= 15
+	pass
 
 func generateQuests() -> void:
-	# Getting only the quests we have already (level 1 quests)
+	# Display player's current quest, if they have one
+	if ShipData.quest != null:
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = selectedQuest.description
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", selectedQuest.reward, " credits")
+	else:
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = "No active quest"
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.visible = false
+	
+	# Fetch quest blanks from quest list
 	var lvl1quests = filecontents["quests"]
 	
-	# Generate quests
+	# Set up to generate quests
 	var goatQuests = []
 	var fjbQuests = []
 	var seuQuests = []
@@ -40,44 +39,46 @@ func generateQuests() -> void:
 		if quest.faction == "SEU":
 			seuQuests.append(quest)
 	
-	# Generate a quest for each quest faction:
+	# Generate a quest for each quest faction
 	# TODO: Replace quest[0] with randomizing from the list
 	var total = rng.randi_range(3, 7)
-	var q1 = Quest.new(seuQuests[0].faction, seuQuests[0].desc.replace("x", str(total)), seuQuests[0].type, total, seuQuests[0].credits)
+	var seu = Quest.new(seuQuests[0].faction, seuQuests[0].desc.replace("x", str(total)), seuQuests[0].type, total, seuQuests[0].credits)
 	total = rng.randi_range(2, 5)
-	var q2 = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total, fjbQuests[0].credits)
+	var fjb = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total, fjbQuests[0].credits)
 	total = rng.randi_range(3, 7)
-	var q3 = Quest.new(goatQuests[0].faction, goatQuests[0].desc.replace("x", str(total)), goatQuests[0].type, total, goatQuests[0].credits)
+	var goat = Quest.new(goatQuests[0].faction, goatQuests[0].desc.replace("x", str(total)), goatQuests[0].type, total, goatQuests[0].credits)
 	generatedQuests = []
-	generatedQuests.append(q1)
-	generatedQuests.append(q2)
-	generatedQuests.append(q3)
-	print(generatedQuests)
+	generatedQuests.append(seu)
+	generatedQuests.append(fjb)
+	generatedQuests.append(goat)
 	
-	# Clear quest list on UI
-	UIQuestList.clear()
-	# Fill in quest list on UI
-	for i in generatedQuests:
-		UIQuestList.add_item(i.description, icon)
+	# Fill each new quest
+	$SEUQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = seu.description
+	$SEUQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", seu.reward, " credits")
+	$FJBQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = fjb.description
+	$FJBQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", fjb.reward, " credits")
+	$GOATQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = goat.description
+	$GOATQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", goat.reward, " credits")
+	
 
-func _gui_input(event: InputEvent) -> void:
-	if event.is_action("scroll_up"):
-		UIQuestList.position.y -= 10
-	if event.is_action("scroll_down"):
-		UIQuestList.position.y += 10
-
-func _on_item_list_gui_input(event: InputEvent) -> void:
-	if !dragging and event.is_action_pressed("left_click"):
-		var mouse_pos = get_viewport().get_mouse_position()
-		offset = mouse_pos - UIQuestList.position
-		dragging = true
-		#get_tree().set_input_as_handled()
-		
-	if dragging and event.is_action_released("left_click"):
-		dragging = false
-		
-
-func _on_item_list_item_selected(index: int) -> void:
-	selectedQuest = generatedQuests[index]
-	# TODO: Make this a separate button
-	SignalBus.quest_received.emit(selectedQuest)
+func _on_seu_quest_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		selectedQuest = generatedQuests[0]
+	else:
+		selectedQuest = null
+func _on_fjb_quest_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		selectedQuest = generatedQuests[1]
+	else:
+		selectedQuest = null
+func _on_goat_quest_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		selectedQuest = generatedQuests[2]
+	else:
+		selectedQuest = null
+func _on_take_quest_pressed() -> void:
+	if selectedQuest != null:
+		SignalBus.quest_received.emit(selectedQuest)
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = selectedQuest.description
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", selectedQuest.reward, " credits")
+		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.visible = true

@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://c45lo6t7ysxq2"]
+
+[ext_resource type="ButtonGroup" uid="uid://dok4vw3871d75" path="res://UI/ShopUI/ShopQuests/quest_buttons.tres" id="1_81xwy"]
+[ext_resource type="Texture2D" uid="uid://d0tub6h0hhhmm" path="res://Sprites/quest_icon.png" id="1_e5cei"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="2_bl3du"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hi0mm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qoloq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7sly"]
+bg_color = Color(0.6, 0.6, 0.6, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02wdw"]
+bg_color = Color(0.6, 0.6, 0.6, 0.568627)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21k4v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_csi8i"]
+font = ExtResource("2_bl3du")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2gjhn"]
+font = ExtResource("2_bl3du")
+
+[node name="Button" type="Button"]
+clip_contents = true
+offset_right = 367.0
+offset_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hi0mm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qoloq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b7sly")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_02wdw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_21k4v")
+toggle_mode = true
+button_group = ExtResource("1_81xwy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="QuestIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_e5cei")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="QuestText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mine 5 rocks"
+label_settings = SubResource("LabelSettings_csi8i")
+
+[node name="QuestReward" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reward: 50 credits"
+label_settings = SubResource("LabelSettings_2gjhn")

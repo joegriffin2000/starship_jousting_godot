@@ -1,7 +1,7 @@
-extends ScaleableLabel
+extends Control
 
-@onready var desc = %QuestText
-@onready var progress = %QuestProgress
+@onready var desc = $QuestText
+@onready var progress = $QuestProgress
 
 func _ready() -> void:
 	SignalBus.quest_received.connect(set_quest_text)
@@ -10,8 +10,8 @@ func _ready() -> void:
 	SignalBus.quest_removed.connect(no_quest_text)
 
 func set_quest_text(quest: Variant) -> void:
-	var qD = ShipData.quest.description
-	var qP = str("(", ShipData.quest.progress, "/", ShipData.quest.total, " done)")
+	var qD = quest.description
+	var qP = str("(", quest.progress, "/", quest.total, " done)")
 	desc.set_text(qD)
 	progress.set_text(qP)
 
@@ -22,8 +22,8 @@ func update_quest_text() -> void:
 
 func complete_quest_text() -> void:
 	desc.set_text("Quest completed!")
-	progress.set_text("Return to carrier ship.")
+	progress.set_text("Return to carrier ship")
 
 func no_quest_text() -> void:
-	desc.set_text("No active quest.")
-	progress.set_text("Take a new quest at a carrier ship.")
+	desc.set_text("No active quest")
+	progress.set_text("Take a new quest at a carrier ship")

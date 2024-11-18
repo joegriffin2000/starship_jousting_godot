@@ -1,14 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://e1bi5rviiufr"]
+[gd_scene load_steps=10 format=3 uid="uid://e1bi5rviiufr"]
 
 [ext_resource type="Script" path="res://Logic/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://om46hfkv7o05" path="res://Sprites/ship.png" id="2_g8wrt"]
 [ext_resource type="Script" path="res://Logic/dash.gd" id="4_aff75"]
+[ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://Entities/Ship/lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Logic/action.gd" id="5_rp1k1"]
-[ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl71k"]
 size = Vector2(142, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t50ld"]
+font = ExtResource("7_5eqxg")
+font_size = 20
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 0)
 
 [node name="Ship" type="CharacterBody2D"]
 position = Vector2(-1, 0)
@@ -39,5 +47,19 @@ script = ExtResource("6_cf3ti")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(1, 30)
 shape = SubResource("RectangleShape2D_yl71k")
+
+[node name="Name_Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 73.0
+offset_right = 100.0
+offset_bottom = 96.0
+grow_horizontal = 2
+pivot_offset = Vector2(101, 12)
+text = "BOT"
+label_settings = SubResource("LabelSettings_t50ld")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="Action_Timer" to="Action_Timer" method="_on_action_timeout"]

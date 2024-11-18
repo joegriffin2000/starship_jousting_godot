@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 
+@onready var nameLabel = $Name_Label
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
@@ -11,6 +12,7 @@ var rotation_direction = 0
 func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
+	nameLabel.text = ShipData.playerName
 
 func get_input():
 	if ShipData.health >= 1:
@@ -34,6 +36,7 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * ShipData.rotation_speed * delta
+	nameLabel.set_rotation(-1 * rotation) 
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
@@ -45,6 +48,7 @@ func _physics_process(delta):
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
+
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
