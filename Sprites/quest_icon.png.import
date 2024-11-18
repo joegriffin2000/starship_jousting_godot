@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doh2x3bif1ifx"
-path="res://.godot/imported/starship_jousting.apple-touch-icon.png-3b7e65ee5543e921474fa6945cf83ef4.ctex"
+uid="uid://d0tub6h0hhhmm"
+path="res://.godot/imported/quest_icon.png-cc031696010f827b7ba8ec5a7bf65ceb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sj_export/starship_jousting.apple-touch-icon.png"
-dest_files=["res://.godot/imported/starship_jousting.apple-touch-icon.png-3b7e65ee5543e921474fa6945cf83ef4.ctex"]
+source_file="res://Sprites/quest_icon.png"
+dest_files=["res://.godot/imported/quest_icon.png-cc031696010f827b7ba8ec5a7bf65ceb.ctex"]
 
 [params]
 

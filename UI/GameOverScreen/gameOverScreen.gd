@@ -4,7 +4,7 @@ extends CanvasLayer
 
 func _ready() -> void:
 	SignalBus.player_died.connect(_on_ship_player_died)
-	
+
 func _on_ship_player_died(score: Variant) -> void:
 	var newText = str("Total Score: ", score)
 	displayScore.set_text(newText)
@@ -12,6 +12,5 @@ func _on_ship_player_died(score: Variant) -> void:
 	print(displayScore.get_text())
 
 func _on_main_menu_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://mainspace.tscn")
-	ShopMenu.get_node("Panel/Upgrades/Upgrade").reset()
+	get_tree().change_scene_to_file("res://UI/TitleScreen/titleScreen.tscn")
 	ShipData.reset()

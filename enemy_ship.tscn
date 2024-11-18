@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://botoqa2vmlcar"]
+
+[ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://ship.tscn" id="1_cyaek"]
+[ext_resource type="Script" path="res://logic/enemy_ship.gd" id="2_jvtnk"]
+[ext_resource type="Script" path="res://logic/enemy_action.gd" id="3_1sdag"]
+
+[node name="Ship" instance=ExtResource("1_cyaek")]
+position = Vector2(611, 359)
+script = ExtResource("2_jvtnk")
+metadata/_edit_group_ = true
+
+[node name="Action_Timer" parent="." index="2"]
+script = ExtResource("3_1sdag")
+
+[node name="Lance" parent="." index="4"]
+visible = false
+
+[node name="Vision" type="RayCast2D" parent="." index="6"]
+target_position = Vector2(0, -1000)

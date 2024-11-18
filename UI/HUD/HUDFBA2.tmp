@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://csce5kf7ob4fa"]
+
+[ext_resource type="PackedScene" uid="uid://cumfp14w3h8un" path="res://ability.tscn" id="1_cifeo"]
+[ext_resource type="Script" path="res://UI/HUD/credits_HUD.gd" id="2_pk0r0"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="4_85irf"]
+[ext_resource type="Texture2D" uid="uid://d0tub6h0hhhmm" path="res://Sprites/quest_icon.png" id="4_ormaa"]
+[ext_resource type="Script" path="res://UI/scaleableLabel.gd" id="5_bn0ep"]
+
+[sub_resource type="FontVariation" id="FontVariation_uq30s"]
+base_font = ExtResource("4_85irf")
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Dash" parent="." instance=ExtResource("1_cifeo")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -162.0
+offset_right = -40.0
+offset_bottom = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+offset_left = 20.0
+offset_right = 1087.0
+offset_bottom = 116.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "              "
+justification_flags = 35
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Label"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -36.5
+offset_right = 54.0
+offset_bottom = 36.5
+grow_vertical = 2
+texture = ExtResource("4_ormaa")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Credits" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.874785, 0.758122, 0.336018, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = SubResource("FontVariation_uq30s")
+theme_override_font_sizes/font_size = 36
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("2_pk0r0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ScaleableLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Go to carrier ship."
+script = ExtResource("5_bn0ep")
+
+[node name="ScaleableLabel2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "(0/1 done)"
+script = ExtResource("5_bn0ep")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_ormaa")
+expand_mode = 5

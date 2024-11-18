@@ -1,0 +1,34 @@
+{
+	"quests":[
+		{
+			"faction":"SEU",
+			"type": 1,
+			"desc":"Mine x rocks",
+			"credits":10
+		},
+		{
+			"faction":"GOAT",
+			"type": 1,
+			"desc":"Go to x in certain time",
+			"credits":15
+		},
+		{
+			"faction":"FJB",
+			"type": 1,
+			"desc":"Kill x number of players",
+			"credits":20
+		},
+		{
+			"faction":"SEU",
+			"type": 2,
+			"desc":"Charge battery",
+			"credits":10
+		},
+		{
+			"faction":"GOAT",
+			"type": 2,
+			"desc":"Go to x without taking damage",
+			"credits":15
+		}
+	]
+}

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const gameOverScreen = preload("res://UI/gameOverScreen.tscn")
+const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
@@ -10,6 +10,7 @@ var rotation_direction = 0
 
 func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
+	SignalBus.quest_received.connect(_on_quest_received)
 
 func get_input():
 	if ShipData.health >= 1:
@@ -18,11 +19,11 @@ func get_input():
 			dash.start_cd(ShipData.dash_cd)
 			rotation_direction = 0
 			velocity = -transform.y * ShipData.dash_speed 
-			$Lance.show()
+			$Lance.activate()
 		
 		if !ShipData.dash:
 			rotation_direction = Input.get_axis("left", "right")
-			$Lance.hide()
+			$Lance.deactivate()
 			
 		if !action.is_in_action():
 			velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
@@ -45,9 +46,6 @@ func _physics_process(delta):
 			
 	move_and_slide()
 
-func shop_entered():
-	pass
-
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage():
@@ -62,3 +60,11 @@ func death():
 
 func _on_dmg_rock_took_damage() -> void:
 	take_damage()
+
+func shop_entered():
+	pass
+
+func _on_quest_received(q: Variant) -> void:
+	ShipData.quest = q
+	print("Quest: ", ShipData.quest)
+	ShipData.quest.activate()

@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://j7jr5qp7ch07"]
+[gd_scene load_steps=3 format=3 uid="uid://dqbhnlhp2nkmx"]
 
-[ext_resource type="Script" path="res://logic/hitbox.gd" id="1_fkdir"]
+[ext_resource type="Script" path="res://Logic/lance.gd" id="1_7ix18"]
 [ext_resource type="Texture2D" uid="uid://c5cri7mb6umyu" path="res://Sprites/lance.png" id="1_gcfi3"]
 
-[node name="Hitbox" type="Area2D"]
-script = ExtResource("1_fkdir")
+[node name="Lance" type="Area2D"]
+script = ExtResource("1_7ix18")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
