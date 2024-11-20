@@ -31,7 +31,7 @@ func _init(faction, description, type, total, baseCredits) -> void:
 		#each of these is a different quest type
 		match int(type):
 			1: 
-				self.progressSig = SignalBus.rock_mined 
+				self.progressSig = SignalBus.enemy_killed
 			_: #default
 				print("No type for quest of faction 'FJB'.")
 		pass

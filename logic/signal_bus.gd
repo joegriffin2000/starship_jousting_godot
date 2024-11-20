@@ -7,7 +7,10 @@ signal dash
 signal damage_taken
 
 # Quest signals
+# Connected from damage rock to ship
 signal rock_mined
+# Connected from enemy to ship
+signal enemy_killed
 
 # Other object signals
 

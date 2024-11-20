@@ -84,6 +84,7 @@ func death():
 	# Need a better solution for how to freeze player inputs
 	#SignalBus.player_died.emit(ShipData.totalScore)
 	queue_free()
+	SignalBus.enemy_killed.emit()
 	pass
 
 #func _on_dmg_rock_took_damage() -> void:
