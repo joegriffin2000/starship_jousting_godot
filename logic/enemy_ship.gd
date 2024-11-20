@@ -69,8 +69,6 @@ func _physics_process(delta):
 			
 	move_and_slide()
 
-func shop_entered():
-	pass
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.

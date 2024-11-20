@@ -48,6 +48,8 @@ func _on_buy_button_pressed() -> void:
 		if current >= max:
 			disabled = true
 			purchase_menu.visible = false
+			
+		SignalBus.credits_updated.emit()
 
 
 func _on_cancel_button_pressed() -> void:
