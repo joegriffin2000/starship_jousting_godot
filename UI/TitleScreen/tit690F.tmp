@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bes030ss6u4hd"]
+[gd_scene load_steps=8 format=3 uid="uid://bes030ss6u4hd"]
 
 [ext_resource type="Script" path="res://UI/TitleScreen/title_screen.gd" id="1_trl2a"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="2_5q5m3"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="2_yfg14"]
 [ext_resource type="Texture2D" uid="uid://bxe2mamcjt73x" path="res://Sprites/logo.png" id="4_timej"]
 [ext_resource type="Script" path="res://UI/TitleScreen/global_leaderboard.gd" id="5_6erbh"]
+[ext_resource type="PackedScene" uid="uid://cb05yckhoyjfc" path="res://UI/TitleScreen/global_lb_entry.tscn" id="5_6kg5s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7dmnm"]
 font = ExtResource("2_5q5m3")
@@ -25,6 +26,7 @@ texture = ExtResource("2_yfg14")
 expand_mode = 5
 
 [node name="Home" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,7 +105,6 @@ action_mode = 0
 text = "Leaderboard"
 
 [node name="Leaderboard" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -139,6 +140,66 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
+
+[node name="PanelContainer" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer2" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer3" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer4" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer5" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer6" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer7" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer8" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer9" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer10" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer11" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer12" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer13" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer14" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer15" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer16" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer17" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer18" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer19" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
+
+[node name="PanelContainer20" parent="Leaderboard/MarginContainer2/ScrollContainer/LeaderboardContainer" instance=ExtResource("5_6kg5s")]
+layout_mode = 2
 
 [node name="BackButton" type="Button" parent="Leaderboard"]
 layout_mode = 2

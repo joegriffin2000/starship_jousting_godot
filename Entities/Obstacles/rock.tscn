@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cq1e813uoit5d"]
 
-[ext_resource type="Script" path="res://Logic/rock.gd" id="1_dwtis"]
+[ext_resource type="Script" path="res://Entities/Obstacles/rock.gd" id="1_dwtis"]
 [ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_tjht8"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="3_17h3t"]
 

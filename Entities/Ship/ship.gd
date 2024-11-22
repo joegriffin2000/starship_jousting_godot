@@ -59,7 +59,7 @@ func take_damage():
 
 # This function handles when the player reaches 0 HP.
 func death():
-	# Need a better solution for how to freeze player inputs
+	queue_free()
 	SignalBus.player_died.emit(ShipData.totalScore)
 
 func _on_dmg_rock_took_damage() -> void:
