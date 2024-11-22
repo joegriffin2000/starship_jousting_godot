@@ -52,18 +52,18 @@ func _physics_process(delta):
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
-func take_damage():
+func take_damage(attacker: CollisionObject2D):
 	ShipData.health -= 1
 	if ShipData.health < 1:
-		death()
+		death(attacker)
 
 # This function handles when the player reaches 0 HP.
-func death():
+func death(attacker: CollisionObject2D):
 	# Need a better solution for how to freeze player inputs
 	SignalBus.player_died.emit(ShipData.totalScore)
 
-func _on_dmg_rock_took_damage() -> void:
-	take_damage()
+func _on_dmg_rock_took_damage(attacker) -> void:
+	take_damage(attacker)
 
 func shop_entered():
 	pass
@@ -71,6 +71,4 @@ func shop_entered():
 func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
 	q.holder = self
-	print("Quest: ", ShipData.quest)
-	print("Quest holder: ", ShipData.quest.holder)
 	ShipData.quest.activate()

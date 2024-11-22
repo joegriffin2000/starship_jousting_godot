@@ -8,7 +8,7 @@ signal damage_taken
 
 # Quest signals
 # Connected from damage rock to ship
-signal rock_mined
+signal rock_mined(attacker)
 # Connected from enemy to ship
 signal enemy_killed(object)
 

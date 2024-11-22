@@ -6,7 +6,7 @@ class_name Quest
 @export var total : int #number requirement for quest completion
 @export var progress : int #number progress for quest completion
 @export var reward : int #amount of credits they'll get
-var holder : Variant
+var holder : CollisionObject2D
 var progressSig : Signal #number progress for quest completion
 
 # Called when the node enters the scene tree for the first time.
@@ -55,13 +55,14 @@ func deactivate():
 	self.progressSig.disconnect(update_progress)
 
 #called everytime the signal is caught 
-func update_progress(killer:CollisionObject2D):
+func update_progress(quester:CollisionObject2D):
 	#print("quest triggered, progress:",progress,"/",total)
-	if progress < total:
-		progress += 1
-		SignalBus.quest_progressed.emit()
-	if progress == total:
-		SignalBus.quest_completed.emit()
+	if holder == quester:
+		if progress < total:
+			progress += 1
+			SignalBus.quest_progressed.emit()
+		if progress == total:
+			SignalBus.quest_completed.emit()
 	# else do nothing
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
