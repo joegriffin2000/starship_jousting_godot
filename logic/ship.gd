@@ -66,7 +66,10 @@ func _on_dmg_rock_took_damage() -> void:
 	take_damage()
 
 func shop_entered():
-	pass
+	$Hurtbox.isEnabled = false
+
+func shop_exited():
+	$Hurtbox.isEnabled = true
 
 func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q

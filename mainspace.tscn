@@ -1,13 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_31b5h"]
+[ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
 [ext_resource type="PackedScene" uid="uid://cq1e813uoit5d" path="res://Entities/Obstacles/rock.tscn" id="3_ajql6"]
 [ext_resource type="PackedScene" uid="uid://csce5kf7ob4fa" path="res://UI/HUD/HUD.tscn" id="4_m7kfs"]
 [ext_resource type="PackedScene" uid="uid://civgrrcpy8lw5" path="res://Entities/Obstacles/dmg_rock.tscn" id="5_ysiwv"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/gameOverScreen.tscn" id="6_bpwyg"]
-[ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
-[ext_resource type="Script" path="res://Logic/rock.gd" id="5_rgu6t"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://carrier.tscn" id="6_t3k5q"]
 [ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://enemy_ship.tscn" id="9_o34ng"]
 
@@ -28,7 +27,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Rock" parent="." instance=ExtResource("3_ajql6")]
 position = Vector2(-3, -508)
-script = ExtResource("5_rgu6t")
 
 [node name="DmgRock" parent="." instance=ExtResource("5_ysiwv")]
 position = Vector2(393, -218)
@@ -64,11 +62,11 @@ position = Vector2(-682, 568)
 rotation = 0.832522
 
 [node name="Enemy3" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(-1389, 597)
+position = Vector2(-2637, -184)
 rotation = 1.66504
 
 [node name="Enemy4" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(-874, -831)
+position = Vector2(-956, -1960)
 rotation = -2.9531
 
 [node name="Enemy5" parent="." instance=ExtResource("9_o34ng")]

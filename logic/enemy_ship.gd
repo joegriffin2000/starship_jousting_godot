@@ -22,6 +22,7 @@ var randomizer = RandomNumberGenerator.new()
 func _ready() -> void:
 	#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	$Lance.deactivate()
+	#$Hurtbox.isEnabled = false #this makes the enemy ships unkillable
 
 func enemy_logic_process():
 	if hp >= 1:
