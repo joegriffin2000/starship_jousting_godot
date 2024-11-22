@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://csce5kf7ob4fa" path="res://UI/HUD/HUD.tscn" id="4_m7kfs"]
 [ext_resource type="PackedScene" uid="uid://civgrrcpy8lw5" path="res://Entities/Obstacles/dmg_rock.tscn" id="5_ysiwv"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/gameOverScreen.tscn" id="6_bpwyg"]
-[ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://carrier.tscn" id="6_t3k5q"]
-[ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://enemy_ship.tscn" id="9_o34ng"]
+[ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://Entities/Carrier/carrier.tscn" id="6_t3k5q"]
+[ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://Entities/Enemy/enemy_ship.tscn" id="9_o34ng"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_coag6")

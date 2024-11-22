@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqbhnlhp2nkmx"]
 
-[ext_resource type="Script" path="res://Logic/lance.gd" id="1_7ix18"]
+[ext_resource type="Script" path="res://Entities/Ship/lance.gd" id="1_7ix18"]
 [ext_resource type="Texture2D" uid="uid://c5cri7mb6umyu" path="res://Sprites/lance.png" id="1_gcfi3"]
 
 [node name="Lance" type="Area2D"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://e1bi5rviiufr"]
 
-[ext_resource type="Script" path="res://Logic/ship.gd" id="1_i8hbr"]
+[ext_resource type="Script" path="res://Entities/Ship/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://om46hfkv7o05" path="res://Sprites/ship.png" id="2_g8wrt"]
-[ext_resource type="Script" path="res://Logic/dash.gd" id="4_aff75"]
+[ext_resource type="Script" path="res://Entities/Ship/dash.gd" id="4_aff75"]
 [ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://Entities/Ship/lance.tscn" id="5_aex22"]
-[ext_resource type="Script" path="res://Logic/action.gd" id="5_rp1k1"]
+[ext_resource type="Script" path="res://Entities/Ship/action.gd" id="5_rp1k1"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 

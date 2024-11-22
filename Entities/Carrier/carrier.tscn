@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dwtvkp2vnyevp"]
 
-[ext_resource type="Script" path="res://Logic/carrier.gd" id="1_173kj"]
+[ext_resource type="Script" path="res://Entities/Carrier/carrier.gd" id="1_173kj"]
 [ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_sxrk5"]
 
 [sub_resource type="Gradient" id="Gradient_ty7mj"]

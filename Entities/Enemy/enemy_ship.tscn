@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://botoqa2vmlcar"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_cyaek"]
-[ext_resource type="Script" path="res://Logic/enemy_ship.gd" id="2_mcaxm"]
-[ext_resource type="Script" path="res://Logic/enemy_action.gd" id="3_guu5m"]
+[ext_resource type="Script" path="res://Entities/Enemy/enemy_ship.gd" id="2_mcaxm"]
+[ext_resource type="Script" path="res://Entities/Enemy/enemy_action.gd" id="3_guu5m"]
 
 [node name="Ship" instance=ExtResource("1_cyaek")]
 position = Vector2(611, 359)
