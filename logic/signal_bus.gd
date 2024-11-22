@@ -10,7 +10,7 @@ signal damage_taken
 # Connected from damage rock to ship
 signal rock_mined
 # Connected from enemy to ship
-signal enemy_killed
+signal enemy_killed(object)
 
 # Other object signals
 

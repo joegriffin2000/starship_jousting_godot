@@ -72,17 +72,19 @@ func _physics_process(delta):
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
-func take_damage():
+func take_damage(attacker: CollisionObject2D) -> bool:
 	hp -= 1
 	if hp < 1:
-		death()
+		death(attacker)
+		
+	return true if hp<=0 else false
 
 # This function handles when the player reaches 0 HP.
-func death():
+func death(killer: CollisionObject2D):
 	# Need a better solution for how to freeze player inputs
 	#SignalBus.player_died.emit(ShipData.totalScore)
 	queue_free()
-	SignalBus.enemy_killed.emit()
+	SignalBus.enemy_killed.emit(killer)
 	pass
 
 #func _on_dmg_rock_took_damage() -> void:

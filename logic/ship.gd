@@ -70,5 +70,7 @@ func shop_entered():
 
 func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
+	q.holder = self
 	print("Quest: ", ShipData.quest)
+	print("Quest holder: ", ShipData.quest.holder)
 	ShipData.quest.activate()

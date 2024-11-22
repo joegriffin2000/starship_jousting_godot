@@ -6,6 +6,7 @@ class_name Quest
 @export var total : int #number requirement for quest completion
 @export var progress : int #number progress for quest completion
 @export var reward : int #amount of credits they'll get
+var holder : Variant
 var progressSig : Signal #number progress for quest completion
 
 # Called when the node enters the scene tree for the first time.
@@ -54,7 +55,7 @@ func deactivate():
 	self.progressSig.disconnect(update_progress)
 
 #called everytime the signal is caught 
-func update_progress():
+func update_progress(killer:CollisionObject2D):
 	#print("quest triggered, progress:",progress,"/",total)
 	if progress < total:
 		progress += 1
