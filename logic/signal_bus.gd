@@ -27,3 +27,5 @@ signal quest_completed
 signal quest_removed
 # Connected from Carrier to HUD Credits label
 signal credits_updated
+# Connected from Carrier to HUD leaderboard
+signal score_updated

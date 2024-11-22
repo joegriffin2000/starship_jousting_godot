@@ -1,14 +1,13 @@
 extends VBoxContainer
 
-#@onready var UIQuestList = $Panel/Quests/ItemList
+@onready var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
+@onready var json = JSON.new()
+@onready var filecontents = json.parse_string(file)
+@onready var rng = RandomNumberGenerator.new()
+
 @onready var SEUQuest = $SEUQuest
 @onready var FJBQuest = $FJBQuest
 @onready var GOATQuest = $GOATQuest
-var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
-var json = JSON.new()
-var filecontents = json.parse_string(file)
-var rng = RandomNumberGenerator.new()
-
 var generatedQuests = []
 var selectedQuest = null
 
@@ -78,10 +77,13 @@ func _on_goat_quest_toggled(toggled_on: bool) -> void:
 		selectedQuest = null
 func _on_take_quest_pressed() -> void:
 	if selectedQuest != null:
+		# Receive selected quest
 		SignalBus.quest_received.emit(selectedQuest)
+		# Update display to show current active quest
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = selectedQuest.description
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", selectedQuest.reward, " credits")
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.visible = true
+		# Deselect quests in the menu
 		SEUQuest.set_pressed(false)
 		FJBQuest.set_pressed(false)
 		GOATQuest.set_pressed(false)

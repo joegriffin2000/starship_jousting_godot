@@ -9,6 +9,7 @@ func _on_shop_area_entered(body):
 				ShipData.totalScore += ShipData.quest.reward
 				print(ShipData.credits)
 				SignalBus.credits_updated.emit()
+				SignalBus.score_updated.emit()
 				# Remove quest from ship so that we can take a new one.
 				ShipData.quest = null
 				SignalBus.quest_removed.emit()

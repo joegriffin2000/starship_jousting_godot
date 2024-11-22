@@ -59,7 +59,7 @@ func take_damage(attacker: CollisionObject2D):
 
 # This function handles when the player reaches 0 HP.
 func death(attacker: CollisionObject2D):
-	# Need a better solution for how to freeze player inputs
+	queue_free()
 	SignalBus.player_died.emit(ShipData.totalScore)
 
 func _on_dmg_rock_took_damage(attacker) -> void:
