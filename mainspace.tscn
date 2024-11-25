@@ -58,7 +58,7 @@ position = Vector2(220, -40)
 rotation = 0.832522
 
 [node name="Enemy2" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(-1423, -1637)
+position = Vector2(-2186, -1242)
 rotation = 0.832522
 
 [node name="Enemy3" parent="." instance=ExtResource("9_o34ng")]
@@ -66,7 +66,7 @@ position = Vector2(-1389, 597)
 rotation = 1.66504
 
 [node name="Enemy4" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(-1438, -935)
+position = Vector2(-1057, -1617)
 rotation = -2.9531
 
 [node name="Enemy5" parent="." instance=ExtResource("9_o34ng")]
