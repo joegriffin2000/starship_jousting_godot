@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Entities/Ship/action.gd" id="5_rp1k1"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
-[ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://shield.tscn" id="8_58v7v"]
+[ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://Entities/Ship/shield.tscn" id="8_58v7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl71k"]
 size = Vector2(142, 80)
