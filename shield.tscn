@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://7o7u14iydxi0"]
+
+[ext_resource type="Texture2D" uid="uid://bcbx4g8f060pl" path="res://Sprites/Shield.png" id="1_bxj0u"]
+[ext_resource type="Script" path="res://shield.gd" id="1_oqx6i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4wvm"]
+radius = 95.0053
+
+[node name="Shield" type="Area2D"]
+script = ExtResource("1_oqx6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.449)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("1_bxj0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e4wvm")
+
+[node name="Iframe" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="on_area_entered"]
+[connection signal="timeout" from="Iframe" to="." method="_on_iframe_timeout"]

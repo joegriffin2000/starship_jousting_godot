@@ -1,5 +1,5 @@
 extends Area2D
-class_name Hurtbox
+#class_name Hurtbox
 
 #Add an area2D as a child on the thing you want to take damage (like the ship)
 #Add a collision shape on it and attach this script to the area2D

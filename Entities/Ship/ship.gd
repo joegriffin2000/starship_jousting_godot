@@ -5,7 +5,9 @@ const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 @onready var nameLabel = $Name_Label
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
+@onready var shield = $Shield
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
+var shielded = false
 
 var rotation_direction = 0
 
@@ -13,6 +15,7 @@ func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
 	nameLabel.text = ShipData.playerName
+	shield.activate()
 
 func get_input():
 	if ShipData.health >= 1:
@@ -49,13 +52,17 @@ func _physics_process(delta):
 			
 	move_and_slide()
 
+func get_knockback():
+	action.start_knockback(ShipData.knock_back_time)
+	velocity = -velocity
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage(attacker: CollisionObject2D):
-	ShipData.health -= 1
-	if ShipData.health < 1:
-		death(attacker)
+	if not shielded:
+		ShipData.health -= 1
+		if ShipData.health < 1:
+			death(attacker)
 
 # This function handles when the player reaches 0 HP.
 func death(attacker: CollisionObject2D):

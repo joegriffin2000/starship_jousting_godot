@@ -12,7 +12,7 @@ extends Node
 @export var knock_back_time = 0.3
 
 #Ship resources
-@export var health = 1
+@export var health = 2
 @export var quest = null
 @export var credits = 0
 @export var totalScore = 0
