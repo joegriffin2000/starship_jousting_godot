@@ -66,7 +66,7 @@ func _physics_process(delta):
 			c.get_collider().apply_central_impulse(-c.get_normal() * 10)
 			
 	if get_slide_collision_count() != 0:
-		action.start_knockback(ShipData.knock_back_time)
+		action.start_knockback(knock_back_time)
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
