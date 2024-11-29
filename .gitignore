@@ -2,5 +2,9 @@
 .godot/
 /android/
 
-#temp files
+# Temp files
 .tmp/
+
+# Config files
+db_config.txt
+nginx-selfsigned.crt
