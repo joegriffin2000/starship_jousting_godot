@@ -17,6 +17,7 @@ func _on_shop_area_entered(body):
 				SignalBus.quest_removed.emit()
 		
 		body.get_node("Shield").activate()
+		body.get_node("Shield").in_iframe = true
 		
 		ShopMenu.visible = true
 		print("shop open")
@@ -25,4 +26,5 @@ func _on_shop_area_entered(body):
 func _on_shop_area_exited(body):
 	if body.has_method("shop_exited"):
 		body.shop_exited()
+		body.get_node("Shield").in_iframe = false
 		ShopMenu.visible = false
