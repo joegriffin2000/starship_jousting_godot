@@ -28,7 +28,7 @@ func add_button(parent_button, button_to_add, index: int):
 		var start_line_offset = Vector2(0,0)
 		var end_line_offset = Vector2(75,75)
 		var button_offset = Vector2(0,0)
-		var button_size = button_to_add.icon.get_size() + button_to_add.size
+		var button_size = button_to_add.size
 		var parent_position = parent_button.position
 		
 		if index%2 == 1:

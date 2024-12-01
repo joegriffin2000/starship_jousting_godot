@@ -42,10 +42,17 @@ func generateQuests() -> void:
 	# TODO: Replace quest[0] with randomizing from the list
 	var total = rng.randi_range(3, 7)
 	var seu = Quest.new(seuQuests[0].faction, seuQuests[0].desc.replace("x", str(total)), seuQuests[0].type, total, seuQuests[0].credits)
+	
 	total = rng.randi_range(2, 5)
 	var fjb = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total, fjbQuests[0].credits)
+	
 	total = rng.randi_range(3, 7)
-	var goat = Quest.new(goatQuests[0].faction, goatQuests[0].desc.replace("x", str(total)), goatQuests[0].type, total, goatQuests[0].credits)
+	var time = rng.randi_range(30, 120)
+	var base = goatQuests[0].desc
+	var updTotal = base.replace("x", str(total))
+	var updTime = updTotal.replace("y time", str(time, " seconds"))
+	var goat = Quest.new(goatQuests[0].faction, updTime, goatQuests[0].type, total, goatQuests[0].credits)
+	
 	generatedQuests = []
 	generatedQuests.append(seu)
 	generatedQuests.append(fjb)

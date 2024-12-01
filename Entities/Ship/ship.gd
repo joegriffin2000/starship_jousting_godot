@@ -36,7 +36,7 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * ShipData.rotation_speed * delta
-	nameLabel.set_rotation(-1 * rotation) 
+	nameLabel.set_rotation(-1 * rotation)
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)

@@ -30,6 +30,7 @@ texture = ExtResource("2_yfg14")
 expand_mode = 5
 
 [node name="Home" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,7 +109,6 @@ action_mode = 0
 text = "Leaderboard"
 
 [node name="Leaderboard" type="VBoxContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
