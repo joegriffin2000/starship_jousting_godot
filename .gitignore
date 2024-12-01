@@ -4,3 +4,4 @@
 
 #temp files
 .tmp/
+nginx-selfsigned.crt

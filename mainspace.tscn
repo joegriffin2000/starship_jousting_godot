@@ -14,6 +14,7 @@
 script = ExtResource("1_coag6")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Parallax2D"]
 offset_left = -4331.0
@@ -24,6 +25,7 @@ texture = ExtResource("1_xb1gi")
 expand_mode = 2
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Rock" parent="." instance=ExtResource("3_ajql6")]
 position = Vector2(-3, -508)
@@ -32,8 +34,9 @@ position = Vector2(-3, -508)
 position = Vector2(-13, 693)
 
 [node name="Carrier" parent="." instance=ExtResource("6_t3k5q")]
-position = Vector2(-1579, -384)
+position = Vector2(-2204, -1021)
 rotation = 0.390954
+scale = Vector2(2.5, 2.5)
 
 [node name="Ship" parent="." instance=ExtResource("1_31b5h")]
 position = Vector2(-8, -10)
@@ -58,7 +61,7 @@ position = Vector2(220, -40)
 rotation = 0.832522
 
 [node name="Enemy2" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(-2186, -1242)
+position = Vector2(-2477, 1030)
 rotation = 0.832522
 
 [node name="Enemy3" parent="." instance=ExtResource("9_o34ng")]
@@ -66,7 +69,7 @@ position = Vector2(-1389, 597)
 rotation = 1.66504
 
 [node name="Enemy4" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(-1057, -1617)
+position = Vector2(-197, -1760)
 rotation = -2.9531
 
 [node name="Enemy5" parent="." instance=ExtResource("9_o34ng")]
