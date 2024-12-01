@@ -13,16 +13,18 @@ var dash_length = 0.3
 var dash_cd = 0.5
 var knock_back_time = 0.3
 var rotation_direction = 0
+var shielded = false
 
 var knockback = false
 var dashing = false
 
 var randomizer = RandomNumberGenerator.new()
 
-func _ready() -> void:
-	#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
+func _enter_tree() -> void:
+		#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	$Lance.deactivate()
 	#$Hurtbox.isEnabled = false #this makes the enemy ships unkillable
+	$Shield.activate()
 
 func enemy_logic_process():
 	if hp >= 1:
@@ -69,6 +71,10 @@ func _physics_process(delta):
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
+	
+func get_knockback():
+	action.start_knockback(knock_back_time)
+	velocity = -velocity
 
 
 # This function handles taking damage.

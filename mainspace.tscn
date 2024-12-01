@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=12 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_31b5h"]
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
@@ -11,6 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://Entities/Enemy/enemy_ship.tscn" id="9_o34ng"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60dm5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dwt8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_coag6")
@@ -68,6 +76,13 @@ metadata/_edit_group_ = true
 position = Vector2(8000, 5000)
 shape = SubResource("WorldBoundaryShape2D_60dm5")
 metadata/_edit_group_ = true
+
+[node name="Container" type="Panel" parent="MapBorder"]
+offset_right = 8000.0
+offset_bottom = 5000.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4dwt8")
 
 [node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
 process_mode = 3
