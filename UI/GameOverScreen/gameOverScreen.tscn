@@ -56,4 +56,6 @@ theme_override_fonts/font = ExtResource("2_hqkl0")
 theme_override_font_sizes/font_size = 30
 text = " Main Menu "
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
