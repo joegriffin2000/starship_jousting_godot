@@ -5,3 +5,4 @@
 # Temp files
 .tmp/
 nginx-selfsigned.crt
+/sj_export/
