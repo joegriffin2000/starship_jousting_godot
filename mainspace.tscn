@@ -27,10 +27,10 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Rock" parent="." instance=ExtResource("3_ajql6")]
-position = Vector2(4423, 1549)
+position = Vector2(4797, 1974)
 
 [node name="DmgRock" parent="." instance=ExtResource("5_ysiwv")]
-position = Vector2(5207, 2775)
+position = Vector2(5581, 3200)
 
 [node name="Carrier" parent="." instance=ExtResource("6_t3k5q")]
 position = Vector2(1782, 1906)
@@ -38,7 +38,7 @@ rotation = 0.390954
 scale = Vector2(2.5, 2.5)
 
 [node name="Ship" parent="." instance=ExtResource("1_31b5h")]
-position = Vector2(4100, 1924)
+position = Vector2(4474, 2349)
 
 [node name="Camera2D" type="Camera2D" parent="Ship"]
 zoom = Vector2(0.5, 0.5)
@@ -74,33 +74,33 @@ process_mode = 3
 visible = false
 
 [node name="Enemy1" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(4680, 2281)
+position = Vector2(5054, 2706)
 rotation = 0.832522
 
 [node name="Enemy2" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(3037, 684)
+position = Vector2(3411, 1109)
 rotation = 0.832522
 
 [node name="Enemy3" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(3071, 2918)
+position = Vector2(3445, 3343)
 rotation = 1.66504
 
 [node name="Enemy4" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(3022, 1386)
+position = Vector2(3396, 1811)
 rotation = -2.9531
 
 [node name="Enemy5" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(4531, 997)
+position = Vector2(4905, 1422)
 rotation = -2.45393
 
 [node name="Enemy6" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(5845, 2492)
+position = Vector2(6219, 2917)
 rotation = -2.9531
 
 [node name="Enemy7" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(4725, 3355)
+position = Vector2(5099, 3780)
 rotation = -1.28805
 
 [node name="Enemy8" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(5707, 1354)
+position = Vector2(6081, 1779)
 rotation = 0.376991
