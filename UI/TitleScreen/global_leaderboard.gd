@@ -22,7 +22,7 @@ func _ready() -> void:
 	req.set_tls_options(client_tls_options)
 	
 	# GET Request for leaderboard data
-	var error = req.request("http://137.184.49.244/leaderboard_pull20")
+	var error = req.request("https://137.184.49.244/leaderboard_pull20")
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
