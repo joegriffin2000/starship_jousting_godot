@@ -6,7 +6,7 @@ class_name UpgradeButton
 @onready var purchase_menu = $Panel
 @onready var purchase_details = $Panel/Details
 var stat = "speed"
-var increase = 0
+var value = 0.0
 var max = 0
 var current = 0
 var cost = 0 
@@ -21,17 +21,26 @@ func reset():
 func set_upgrade_modification():
 	pass
 	
-func set_upgrade_stat_increase(stat_to_increase: StringName, increase_value: int, max_purchase: int, cost: int):
+func set_upgrade_stat_increase(stat_to_increase: StringName, change: float, max_purchase: int, cost: int, isDecrease:bool = false):
 	if stat_to_increase in ShipData:
 		stat = stat_to_increase
 	else: 
 		return
-	increase = increase_value
-	max = max_purchase
+		
+	self.max = max_purchase
 	self.cost = cost
-	$Panel/Description.text = "Increase " + str(stat) + " by " + str(increase)
-	$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
-	$Panel/BuyButton.text = str(cost) + "$"
+	
+	if not isDecrease:
+		value = change
+		$Panel/Description.text = "Increase " + str(stat) + " by " + str(value)
+		$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
+		$Panel/BuyButton.text = str(cost) + "$"
+	else:
+		value = -1 * change
+		$Panel/Description.text = "Decrease " + str(stat) + " by " + str(change)
+		$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
+		$Panel/BuyButton.text = str(cost) + "$"
+	
 	
 func on_button_pressed():
 	purchase_menu.visible = !purchase_menu.visible
@@ -41,7 +50,7 @@ func _on_buy_button_pressed() -> void:
 		ShipData.credits -= cost
 		print("upgrade bought")
 		print("old ", stat, " : ", ShipData.get(stat))
-		ShipData.set(stat, ShipData.get(stat) + increase)
+		ShipData.set(stat, ShipData.get(stat) + value)
 		print("new ", stat, " : ", ShipData.get(stat))
 		current += 1
 		purchase_details.text = "(" + str(current) + "/" + str(max) + ")"

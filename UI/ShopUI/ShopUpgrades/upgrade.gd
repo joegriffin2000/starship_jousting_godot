@@ -16,7 +16,7 @@ func populate(parent_button,parent_id):
 		if i["parent_id"] == parent_id:
 			var button = e_button.instantiate()
 			if i["isStatBoost"] == true:
-				button.set_upgrade_stat_increase(i["data"]["stat"], i["data"]["increase_value"], i["max_purchases"], i["cost"])
+				button.set_upgrade_stat_increase(i["data"]["stat"], i["data"]["increase_value"], i["max_purchases"], i["cost"],i["data"]["isDecrease"])
 			add_button(parent_button, button, i["id"])
 	
 # Keeping this around just in case.
@@ -31,7 +31,6 @@ func populate(parent_button,parent_id):
 	#var button = e_button.instantiate()
 	#button.set_upgrade_stat_increase("health", 1, 1, 20)
 	#add_button(baseButton, button, 3)
-
 	
 func reset():
 	get_tree().call_group("upgradeButtons","reset")

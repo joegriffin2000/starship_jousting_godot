@@ -8,7 +8,7 @@ extends Node
 @export var rotation_speed = 3
 @export var dash_mult = 3
 @export var dash_length = 0.3
-@export var dash_cd = 0.5
+@export var dash_cd = 1.0
 @export var knock_back_time = 0.3
 
 #Ship resources
@@ -29,7 +29,7 @@ func reset():
 	rotation_speed = 3
 	dash_mult = 3
 	dash_length = 0.3
-	dash_cd = 0.5
+	dash_cd = 1.0
 	knock_back_time = 0.3
 	
 	# Ship resources
