@@ -1,0 +1,54 @@
+[
+	{
+		"name":"speed boost",
+		"id":0,
+		"parent_id":0,
+		"hasChildren":false,
+		"isStatBoost":true,
+		"data":{
+			"stat":"speed",
+			"increase_value":100
+		},
+		"max_purchases":3,
+		"cost":10
+	},
+	{
+		"name":"speed boost",
+		"id":1,
+		"parent_id":0,
+		"hasChildren":false,
+		"isStatBoost":true,
+		"data":{
+			"stat":"speed",
+			"increase_value":100
+		},
+		"max_purchases":3,
+		"cost":10
+	},
+	{
+		"name":"speed boost",
+		"id":2,
+		"parent_id":0,
+		"hasChildren":false,
+		"isStatBoost":true,
+		"data":{
+			"stat":"speed",
+			"increase_value":100
+		},
+		"max_purchases":3,
+		"cost":10
+	},
+	{
+		"name":"multiple hits on shield",
+		"id":3,
+		"parent_id":0,
+		"hasChildren":false,
+		"isStatBoost":true,
+		"data":{
+			"stat":"health",
+			"increase_value":1
+		},
+		"max_purchases":1,
+		"cost":20
+	}
+]
