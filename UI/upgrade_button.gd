@@ -21,7 +21,7 @@ func reset():
 func set_upgrade_modification():
 	pass
 	
-func set_upgrade_stat_increase(stat_to_increase: StringName, change: float, max_purchase: int, cost: int, isDecrease:bool = false):
+func set_upgrade_stat_increase(name:StringName, description:StringName, stat_to_increase: StringName, change: float, max_purchase: int, cost: int, isDecrease:bool = false):
 	if stat_to_increase in ShipData:
 		stat = stat_to_increase
 	else: 
@@ -29,15 +29,16 @@ func set_upgrade_stat_increase(stat_to_increase: StringName, change: float, max_
 		
 	self.max = max_purchase
 	self.cost = cost
+	$Panel/Title.text = str(name).capitalize()
 	
 	if not isDecrease:
-		value = change
-		$Panel/Description.text = "Increase " + str(stat) + " by " + str(value)
+		self.value = change
+		$Panel/Description.text = description 
 		$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
 		$Panel/BuyButton.text = str(cost) + "$"
 	else:
-		value = -1 * change
-		$Panel/Description.text = "Decrease " + str(stat) + " by " + str(change)
+		self.value = -1 * change
+		$Panel/Description.text = description 
 		$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
 		$Panel/BuyButton.text = str(cost) + "$"
 	

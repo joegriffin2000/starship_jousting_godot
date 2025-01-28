@@ -1,6 +1,7 @@
 [
 	{
 		"name":"speed boost",
+		"description":"Increase movement speed by 30%",
 		"id":0,
 		"parent_id":0,
 		"hasChildren":false,
@@ -15,6 +16,7 @@
 	},
 	{
 		"name":"speed boost",
+		"description":"Increase movement speed by 30%",
 		"id":1,
 		"parent_id":0,
 		"hasChildren":false,
@@ -28,7 +30,8 @@
 		"cost":10
 	},
 	{
-		"name":"dash cooldown",
+		"name":"dash cooldown reduction",
+		"description":"Decrease dash cooldown by 20%",
 		"id":2,
 		"parent_id":0,
 		"hasChildren":false,
@@ -42,7 +45,8 @@
 		"cost":15
 	},
 	{
-		"name":"multiple hits on shield",
+		"name":"shield upgrade",
+		"description":"Allow your shield to take one more hit before breaking.",
 		"id":3,
 		"parent_id":0,
 		"hasChildren":false,
