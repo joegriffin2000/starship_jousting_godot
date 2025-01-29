@@ -56,7 +56,7 @@
 			"increase_value":1,
 			"isDecrease":false
 		},
-		"max_purchases":1,
+		"max_purchases":2,
 		"cost":20
 	}
 ]
