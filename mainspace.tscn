@@ -89,7 +89,7 @@ process_mode = 3
 visible = false
 
 [node name="Enemy1" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(5054, 2706)
+position = Vector2(4917, 3819)
 rotation = 0.832522
 
 [node name="Enemy2" parent="." instance=ExtResource("9_o34ng")]
@@ -113,7 +113,7 @@ position = Vector2(6219, 2917)
 rotation = -2.9531
 
 [node name="Enemy7" parent="." instance=ExtResource("9_o34ng")]
-position = Vector2(5099, 3780)
+position = Vector2(5211, 2720)
 rotation = -1.28805
 
 [node name="Enemy8" parent="." instance=ExtResource("9_o34ng")]

@@ -3,9 +3,9 @@ extends CharacterBody2D
 @onready var nameLabel = $Name_Label
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
+@onready var shield = $Shield
 @onready var vision = $Vision
 var iframes = 0 # Put a timer here I need to ask how to set that up
-var hp = 1
 var speed = 300
 var rotation_speed = 3
 var dash_speed = 900
@@ -13,21 +13,23 @@ var dash_length = 0.3
 var dash_cd = 0.5
 var knock_back_time = 0.3
 var rotation_direction = 0
-var shielded = false
+var health = 2
+var maxHealth = 2
 
 var knockback = false
 var dashing = false
+var shielded = false
 
 var randomizer = RandomNumberGenerator.new()
 
 func _enter_tree() -> void:
-		#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
+	#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	$Lance.deactivate()
 	#$Hurtbox.isEnabled = false #this makes the enemy ships unkillable
 	$Shield.activate()
 
 func enemy_logic_process():
-	if hp >= 1:
+	if health >= 1:
 		var front_object = vision.get_collider()
 		if front_object != null:
 			if front_object is CharacterBody2D:
@@ -78,13 +80,13 @@ func get_knockback():
 
 
 # This function handles taking damage.
-# Note: Put timer here for i-frames.
 func take_damage(attacker: CollisionObject2D) -> bool:
-	hp -= 1
-	if hp < 1:
-		death(attacker)
+	if not shield.in_iframe:
+		health -= 1
+		if health < 1:
+			death(attacker)
 		
-	return true if hp<=0 else false
+	return true if health<=0 else false
 
 # This function handles when the player reaches 0 HP.
 func death(killer: CollisionObject2D):

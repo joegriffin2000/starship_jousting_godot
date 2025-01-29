@@ -83,12 +83,12 @@ script = ExtResource("5_7fypj")
 
 [node name="QuestText" type="Label" parent="MarginContainer/VBoxContainer/QuestStuff/QuestHUD"]
 layout_mode = 2
-text = "Go to carrier ship"
+text = "No active quest"
 label_settings = SubResource("LabelSettings_xg335")
 
 [node name="QuestProgress" type="Label" parent="MarginContainer/VBoxContainer/QuestStuff/QuestHUD"]
 layout_mode = 2
-text = "(0/1 done)"
+text = "Take a new quest at a carrier ship"
 label_settings = SubResource("LabelSettings_ublum")
 
 [node name="Divider" type="TextureRect" parent="MarginContainer/VBoxContainer"]

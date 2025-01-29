@@ -52,6 +52,7 @@ position = Vector2(1, 30)
 shape = SubResource("RectangleShape2D_yl71k")
 
 [node name="Shield" parent="." instance=ExtResource("8_58v7v")]
+visible = false
 position = Vector2(0, 14)
 
 [node name="Name_Label" type="Label" parent="."]

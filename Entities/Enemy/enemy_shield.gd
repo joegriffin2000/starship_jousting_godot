@@ -8,14 +8,14 @@ var my_lance
 func activate():
 	visible = true
 	set_collision_mask_value(2, true)
-	ShipData.health = ShipData.maxHealth
-	ShipData.shielded = true
+	owner.health = owner.maxHealth
+	owner.shielded = true
 	my_lance = owner.get_node("Lance")
 	
 func deactivate():
 	visible = false
 	set_collision_mask_value(2, false)
-	ShipData.shielded = false
+	owner.shielded = false
 
 func on_area_entered(hitbox: Hitbox):
 	if hitbox != my_lance:
@@ -28,7 +28,7 @@ func on_area_entered(hitbox: Hitbox):
 		if hitbox.owner.has_method("get_knockback"):
 			hitbox.owner.get_knockback()
 		
-		if ShipData.health <= 1:
+		if owner.health <= 1:
 			await iframe_timer.timeout
 			deactivate()
 
