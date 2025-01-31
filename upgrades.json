@@ -15,18 +15,18 @@
 		"cost":10
 	},
 	{
-		"name":"speed boost",
-		"description":"Increase movement speed by 30%",
+		"name":"knockback reduction",
+		"description":"Decrease Knockback by 30%",
 		"id":1,
 		"parent_id":0,
 		"hasChildren":false,
 		"isStatBoost":true,
 		"data":{
-			"stat":"speed",
-			"increase_value":100,
-			"isDecrease":false
+			"stat":"knock_back_time",
+			"increase_value":0.1,
+			"isDecrease":true
 		},
-		"max_purchases":3,
+		"max_purchases":1,
 		"cost":10
 	},
 	{
