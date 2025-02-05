@@ -23,7 +23,7 @@ func get_input():
 			action.start_dash(ShipData.dash_length)
 			dash.start_cd(ShipData.dash_cd)
 			rotation_direction = 0
-			velocity = -transform.y * ShipData.speed * ShipData.dash_mult
+			velocity = -transform.y * ShipData.dash_speed 
 			$Lance.activate()
 		
 		if !ShipData.dash:
