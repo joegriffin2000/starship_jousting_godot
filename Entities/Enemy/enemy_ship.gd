@@ -28,7 +28,11 @@ func _enter_tree() -> void:
 
 func enemy_logic_process():
 	if hp >= 1:
-		var front_object = vision.get_collider()
+		var front_object = vision.get_node("Front").get_collider()
+		var left_object = vision.get_node("Left").get_collider()
+		var right_object = vision.get_node("Right").get_collider()
+		
+		#dash if see an enemy ship and turn if it is an obstacle
 		if front_object != null:
 			if front_object is CharacterBody2D:
 				start_dash()
@@ -37,6 +41,14 @@ func enemy_logic_process():
 				turn_right()
 		else:
 			rotation_direction = 0
+			
+		#turn if there is object too close to its side
+		if left_object != null: turn_right()
+		if right_object != null: turn_left()
+		
+		#dash if there is a ship behind
+		if len(vision.get_node("Back").get_overlapping_bodies()) > 1: 
+			start_dash()
 		if !action.is_in_action():
 			velocity = transform.y * -speed
 		pass
@@ -51,14 +63,14 @@ func start_dash():
 		$Lance.activate()
 		
 func turn_left():
-	rotation_direction = -1
+	rotation_direction -= 1
 	
 func turn_right():
-	rotation_direction = 1
+	rotation_direction += 1
 
 func _physics_process(delta):
 	enemy_logic_process()
-	rotation += rotation_direction * rotation_speed * delta
+	rotation += clamp(rotation_direction,-1,1) * rotation_speed * delta
 	nameLabel.set_rotation(-1 * rotation)
 
 	for i in get_slide_collision_count():
