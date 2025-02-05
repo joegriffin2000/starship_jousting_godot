@@ -6,7 +6,7 @@ extends Node
 #Ship stats
 @export var speed = 300
 @export var rotation_speed = 3
-@export var dash_speed = speed * 3
+@export var dash_mult = 3
 @export var dash_length = 0.3
 @export var dash_cd = 0.5
 @export var knock_back_time = 0.3
@@ -27,7 +27,7 @@ func reset():
 	# Ship stats
 	speed = 300
 	rotation_speed = 3
-	dash_speed = speed * 3
+	dash_mult = 3
 	dash_length = 0.3
 	dash_cd = 0.5
 	knock_back_time = 0.3

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2o3ag10vnhyf"]
+
+[ext_resource type="Script" path="res://Entities/Enemy/enemy_spawner.gd" id="2_il5mi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gk6rn"]
+size = Vector2(500, 500)
+
+[node name="EnemySpawner" type="Area2D"]
+script = ExtResource("2_il5mi")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gk6rn")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=13 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_31b5h"]
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/gameOverScreen.tscn" id="6_bpwyg"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://Entities/Carrier/carrier.tscn" id="6_t3k5q"]
 [ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://Entities/Enemy/enemy_ship.tscn" id="9_o34ng"]
+[ext_resource type="PackedScene" uid="uid://b2o3ag10vnhyf" path="res://Entities/Enemy/enemy_spawner.tscn" id="10_ue055"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60dm5"]
 
@@ -119,3 +120,6 @@ rotation = -1.28805
 [node name="Enemy8" parent="." instance=ExtResource("9_o34ng")]
 position = Vector2(6081, 1779)
 rotation = 0.376991
+
+[node name="EnemySpawner" parent="." instance=ExtResource("10_ue055")]
+position = Vector2(2237, 4066)
