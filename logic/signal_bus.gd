@@ -19,13 +19,15 @@ signal enemy_killed(object)
 signal player_died(score)
 # Connected from shop Quest menu to HUD Quest labels and ShipData
 signal quest_received(content)
-# Connected from Quest class to HUD Quest labels
+# Connected from Quest class to HUD Quest labels and Ship
 signal quest_progressed
 # Connected from Quest class to HUD Quest labels
 signal quest_completed
+# Connected from Quest class to HUD Quest labels
+signal quest_failed
 # Connected from Carrier to HUD Quest labels
 signal quest_removed
-# Connected from Carrier to HUD Credits label
+# Connected from Carrier to HUD Credits label and Ship
 signal credits_updated
 # Connected from Carrier to HUD leaderboard
 signal score_updated

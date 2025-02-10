@@ -82,3 +82,4 @@ func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
 	q.holder = self
 	ShipData.quest.activate()
+	add_child(ShipData.quest)

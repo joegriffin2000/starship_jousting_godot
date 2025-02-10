@@ -7,6 +7,7 @@ func _ready() -> void:
 	SignalBus.quest_received.connect(set_quest_text)
 	SignalBus.quest_progressed.connect(update_quest_text)
 	SignalBus.quest_completed.connect(complete_quest_text)
+	SignalBus.quest_failed.connect(fail_quest_text)
 	SignalBus.quest_removed.connect(no_quest_text)
 
 func set_quest_text(quest: Variant) -> void:
@@ -22,6 +23,10 @@ func update_quest_text() -> void:
 
 func complete_quest_text() -> void:
 	desc.set_text("Quest completed!")
+	progress.set_text("Return to carrier ship")
+	
+func fail_quest_text() -> void:
+	desc.set_text("Quest failed.")
 	progress.set_text("Return to carrier ship")
 
 func no_quest_text() -> void:
