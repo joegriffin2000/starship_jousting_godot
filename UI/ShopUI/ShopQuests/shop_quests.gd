@@ -27,31 +27,37 @@ func generateQuests() -> void:
 	var lvl1quests = filecontents["quests"]
 	
 	# Set up to generate quests
-	var goatQuests = []
-	var fjbQuests = []
 	var seuQuests = []
+	var fjbQuests = []
+	var goatQuests = []
 	for quest in lvl1quests:
-		if quest.faction == "GOAT":
-			goatQuests.append(quest)
-		if quest.faction == "FJB":
-			fjbQuests.append(quest)
 		if quest.faction == "SEU":
 			seuQuests.append(quest)
+		if quest.faction == "FJB":
+			fjbQuests.append(quest)
+		if quest.faction == "GOAT":
+			goatQuests.append(quest)
 	
 	# Generate a quest for each quest faction
+	# Quest.new(faction, description, type, total, baseCredits)
 	# TODO: Replace quest[0] with randomizing from the list
+	
+	# SEU Quests
 	var total = rng.randi_range(3, 7)
 	var seu = Quest.new(seuQuests[0].faction, seuQuests[0].desc.replace("x", str(total)), seuQuests[0].type, total, seuQuests[0].credits)
 	
+	# FJB Quests
 	total = rng.randi_range(2, 5)
 	var fjb = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total, fjbQuests[0].credits)
 	
-	total = rng.randi_range(3, 7)
-	var time = rng.randi_range(30, 120)
+	# GOAT Quests
+	var entityID = rng.randi_range(0, 2) # Carrier ship ID
+	var entityNames = ["ALPHA", "BETA", "GAMMA"]
+	var timeLimit = rng.randi_range(5, 15) # Time in seconds
 	var base = goatQuests[0].desc
-	var updTotal = base.replace("x", str(total))
-	var updTime = updTotal.replace("y time", str(time, " seconds"))
-	var goat = Quest.new(goatQuests[0].faction, updTime, goatQuests[0].type, total, goatQuests[0].credits)
+	var updStr = base.replace("x", entityNames[entityID])
+	var updDesc = updStr.replace("y time", str(timeLimit, " seconds"))
+	var goat = Quest.new(goatQuests[0].faction, updDesc, goatQuests[0].type, 1, goatQuests[0].credits, entityNames[entityID], timeLimit)
 	
 	generatedQuests = []
 	generatedQuests.append(seu)
