@@ -5,6 +5,7 @@ class_name AbilityButton
 
 func _ready():
 	SignalBus.dash.connect(dash_start)
+	SignalBus.dash_regen.connect(dash_regen)
 	time_label.hide()
 	$Sweep.value = 0
 	$Sweep.texture_progress = texture_normal
@@ -30,3 +31,7 @@ func _on_Timer_timeout():
 	disabled = false
 	time_label.hide()
 	set_process(false)
+
+func dash_regen():
+	$Sweep/Timer.stop()
+	$Sweep/Timer.timeout.emit()

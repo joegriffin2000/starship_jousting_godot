@@ -18,5 +18,7 @@ func on_area_entered(hitbox: Hitbox):
 			return
 		if owner.has_method("take_damage"):
 			owner.take_damage(hitbox.owner)
+		if "regenerting_dash" in hitbox.owner and hitbox.owner.regenerting_dash == true:
+			hitbox.owner.dash_regen()
 	else:
 		print("hitbox disabled")

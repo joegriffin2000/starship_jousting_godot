@@ -34,7 +34,7 @@ func reset():
 	
 	# Ship resources
 	credits = 0
-	health = 1
+	health = 2
 	totalScore = 0
 
 	# Ship states

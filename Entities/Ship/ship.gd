@@ -7,13 +7,20 @@ const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 @onready var dash = $Dash_Cooldown
 @onready var shield = $Shield
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
+
+var upgradeIDtoFunc = {
+	4:upgradeRegenHit
+	}
+
 var shielded = false
+var regenerting_dash = false
 
 var rotation_direction = 0
 
 func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
+	SignalBus.upgrade_special.connect(upgrade_bought)
 	nameLabel.text = ShipData.playerName
 	shield.activate()
 
@@ -36,6 +43,9 @@ func get_input():
 		velocity = transform.y * 0
 		rotation_direction = 0
 
+func upgradeRegenHit():
+	regenerting_dash = true
+
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * ShipData.rotation_speed * delta
@@ -46,15 +56,11 @@ func _physics_process(delta):
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * 10)
 			
-	if get_slide_collision_count() != 0:
+	if get_slide_collision_count() != 0 and not regenerting_dash:
 		action.start_knockback(ShipData.knock_back_time)
 		velocity = velocity.bounce(get_slide_collision(0).get_normal())
 			
 	move_and_slide()
-
-func get_knockback():
-	action.start_knockback(ShipData.knock_back_time)
-	velocity = -velocity
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
@@ -63,6 +69,10 @@ func take_damage(attacker: CollisionObject2D):
 		ShipData.health -= 1
 		if ShipData.health < 1:
 			death(attacker)
+			
+func dash_regen():
+	action.stop()
+	SignalBus.dash_regen.emit()
 
 # This function handles when the player reaches 0 HP.
 func death(attacker: CollisionObject2D):
@@ -82,3 +92,7 @@ func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
 	q.holder = self
 	ShipData.quest.activate()
+	
+func upgrade_bought(id:int):
+	if upgradeIDtoFunc.has(id):
+		upgradeIDtoFunc[id].call()
