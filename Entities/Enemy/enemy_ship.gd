@@ -34,9 +34,6 @@ func enemy_logic_process():
 		var left_object = vision.get_node("Left").get_collider()
 		var right_object = vision.get_node("Right").get_collider()
 		
-		#dash if see an enemy ship and turn if it is an obstacle
-		
-		var front_object = vision.get_collider()
 		if front_object != null:
 			if front_object is CharacterBody2D:
 				start_dash()
