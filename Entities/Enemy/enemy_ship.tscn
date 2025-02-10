@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_cyaek"]
 [ext_resource type="Script" path="res://Entities/Enemy/enemy_ship.gd" id="2_mcaxm"]
 [ext_resource type="Script" path="res://Entities/Enemy/enemy_action.gd" id="3_guu5m"]
+[ext_resource type="Script" path="res://Entities/Enemy/enemy_shield.gd" id="4_qfvda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ougcu"]
 size = Vector2(189, 183)
@@ -51,3 +52,5 @@ position = Vector2(-2, 68)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision/Back" index="0"]
 position = Vector2(2.5, 40.5)
 shape = SubResource("RectangleShape2D_ougcu")
+[node name="Shield" parent="." index="7"]
+script = ExtResource("4_qfvda")

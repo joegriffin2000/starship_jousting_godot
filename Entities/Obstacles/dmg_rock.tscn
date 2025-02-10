@@ -1,21 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://civgrrcpy8lw5"]
 
-[ext_resource type="Script" path="res://Entities/Obstacles/dmg_rock.gd" id="1_aoo3n"]
+[ext_resource type="Script" path="res://Logic/hitbox.gd" id="1_p4vno"]
 [ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_8nb51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17pel"]
 size = Vector2(128, 129)
 
-[node name="Area2D" type="Area2D"]
-script = ExtResource("1_aoo3n")
+[node name="Node2D" type="Area2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("1_p4vno")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
 modulate = Color(1, 0.331371, 0.387245, 1)
 scale = Vector2(8, 8)
 texture = ExtResource("2_8nb51")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_17pel")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_17pel")

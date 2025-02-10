@@ -7,7 +7,6 @@ const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 @onready var dash = $Dash_Cooldown
 @onready var shield = $Shield
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
-var shielded = false
 
 var rotation_direction = 0
 
@@ -18,7 +17,7 @@ func _ready() -> void:
 	shield.activate()
 
 func get_input():
-	if ShipData.health >= 1:
+	if ShipData.health > 0:
 		if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
 			action.start_dash(ShipData.dash_length)
 			dash.start_cd(ShipData.dash_cd)
@@ -59,7 +58,7 @@ func get_knockback():
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage(attacker: CollisionObject2D):
-	if not shielded:
+	if not shield.in_iframe:
 		ShipData.health -= 1
 		if ShipData.health < 1:
 			death(attacker)
