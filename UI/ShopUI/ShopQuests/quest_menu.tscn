@@ -7,6 +7,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ycwqb"]
 font = ExtResource("1_2go5a")
 font_size = 20
+shadow_size = 5
+shadow_color = Color(0.0196078, 0.0196078, 0.0196078, 0.247059)
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="FontVariation" id="FontVariation_a2dqd"]
 base_font = ExtResource("1_2go5a")
@@ -72,6 +75,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="TakeQuest" type="Button" parent="MarginContainer3"]
 layout_mode = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = SubResource("FontVariation_a2dqd")
 theme_override_font_sizes/font_size = 20
 text = "Accept Quest"

@@ -49,7 +49,7 @@ func set_upgrade_stat_increase(id:int, name:StringName, description:StringName, 
 	self.id = id
 	self.max = max_purchase
 	self.cost = cost
-	$Panel/Title.text = str(name).capitalize()
+	$Panel/Title.text = str(name)
 	
 	if not isDecrease:
 		self.value = change
@@ -63,11 +63,11 @@ func set_upgrade_stat_increase(id:int, name:StringName, description:StringName, 
 		$Panel/BuyButton.text = str(cost) + "$"
 
 func set_upgrade_special(id:int, name:StringName, description:StringName, max_purchase: int, cost: int):
-	
 	self.id = id
 	self.max = max_purchase
 	self.cost = cost
-	$Panel/Title.text = str(name).capitalize()
+	
+	$Panel/Title.text = str(name)
 	$Panel/Description.text = description 
 	$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
 	$Panel/BuyButton.text = str(cost) + "$"

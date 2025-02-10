@@ -10,9 +10,17 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7sly"]
 bg_color = Color(0.6, 0.6, 0.6, 0.196078)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02wdw"]
 bg_color = Color(0.6, 0.6, 0.6, 0.568627)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21k4v"]
 
@@ -76,6 +84,7 @@ text = "Mine 5 rocks"
 label_settings = SubResource("LabelSettings_csi8i")
 
 [node name="QuestReward" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.772549)
 layout_mode = 2
 text = "Reward: 50 credits"
 label_settings = SubResource("LabelSettings_2gjhn")

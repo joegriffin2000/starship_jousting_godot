@@ -1,10 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://btbb3t0k66qi8"]
+[gd_scene load_steps=7 format=3 uid="uid://btbb3t0k66qi8"]
 
 [ext_resource type="Script" path="res://UI/ShopUI/shop_menu.gd" id="1_71syl"]
 [ext_resource type="PackedScene" uid="uid://c6qaubponwo3u" path="res://UI/ShopUI/ShopUpgrades/upgrade.tscn" id="3_5xn65"]
 [ext_resource type="Texture2D" uid="uid://dfo3dhjbefiga" path="res://Sprites/quest_btn.png" id="5_n2y5n"]
 [ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
 [ext_resource type="PackedScene" uid="uid://dlbxkgga6wdmi" path="res://UI/ShopUI/ShopQuests/quest_menu.tscn" id="6_l2uha"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lomiv"]
+bg_color = Color(0.14902, 0.152941, 0.160784, 0.65098)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0.843137)
+corner_radius_top_left = 16
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 16
+expand_margin_left = 2.0
+expand_margin_right = 3.0
+anti_aliasing = false
+anti_aliasing_size = 8.0
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_71syl")
@@ -21,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_lomiv")
 
 [node name="Upgrades" type="Panel" parent="Panel"]
 visible = false
