@@ -3,6 +3,8 @@ extends Node
 # Player signals
 # Connected from ship's action timer to HUD
 signal dash
+
+signal dash_regen
 # Connected from damage rock to ship
 signal damage_taken
 
@@ -31,3 +33,5 @@ signal quest_removed
 signal credits_updated
 # Connected from Carrier to HUD leaderboard
 signal score_updated
+
+signal upgrade_special(id)

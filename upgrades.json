@@ -1,0 +1,80 @@
+[
+	{
+		"name":"speed boost",
+		"description":"Increase movement speed by 30%",
+		"id":0,
+		"pos":"tl",
+		"parent_id":0,
+		"hasChildren":false,
+		"isStatBoost":true,
+		"data":{
+			"stat":"speed",
+			"increase_value":100,
+			"isDecrease":false
+		},
+		"max_purchases":3,
+		"cost":10
+	},
+	{
+		"name":"knockback reduction",
+		"description":"Decrease Knockback by 30%",
+		"id":1,
+		"pos":"tr",
+		"parent_id":0,
+		"hasChildren":true,
+		"isStatBoost":true,
+		"data":{
+			"stat":"knock_back_time",
+			"increase_value":0.1,
+			"isDecrease":true
+		},
+		"max_purchases":1,
+		"cost":10
+	},
+	{
+		"name":"dash cooldown reduction",
+		"description":"Decrease dash cooldown by 20%",
+		"id":2,
+		"pos":"bl",
+		"parent_id":0,
+		"hasChildren":true,
+		"isStatBoost":true,
+		"data":{
+			"stat":"dash_cd",
+			"increase_value":0.2,
+			"isDecrease":true
+		},
+		"max_purchases":2,
+		"cost":15
+	},
+	{
+		"name":"shield upgrade",
+		"description":"Allow your shield to take one more hit before breaking.",
+		"id":3,
+		"pos":"br",
+		"parent_id":0,
+		"hasChildren":false,
+		"isStatBoost":true,
+		"data":{
+			"stat":"health",
+			"increase_value":1,
+			"isDecrease":false
+		},
+		"max_purchases":2,
+		"cost":20
+	},
+	{
+		"name":"regen dash on hit",
+		"description":"Regain your dash if you land your joust.",
+		"id":4,
+		"pos":"bc",
+		"parent_id":2,
+		"hasChildren":false,
+		"isStatBoost":false,
+		"data":{
+			"isDecrease":false
+		},
+		"max_purchases":1,
+		"cost":20
+	}
+]

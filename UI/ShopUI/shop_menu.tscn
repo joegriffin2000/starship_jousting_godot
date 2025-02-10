@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dlbxkgga6wdmi" path="res://UI/ShopUI/ShopQuests/quest_menu.tscn" id="6_l2uha"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_71syl")
 
 [node name="Panel" type="Panel" parent="."]
@@ -41,10 +40,10 @@ mouse_filter = 1
 
 [node name="Upgrade" parent="Panel/Upgrades" instance=ExtResource("3_5xn65")]
 layout_mode = 1
-offset_left = -2289.44
-offset_top = -1456.0
-offset_right = 1558.56
-offset_bottom = 896.0
+offset_left = -2142.88
+offset_top = -1251.0
+offset_right = 1705.12
+offset_bottom = 1101.0
 
 [node name="Quests" type="Panel" parent="Panel"]
 self_modulate = Color(1, 1, 1, 0)

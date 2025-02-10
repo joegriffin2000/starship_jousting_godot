@@ -4,6 +4,7 @@ extends Timer
 func _ready() -> void:
 	#print("action ready")
 	#dash.connect(Callable(Hud.get_node("Dash"),"dash_start"))
+	SignalBus.dash_regen.connect(_on_action_timeout)
 	pass
 
 func start_dash(dur):
@@ -25,3 +26,8 @@ func _on_action_timeout() -> void:
 	stop()
 	ShipData.knockback = false
 	ShipData.dash = false
+	#
+#func dash_reset():
+	#stop()
+	#ShipData.knockback = false
+	#ShipData.dash = false
