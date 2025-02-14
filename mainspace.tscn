@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=14 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_31b5h"]
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://Entities/Carrier/carrier.tscn" id="6_t3k5q"]
 [ext_resource type="PackedScene" uid="uid://botoqa2vmlcar" path="res://Entities/Enemy/enemy_ship.tscn" id="9_o34ng"]
 [ext_resource type="PackedScene" uid="uid://b2o3ag10vnhyf" path="res://Entities/Enemy/enemy_spawner.tscn" id="10_ue055"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ghqp0"]
+properties/0/path = NodePath("CharacterBody2D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60dm5"]
 
@@ -52,6 +57,9 @@ position = Vector2(4474, 2349)
 [node name="Camera2D" type="Camera2D" parent="Ship"]
 zoom = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Ship"]
+replication_config = SubResource("SceneReplicationConfig_ghqp0")
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 

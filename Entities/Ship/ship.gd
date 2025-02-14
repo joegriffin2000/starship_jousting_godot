@@ -47,19 +47,20 @@ func upgradeRegenHit():
 	regenerting_dash = true
 
 func _physics_process(delta):
-	get_input()
-	rotation += rotation_direction * ShipData.rotation_speed * delta
-	nameLabel.set_rotation(-1 * rotation)
+	if owner.is_multiplayer_authority():
+		get_input()
+		rotation += rotation_direction * ShipData.rotation_speed * delta
+		nameLabel.set_rotation(-1 * rotation)
 
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * 10)
-			
-	if get_slide_collision_count() != 0 and not regenerting_dash:
-		action.start_knockback(ShipData.knock_back_time)
-		velocity = velocity.bounce(get_slide_collision(0).get_normal())
-			
+		for i in get_slide_collision_count():
+			var c = get_slide_collision(i)
+			if c.get_collider() is RigidBody2D:
+				c.get_collider().apply_central_impulse(-c.get_normal() * 10)
+				
+		if get_slide_collision_count() != 0 and not regenerting_dash:
+			action.start_knockback(ShipData.knock_back_time)
+			velocity = velocity.bounce(get_slide_collision(0).get_normal())
+				
 	move_and_slide()
 
 # This function handles taking damage.
@@ -100,3 +101,6 @@ func _on_quest_received(q: Variant) -> void:
 func upgrade_bought(id:int):
 	if upgradeIDtoFunc.has(id):
 		upgradeIDtoFunc[id].call()
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
