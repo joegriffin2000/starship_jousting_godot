@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bes030ss6u4hd"]
+[gd_scene load_steps=11 format=3 uid="uid://bes030ss6u4hd"]
 
 [ext_resource type="Script" path="res://UI/TitleScreen/title_screen.gd" id="1_trl2a"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="2_5q5m3"]
+[ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="2_wivvk"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="2_yfg14"]
 [ext_resource type="Texture2D" uid="uid://bxe2mamcjt73x" path="res://Sprites/logo.png" id="4_timej"]
 [ext_resource type="Script" path="res://UI/TitleScreen/global_leaderboard.gd" id="5_6erbh"]
@@ -17,6 +18,7 @@ font = ExtResource("2_5q5m3")
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_trl2a")
+player_scene = ExtResource("2_wivvk")
 
 [node name="SpaceBG" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -142,9 +144,6 @@ theme_override_fonts/font = ExtResource("2_5q5m3")
 theme_override_font_sizes/font_size = 22
 action_mode = 0
 text = "Host"
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Home"]
-spawn_path = NodePath("..")
 
 [node name="Leaderboard" type="VBoxContainer" parent="."]
 visible = false

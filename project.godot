@@ -20,6 +20,7 @@ config/icon="res://Sprites/icon.svg"
 ShipData="*res://Logic/ship_data.gd"
 ShopMenu="*res://UI/ShopUI/shop_menu.tscn"
 SignalBus="*res://Logic/signal_bus.gd"
+GameManager="*res://Logic/game_manager.gd"
 
 [display]
 

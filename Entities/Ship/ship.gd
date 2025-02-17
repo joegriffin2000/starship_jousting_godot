@@ -47,7 +47,7 @@ func upgradeRegenHit():
 	regenerting_dash = true
 
 func _physics_process(delta):
-	if owner.is_multiplayer_authority():
+	if is_multiplayer_authority():
 		get_input()
 		rotation += rotation_direction * ShipData.rotation_speed * delta
 		nameLabel.set_rotation(-1 * rotation)
