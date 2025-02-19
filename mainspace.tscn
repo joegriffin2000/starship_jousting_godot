@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=12 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_31b5h"]
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/gameOverScreen.tscn" id="6_bpwyg"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://Entities/Carrier/carrier.tscn" id="6_t3k5q"]
 [ext_resource type="PackedScene" uid="uid://b2o3ag10vnhyf" path="res://Entities/Enemy/enemy_spawner.tscn" id="10_ue055"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dmpa6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60dm5"]
 
@@ -24,7 +22,7 @@ border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_coag6")
-PlayerScene = ExtResource("1_31b5h")
+playerScene = ExtResource("1_31b5h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -1500.0
@@ -47,16 +45,6 @@ position = Vector2(5581, 3200)
 position = Vector2(1782, 1906)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
-
-[node name="Ship" parent="." instance=ExtResource("1_31b5h")]
-position = Vector2(4474, 2349)
-
-[node name="Camera2D" type="Camera2D" parent="Ship"]
-zoom = Vector2(0.5, 0.5)
-metadata/_edit_lock_ = true
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Ship"]
-replication_config = SubResource("SceneReplicationConfig_dmpa6")
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 
@@ -96,6 +84,7 @@ visible = false
 
 [node name="EnemySpawner" parent="." instance=ExtResource("10_ue055")]
 position = Vector2(2237, 4066)
+script = null
 
 [node name="SpawnLocations" type="Node2D" parent="."]
 

@@ -6,14 +6,15 @@ const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
 @onready var shield = $Shield
-@onready var iframes = 0 # Put a timer here I need to ask how to set that up
+@onready var iframes = 0
+@onready var sync = $MultiplayerSynchronizer
 
 var upgradeIDtoFunc = {
 	4:upgradeRegenHit
 	}
 
 var shielded = false
-var regenerting_dash = false
+var regenerating_dash = false
 
 var rotation_direction = 0
 
@@ -23,31 +24,33 @@ func _ready() -> void:
 	SignalBus.upgrade_special.connect(upgrade_bought)
 	nameLabel.text = ShipData.playerName
 	shield.activate()
+	sync.set_multiplayer_authority(multiplayer.get_unique_id())
 
 func get_input():
-	if ShipData.health > 0:
-		if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
-			action.start_dash(ShipData.dash_length)
-			dash.start_cd(ShipData.dash_cd)
-			rotation_direction = 0
-			velocity = -transform.y * ShipData.speed * ShipData.dash_mult
-			$Lance.activate()
-		
-		if !ShipData.dash:
-			rotation_direction = Input.get_axis("left", "right")
-			$Lance.deactivate()
+	#if sync.get_multiplayer_authority() == multiplayer.get_unique_id():
+		if ShipData.health > 0:
+			if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
+				action.start_dash(ShipData.dash_length)
+				dash.start_cd(ShipData.dash_cd)
+				rotation_direction = 0
+				velocity = -transform.y * ShipData.speed * ShipData.dash_mult
+				$Lance.activate()
 			
-		if !action.is_in_action():
-			velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
-	else: # Player is dead and cannot move anymore
-		velocity = transform.y * 0
-		rotation_direction = 0
+			if !ShipData.dash:
+				rotation_direction = Input.get_axis("left", "right")
+				$Lance.deactivate()
+				
+			if !action.is_in_action():
+				velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
+		else: # Player is dead and cannot move anymore
+			velocity = transform.y * 0
+			rotation_direction = 0
 
 func upgradeRegenHit():
-	regenerting_dash = true
+	regenerating_dash = true
 
 func _physics_process(delta):
-	if is_multiplayer_authority():
+	#if sync.get_multiplayer_authority() == multiplayer.get_unique_id():
 		get_input()
 		rotation += rotation_direction * ShipData.rotation_speed * delta
 		nameLabel.set_rotation(-1 * rotation)
@@ -57,11 +60,11 @@ func _physics_process(delta):
 			if c.get_collider() is RigidBody2D:
 				c.get_collider().apply_central_impulse(-c.get_normal() * 10)
 				
-		if get_slide_collision_count() != 0 and not regenerting_dash:
+		if get_slide_collision_count() != 0 and not regenerating_dash:
 			action.start_knockback(ShipData.knock_back_time)
 			velocity = velocity.bounce(get_slide_collision(0).get_normal())
 				
-	move_and_slide()
+		move_and_slide()
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
@@ -76,7 +79,7 @@ func dash_regen():
 	SignalBus.dash_regen.emit()
 
 # This function handles when the player reaches 0 HP.
-func death(attacker: CollisionObject2D):
+func death(_attacker: CollisionObject2D):
 	queue_free()
 	SignalBus.player_died.emit(ShipData.totalScore)
 
@@ -101,6 +104,3 @@ func _on_quest_received(q: Variant) -> void:
 func upgrade_bought(id:int):
 	if upgradeIDtoFunc.has(id):
 		upgradeIDtoFunc[id].call()
-
-func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())

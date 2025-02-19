@@ -3,8 +3,7 @@ extends Draggable
 var e_button = preload("res://UI/upgrade_button.tscn")
 
 @onready var file = FileAccess.open("res://upgrades.json",FileAccess.READ).get_as_text()
-@onready var json = JSON.new()
-@onready var filecontents = json.parse_string(file)
+@onready var filecontents = JSON.parse_string(file)
 
 func _ready() -> void:
 	super()
@@ -41,7 +40,7 @@ func add_button(parent_button, button_to_add, pos:String):
 		var button_offset = Vector2(0,0)
 		var button_size = button_to_add.size
 		var parent_position = parent_button.position
-		var xtra_space = 30 #this is just the space from button to point of line
+		#var xtra_space = 30 #this is just the space from button to point of line
 		
 		#graphical placing of the button and line (relative to parent)
 		if pos[1] == "r": #right

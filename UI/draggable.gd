@@ -7,7 +7,7 @@ var offset: Vector2
 func _ready():
 	gui_input.connect(on_gui_input)
 	
-func _process(delta: float):
+func _process(_delta):
 	if dragging:
 		position = get_viewport().get_mouse_position() - offset
 	

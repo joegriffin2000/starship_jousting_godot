@@ -1,8 +1,7 @@
 extends VBoxContainer
 
 @onready var file = FileAccess.open("res://quests.json",FileAccess.READ).get_as_text()
-@onready var json = JSON.new()
-@onready var filecontents = json.parse_string(file)
+@onready var filecontents = JSON.parse_string(file)
 @onready var rng = RandomNumberGenerator.new()
 
 @onready var SEUQuest = $SEUQuest

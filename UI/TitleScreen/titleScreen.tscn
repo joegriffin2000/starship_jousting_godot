@@ -145,6 +145,24 @@ theme_override_font_sizes/font_size = 22
 action_mode = 0
 text = "Host"
 
+[node name="StartGame" type="Button" parent="Home"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 217.0
+offset_top = 127.0
+offset_right = 381.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_5q5m3")
+theme_override_font_sizes/font_size = 22
+action_mode = 0
+text = "Start Game"
+
 [node name="Leaderboard" type="VBoxContainer" parent="."]
 visible = false
 anchors_preset = 15
@@ -241,4 +259,5 @@ text = "Back"
 [connection signal="pressed" from="Home/LBButton" to="." method="_on_lb_button_pressed"]
 [connection signal="pressed" from="Home/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Home/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Home/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Leaderboard/BackButton" to="." method="_on_back_button_pressed"]

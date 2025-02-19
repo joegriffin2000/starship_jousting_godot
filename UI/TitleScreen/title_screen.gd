@@ -15,79 +15,107 @@ var port = 5040 # <-- CHANGE THIS WITH OUR PORT LATER
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	multiplayer.peer_connected.connect(_add_player)
+	multiplayer.peer_connected.connect(player_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 
-func _add_player(id):
-	print("_add_player "+str(id))
-	assign_player_name()
-	
-	var tree = get_tree()
-	tree.change_scene_to_packed(load("res://mainspace.tscn"))
-	#tree.root.add_child(load("res://mainspace.tscn").instantiate())
-	tree.root.add_child(player_scene.instantiate())
-	
-	#var player = player_scene.instantiate()
-	#call_deferred("add_child", player)
+@rpc("any_peer")
+func sendPlayerInformation(name, id):
+	#print("sendPlayerInformation called, id:"+str(id))
+	if !GameManager.Players.has(id):
+		GameManager.Players[id] = {
+			"name": name,
+			"id": id,
+			"score": 0
+		}
+	if multiplayer.is_server():
+		for i in GameManager.Players:
+			sendPlayerInformation.rpc(GameManager.Players[i].name, i)
 
+
+# Called on ALL peer connections
+func player_connected(id):
+	print("player_connected "+str(id))
+
+# Called on ALL peer disconnects
 func peer_disconnected(id):
 	print("peer disconnected "+str(id))
 	GameManager.Players.erase(id)
-	var players = get_tree().get_nodes_in_group("Player")
+	var players = get_tree().get_nodes_in_group("Players")
 	for i in players:
 		if i.name == str(id):
 			i.queue_free()
 
+# Called on CLIENT when client peer successfully connects to server
 func connected_to_server():
-	print("connected to server!")
-	#sendPlayerInformation()
+	print("Client connected to server!")
+	# Tell the host (id 1) to send new client's information
+	sendPlayerInformation.rpc_id(1, ShipData.playerName, multiplayer.get_unique_id())
 
+# Called on CLIENT when client peer fails to connect to server
 func connection_failed():
 	print("cannot connect")
 
-func _on_play_button_pressed() -> void:
-	assign_player_name()
-	get_tree().change_scene_to_file("res://mainspace.tscn")
-
+# Start server
 func _on_host_button_pressed() -> void:
-	var error = peer.create_server(port, 2)
-	#making sure the peer is able to host
+	assign_player_name() # Makes sure we have a name
+	
+	var error = peer.create_server(port, 2) # Number is allowed number of players connected at once
 	if error != OK:
 		print("cannot host: " + str(error)) 
 		return
 	
-	#compression helps with bandwith usage vvv
+	# Compression helps with bandwith usage vvv
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	
-	#creating the first peer with the host we created already 
-	multiplayer.multiplayer_peer = peer
+	# Creating the first peer with the host we created already 
+	multiplayer.set_multiplayer_peer(peer)
+	sendPlayerInformation(ShipData.playerName, multiplayer.get_unique_id())
 	
-	print("hosting game")
-	_add_player(1)
+	print("Hosting game")
 
+# Multiplayer join
 func _on_join_button_pressed() -> void:
+	assign_player_name() # Makes sure we have a name
+	
 	peer.create_client(address, port)
 	print("joining game")
-	#compression helps with bandwith usage vvv
+	# Compression helps with bandwith usage vvv
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	multiplayer.multiplayer_peer = peer
+	multiplayer.set_multiplayer_peer(peer)
 
-#small function to assign shipData playerName to the class playerName
+@rpc("any_peer", "call_local")
+func startGame():
+	var scene = load("res://mainspace.tscn").instantiate()
+	get_tree().root.add_child(scene)
+	self.hide()
+	
+func _on_start_game_pressed() -> void:
+	startGame.rpc()
+
+# Assigns the playerName to the ShipData playerName upon game start
 func assign_player_name():
-	if !playerName.is_empty():
+	if !playerName.is_empty(): # Use the inputted playerName
 		ShipData.playerName = playerName
-	else:
+	else: # Generate a random playerName if no name was inputted
 		ShipData.playerName = "player_"+ str(rng.randi_range(0,1000))
 
+# Singleplayer join button
+func _on_play_button_pressed() -> void:
+	assign_player_name()
+	get_tree().change_scene_to_file("res://mainspace.tscn")
+
+# Updates playerName to inputted text
 func _on_line_edit_text_changed(new_text: String) -> void:
 	playerName = new_text
-
+	
+# Displays leaderboard
 func _on_lb_button_pressed() -> void:
 	$Home.visible = false
 	$Leaderboard.visible = true
 
+# Displays start menu again
 func _on_back_button_pressed() -> void:
 	$Leaderboard.visible = false
 	$Home.visible = true
