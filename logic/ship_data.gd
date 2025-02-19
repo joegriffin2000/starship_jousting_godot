@@ -15,7 +15,7 @@ extends Node
 @export var health = 2
 @export var maxHealth = 2
 @export var quest = null
-@export var credits = 0
+@export var credits = 100
 @export var totalScore = 0
 @export var rocks = 0
 

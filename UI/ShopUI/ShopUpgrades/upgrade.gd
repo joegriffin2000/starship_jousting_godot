@@ -74,6 +74,7 @@ func add_button(parent_button, button_to_add, pos:String):
 		
 		button_to_add.position = parent_position + button_offset - end_line_offset
 		
+		add_child(button_to_add)
 		button_to_add.add_to_group("upgradeButtons")
 		parent_button.connections[pos] = button_to_add
 		# vv this grabs the inverse position and places it in the chosen button's 'connections' dictionary

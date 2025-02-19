@@ -36,6 +36,8 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 		match int(type):
 			1: # Kill many enemies
 				self.progressSig = SignalBus.enemy_killed
+			2: #bounty
+				self.total = 1
 			_: #default
 				print("No type for quest of faction 'FJB'.")
 		pass

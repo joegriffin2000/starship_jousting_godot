@@ -2,7 +2,7 @@
 
 [ext_resource type="ButtonGroup" uid="uid://dok4vw3871d75" path="res://UI/ShopUI/ShopQuests/quest_buttons.tres" id="1_81xwy"]
 [ext_resource type="Texture2D" uid="uid://d0tub6h0hhhmm" path="res://Sprites/quest_icon.png" id="1_e5cei"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="2_bl3du"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="2_bl3du"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hi0mm"]
 
