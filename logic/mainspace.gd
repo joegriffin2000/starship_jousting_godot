@@ -8,6 +8,7 @@ func _ready():
 	var index = 0
 	for i in GameManager.Players:
 		var currentPlayer = playerScene.instantiate()
+		currentPlayer.name = str(GameManager.Players[i].id)
 		add_child(currentPlayer)
 		for spawnLocation in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
 			if spawnLocation.name == str(index):

@@ -3,11 +3,11 @@ extends CharacterBody2D
 const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 
 @onready var nameLabel = $Name_Label
+@onready var camera = $Camera2D
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
 @onready var shield = $Shield
 @onready var iframes = 0
-@onready var sync = $MultiplayerSynchronizer
 
 var upgradeIDtoFunc = {
 	4:upgradeRegenHit
@@ -24,10 +24,13 @@ func _ready() -> void:
 	SignalBus.upgrade_special.connect(upgrade_bought)
 	nameLabel.text = ShipData.playerName
 	shield.activate()
-	sync.set_multiplayer_authority(multiplayer.get_unique_id())
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+
+func is_local_authority():
+	return $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 
 func get_input():
-	#if sync.get_multiplayer_authority() == multiplayer.get_unique_id():
+	if is_local_authority():
 		if ShipData.health > 0:
 			if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
 				action.start_dash(ShipData.dash_length)
@@ -50,7 +53,9 @@ func upgradeRegenHit():
 	regenerating_dash = true
 
 func _physics_process(delta):
-	#if sync.get_multiplayer_authority() == multiplayer.get_unique_id():
+	if is_local_authority():
+		camera.make_current()
+		
 		get_input()
 		rotation += rotation_direction * ShipData.rotation_speed * delta
 		nameLabel.set_rotation(-1 * rotation)
