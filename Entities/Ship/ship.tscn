@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://Entities/Ship/lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Entities/Ship/action.gd" id="5_rp1k1"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 [ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://Entities/Ship/shield.tscn" id="8_58v7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl71k"]
@@ -34,6 +34,21 @@ properties/2/replication_mode = 2
 properties/3/path = NodePath("Lance:visible")
 properties/3/spawn = true
 properties/3/replication_mode = 2
+properties/4/path = NodePath("Lance:collision_layer")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+properties/5/path = NodePath("Lance:collision_mask")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath("Shield:visible")
+properties/6/spawn = true
+properties/6/replication_mode = 2
+properties/7/path = NodePath("Shield:collision_layer")
+properties/7/spawn = true
+properties/7/replication_mode = 2
+properties/8/path = NodePath("Shield:collision_mask")
+properties/8/spawn = true
+properties/8/replication_mode = 2
 
 [node name="Ship" type="CharacterBody2D" groups=["Players"]]
 position = Vector2(-1, 0)
