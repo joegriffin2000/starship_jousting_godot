@@ -30,8 +30,8 @@ var dash = false
 
 func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
-	SignalBus.quest_received.connect(_on_quest_received)
-	SignalBus.upgrade_special.connect(upgrade_bought)
+	SignalBus.quest_received.connect(_on_quest_received) 
+	SignalBus.upgrade_special.connect(upgrade_bought) 
 	nameLabel.text = ShipData.playerName
 	shield.activate()
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
