@@ -21,7 +21,8 @@ func _on_shop_area_entered(body):
 			# Handle completion (giving reward) if we have a completed quest.
 			if awardQuest == true:
 				ShipData.credits += ShipData.quest.reward
-				ShipData.totalScore += ShipData.quest.reward
+				#ShipData.totalScore += ShipData.quest.reward
+				ShipData.totalScore = ShipData.quest.reward
 				print("credits:",ShipData.credits)
 				SignalBus.credits_updated.emit()
 				SignalBus.score_updated.emit()

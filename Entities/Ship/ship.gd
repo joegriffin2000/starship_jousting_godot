@@ -33,6 +33,7 @@ func _ready() -> void:
 	SignalBus.quest_received.connect(_on_quest_received)
 	SignalBus.upgrade_special.connect(upgrade_bought)
 	nameLabel.text = ShipData.playerName
+	playerName = ShipData.playerName
 	shield.activate()
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 
