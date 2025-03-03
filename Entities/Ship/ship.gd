@@ -108,10 +108,11 @@ func shop_exited():
 	health = maxHealth 
 
 func _on_quest_received(q: Variant) -> void:
-	ShipData.quest = q
-	q.holder = self
-	ShipData.quest.activate()
-	add_child(ShipData.quest)
+	if is_local_authority():
+		ShipData.quest = q
+		q.holder = self
+		ShipData.quest.activate()
+		add_child(ShipData.quest)
 	
 func upgrade_bought(id:int,value):
 	#this is a janky fix
