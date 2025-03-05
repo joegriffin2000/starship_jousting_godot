@@ -10,5 +10,3 @@ func take_damage(attacker: CollisionObject2D):
 	SignalBus.rock_mined.emit(attacker)
 	#$GPUParticles2D.global_position = owner.get_node("Ship/Lance").global_position
 	#$GPUParticles2D.emitting = true
-	ShipData.rocks += 1
-	print("rock = ", ShipData.rocks)

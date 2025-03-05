@@ -2,27 +2,38 @@ extends CharacterBody2D
 
 const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 
+@export var playerName : String = "player_0"
+
 @onready var nameLabel = $Name_Label
 @onready var camera = $Camera2D
 @onready var action = $Action_Timer
-@onready var dash = $Dash_Cooldown
+@onready var dash_cd_timer = $Dash_Cooldown
 @onready var shield = $Shield
 @onready var iframes = 0
 
-var upgradeIDtoFunc = {
-	4:upgradeRegenHit
-	}
+var rotation_direction = 0
+var rotation_speed = 3
+var dash_mult = 3
+var dash_length = 0.3
+var health = 2
 
+var speed = 300
+var dash_cd = 1.0
+var knock_back_time = 0.3
+var maxHealth = 2
+
+#Ship states
 var shielded = false
 var regenerating_dash = false
-
-var rotation_direction = 0
+var knockback = false
+var dash = false
 
 func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
 	SignalBus.upgrade_special.connect(upgrade_bought)
 	nameLabel.text = ShipData.playerName
+	playerName = ShipData.playerName
 	shield.activate()
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 
@@ -31,33 +42,30 @@ func is_local_authority():
 
 func get_input():
 	if is_local_authority():
-		if ShipData.health > 0:
-			if Input.is_action_pressed("dash") and !dash.is_in_cd() and ShipData.knockback == false:
-				action.start_dash(ShipData.dash_length)
-				dash.start_cd(ShipData.dash_cd)
+		if health > 0:
+			if Input.is_action_pressed("dash") and !dash_cd_timer.is_in_cd() and knockback == false:
+				action.start_dash(dash_length)
+				dash_cd_timer.start_cd(dash_cd)
 				rotation_direction = 0
-				velocity = -transform.y * ShipData.speed * ShipData.dash_mult
+				velocity = -transform.y * speed * dash_mult
 				$Lance.activate()
 			
-			if !ShipData.dash:
+			if !dash:
 				rotation_direction = Input.get_axis("left", "right")
 				$Lance.deactivate()
 				
 			if !action.is_in_action():
-				velocity = transform.y * -Input.get_action_strength("up") * ShipData.speed
+				velocity = transform.y * -Input.get_action_strength("up") * speed
 		else: # Player is dead and cannot move anymore
 			velocity = transform.y * 0
 			rotation_direction = 0
-
-func upgradeRegenHit():
-	regenerating_dash = true
 
 func _physics_process(delta):
 	if is_local_authority():
 		camera.make_current()
 		
 		get_input()
-		rotation += rotation_direction * ShipData.rotation_speed * delta
+		rotation += rotation_direction * rotation_speed * delta
 		nameLabel.set_rotation(-1 * rotation)
 
 		for i in get_slide_collision_count():
@@ -66,7 +74,7 @@ func _physics_process(delta):
 				c.get_collider().apply_central_impulse(-c.get_normal() * 10)
 				
 		if get_slide_collision_count() != 0 and not regenerating_dash:
-			action.start_knockback(ShipData.knock_back_time)
+			action.start_knockback(knock_back_time)
 			velocity = velocity.bounce(get_slide_collision(0).get_normal())
 				
 		move_and_slide()
@@ -75,8 +83,8 @@ func _physics_process(delta):
 # Note: Put timer here for i-frames.
 func take_damage(attacker: CollisionObject2D):
 	if not shield.in_iframe:
-		ShipData.health -= 1
-		if ShipData.health < 1:
+		health -= 1
+		if health < 1:
 			death(attacker)
 			
 func dash_regen():
@@ -98,14 +106,28 @@ func shop_exited():
 	$Hurtbox.isEnabled = true
 	# had to add this line because when you buy upgraded shields,
 	# it just increases your max health but doesn't  reset it.
-	ShipData.health = ShipData.maxHealth 
+	health = maxHealth 
 
 func _on_quest_received(q: Variant) -> void:
-	ShipData.quest = q
-	q.holder = self
-	ShipData.quest.activate()
-	add_child(ShipData.quest)
+	if is_local_authority():
+		ShipData.quest = q
+		q.holder = self
+		ShipData.quest.activate()
+		add_child(ShipData.quest)
 	
-func upgrade_bought(id:int):
-	if upgradeIDtoFunc.has(id):
-		upgradeIDtoFunc[id].call()
+func upgrade_bought(id:int,value):
+	#this is a janky fix
+	match id:
+		0:
+			speed += value
+		1:
+			knock_back_time += value
+		2:
+			dash_cd += value
+		3:
+			maxHealth += value
+		4:
+			regenerating_dash = true
+		_:
+			pass
+			

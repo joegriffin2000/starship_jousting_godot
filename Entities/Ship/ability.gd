@@ -14,9 +14,13 @@ func _ready():
 func _process(_delta):
 	time_label.text = "%3.1f" % $Sweep/Timer.time_left
 	$Sweep.value = int(($Sweep/Timer.time_left / ShipData.dash_cd) * 100)
+	# $Sweep.value = int(($Sweep/Timer.time_left / owner.owner.dash_cd) * 100)
+	# FIX THIS NOW!!
 	
 func _on_AbilityButton_pressed():
 	dash_start(ShipData.dash_cd)
+	# dash_start(owner.owner.dash_cd)
+	# FIX THIS NOW!!
 	
 func dash_start(cd):
 	$Sweep/Timer.wait_time = cd

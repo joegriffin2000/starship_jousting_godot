@@ -9,6 +9,7 @@ extends CanvasLayer
 var peer = ENetMultiplayerPeer.new()
 var address = "localhost" # <-- CHANGE THIS WITH "0.0.0.0" IP LATER  
 var port = 5040 # <-- CHANGE THIS WITH OUR PORT LATER 
+var compressionType = ENetConnection.COMPRESS_RANGE_CODER
 
 @export var player_scene : PackedScene
 
@@ -51,7 +52,7 @@ func peer_disconnected(id):
 func connected_to_server():
 	print("Client connected to server!")
 	# Tell the host (id 1) to send new client's information
-	sendPlayerInformation.rpc_id(1, ShipData.playerName, multiplayer.get_unique_id())
+	sendPlayerInformation.rpc_id(1, playerName, multiplayer.get_unique_id())
 
 # Called on CLIENT when client peer fails to connect to server
 func connection_failed():
@@ -67,11 +68,11 @@ func _on_host_button_pressed() -> void:
 		return
 	
 	# Compression helps with bandwith usage vvv
-	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	peer.get_host().compress(compressionType)
 	
 	# Creating the first peer with the host we created already 
 	multiplayer.set_multiplayer_peer(peer)
-	sendPlayerInformation(ShipData.playerName, multiplayer.get_unique_id())
+	sendPlayerInformation(playerName, multiplayer.get_unique_id())
 	
 	print("Hosting game")
 
@@ -82,7 +83,7 @@ func _on_join_button_pressed() -> void:
 	peer.create_client(address, port)
 	print("joining game")
 	# Compression helps with bandwith usage vvv
-	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	peer.get_host().compress(compressionType)
 	multiplayer.set_multiplayer_peer(peer)
 
 @rpc("any_peer", "call_local")

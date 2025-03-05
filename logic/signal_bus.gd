@@ -34,4 +34,4 @@ signal credits_updated
 # Connected from Carrier to HUD leaderboard
 signal score_updated
 
-signal upgrade_special(id)
+signal upgrade_special(id,val)

@@ -10,24 +10,24 @@ func _ready() -> void:
 func start_dash(dur):
 	#wait_time = dur
 	start(dur)
-	ShipData.dash = true
-	SignalBus.dash.emit(ShipData.dash_cd)
+	owner.dash = true
+	SignalBus.dash.emit(owner.dash_cd)
 	
 func is_in_action():
 	return !is_stopped()
 	
 func start_knockback(dur):
 	stop()
-	ShipData.dash = false
+	owner.dash = false
 	start(dur)
-	ShipData.knockback = true
+	owner.knockback = true
 
 func _on_action_timeout() -> void:
 	stop()
-	ShipData.knockback = false
-	ShipData.dash = false
+	owner.knockback = false
+	owner.dash = false
 	#
 #func dash_reset():
 	#stop()
-	#ShipData.knockback = false
-	#ShipData.dash = false
+	#owner.knockback = false
+	#owner.dash = false
