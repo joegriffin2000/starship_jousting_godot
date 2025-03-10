@@ -11,16 +11,15 @@ config_version=5
 [application]
 
 config/name="StarshipJousting"
-run/main_scene="res://UI/TitleScreen/titleScreen.tscn"
+run/main_scene="res://UI/TitleScreen/title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
 ShipData="*res://Logic/ship_data.gd"
-ShopMenu="*res://UI/ShopUI/shop_menu.tscn"
 SignalBus="*res://Logic/signal_bus.gd"
-GameManager="*res://Logic/game_manager.gd"
+NetworkState="*res://Logic/network_state.gd"
 
 [display]
 

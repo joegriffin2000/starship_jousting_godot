@@ -17,6 +17,7 @@ signal enemy_killed(object)
 # Other object signals
 
 # UI signals
+signal new_player_connected(id)
 # Connected from ship to gameOverScreen
 signal player_died(score)
 # Connected from shop Quest menu to HUD Quest labels and ShipData

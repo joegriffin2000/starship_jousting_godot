@@ -32,13 +32,18 @@ func _ready() -> void:
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
 	SignalBus.upgrade_special.connect(upgrade_bought)
-	nameLabel.text = ShipData.playerName
-	playerName = ShipData.playerName
 	shield.activate()
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	if is_local_authority():
+		camera.make_current()
 
 func is_local_authority():
 	return $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
+
+func set_player_name(playerName):
+	self.playerName = playerName
+	nameLabel.text = self.playerName
+	
 
 func get_input():
 	if is_local_authority():
@@ -62,8 +67,6 @@ func get_input():
 
 func _physics_process(delta):
 	if is_local_authority():
-		camera.make_current()
-		
 		get_input()
 		rotation += rotation_direction * rotation_speed * delta
 		nameLabel.set_rotation(-1 * rotation)

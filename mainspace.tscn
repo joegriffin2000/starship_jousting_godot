@@ -1,6 +1,5 @@
 [gd_scene load_steps=12 format=3 uid="uid://di43x1lpcmhc6"]
 
-[ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_31b5h"]
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
 [ext_resource type="PackedScene" uid="uid://cq1e813uoit5d" path="res://Entities/Obstacles/rock.tscn" id="3_ajql6"]
@@ -8,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://civgrrcpy8lw5" path="res://Entities/Obstacles/dmg_rock.tscn" id="5_ysiwv"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/gameOverScreen.tscn" id="6_bpwyg"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://Entities/Carrier/carrier.tscn" id="6_t3k5q"]
+[ext_resource type="PackedScene" uid="uid://btbb3t0k66qi8" path="res://UI/ShopUI/shop_menu.tscn" id="8_u6klb"]
 [ext_resource type="PackedScene" uid="uid://b2o3ag10vnhyf" path="res://Entities/Enemy/enemy_spawner.tscn" id="10_ue055"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60dm5"]
@@ -20,11 +20,10 @@ border_width_right = 30
 border_width_bottom = 30
 border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_coag6")
-playerScene = ExtResource("1_31b5h")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="SpaceBG" type="TextureRect" parent="."]
 offset_left = -1500.0
 offset_top = -1000.0
 offset_right = 9500.0
@@ -34,6 +33,13 @@ expand_mode = 2
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
+
+[node name="Players" type="Node2D" parent="."]
+position = Vector2(4624, 2648)
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Ship/ship.tscn")
+spawn_path = NodePath("../Players")
 
 [node name="Rock" parent="." instance=ExtResource("3_ajql6")]
 position = Vector2(4797, 1974)
@@ -47,6 +53,13 @@ rotation = 0.390954
 scale = Vector2(2.5, 2.5)
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
+
+[node name="ShopMenu" parent="." instance=ExtResource("8_u6klb")]
+visible = false
+
+[node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
+process_mode = 3
+visible = false
 
 [node name="MapBorder" type="StaticBody2D" parent="."]
 
@@ -78,18 +91,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4dwt8")
 
-[node name="GameOverScreen" parent="." instance=ExtResource("6_bpwyg")]
-process_mode = 3
-visible = false
-
 [node name="EnemySpawner" parent="." instance=ExtResource("10_ue055")]
 position = Vector2(2237, 4066)
 script = null
-
-[node name="SpawnLocations" type="Node2D" parent="."]
-
-[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-position = Vector2(4007, 2624)
-
-[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-position = Vector2(4804, 2614)
