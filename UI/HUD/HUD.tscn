@@ -133,6 +133,7 @@ label_settings = SubResource("LabelSettings_upgdq")
 horizontal_alignment = 1
 
 [node name="First" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+visible = false
 layout_mode = 2
 
 [node name="Second" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
@@ -148,22 +149,6 @@ visible = false
 layout_mode = 2
 
 [node name="Fifth" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
-visible = false
-layout_mode = 2
-
-[node name="Sixth" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
-visible = false
-layout_mode = 2
-
-[node name="Seventh" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
-visible = false
-layout_mode = 2
-
-[node name="Eighth" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
-visible = false
-layout_mode = 2
-
-[node name="Ninth" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2
 
