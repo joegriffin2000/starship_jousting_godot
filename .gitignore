@@ -6,3 +6,4 @@
 .tmp/
 nginx-selfsigned.crt
 /sj_export/
+export_presets.cfg
