@@ -24,12 +24,14 @@ border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 script = ExtResource("1_coag6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 offset_left = -1500.0
 offset_top = -1000.0
-offset_right = 9500.0
-offset_bottom = 6000.0
+offset_right = 1973.0
+offset_bottom = 1345.0
+scale = Vector2(5, 5)
 texture = ExtResource("1_xb1gi")
-expand_mode = 2
+expand_mode = 1
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
