@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://Entities/Ship/lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Entities/Ship/action.gd" id="5_rp1k1"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 [ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://Entities/Ship/shield.tscn" id="8_58v7v"]
+[ext_resource type="PackedScene" uid="uid://coywqf2w6d1yr" path="res://UI/indicator_arrow.tscn" id="9_t78cu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl71k"]
 size = Vector2(142, 80)
@@ -117,5 +118,7 @@ vertical_alignment = 1
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.01
 replication_config = SubResource("SceneReplicationConfig_mfsuh")
+[node name="indicator_arrow" parent="." instance=ExtResource("9_t78cu")]
+visible = false
 
 [connection signal="timeout" from="Action_Timer" to="Action_Timer" method="_on_action_timeout"]

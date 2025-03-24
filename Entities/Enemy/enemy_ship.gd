@@ -20,6 +20,8 @@ var knockback = false
 var dashing = false
 var shielded = false
 
+signal bounty_claimed(killer)
+
 var randomizer = RandomNumberGenerator.new()
 
 func _enter_tree() -> void:
@@ -104,6 +106,7 @@ func death(killer: CollisionObject2D):
 	# Need a better solution for how to freeze player inputs
 	queue_free()
 	SignalBus.enemy_killed.emit(killer)
+	bounty_claimed.emit(killer)
 	pass
 
 #func _on_dmg_rock_took_damage() -> void:
