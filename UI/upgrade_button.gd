@@ -33,9 +33,14 @@ func get_connection_count():
 			count+=1
 	return count
 	
-func set_upgrade_stat_increase(id:int, name:StringName, description:StringName, stat_to_increase: StringName, change: float, max_purchase: int, cost: int, isDecrease:bool = false):
-	self.stat = stat_to_increase
-	self.isStatBoost = true
+func set_upgrade_stat_increase(id:int, name:StringName, description:StringName, stat_to_increase: StringName, change: float, max_purchase: int, cost: int, img:StringName, isDecrease:bool = false):
+	if stat_to_increase in ShipData:
+		self.stat = stat_to_increase
+		self.isStatBoost = true
+	else: 
+		return
+	
+	self.icon = load("res://Sprites/"+img)
 	self.id = id
 	self.max = max_purchase
 	self.cost = cost
@@ -53,7 +58,8 @@ func set_upgrade_stat_increase(id:int, name:StringName, description:StringName, 
 		$Panel/Details.text = "(" + str(current) + "/" + str(max) + ")"
 		$Panel/BuyButton.text = str(cost) + "$"
 
-func set_upgrade_special(id:int, name:StringName, description:StringName, max_purchase: int, cost: int):
+func set_upgrade_special(id:int, name:StringName, description:StringName, max_purchase: int, cost: int, img:StringName):
+	self.icon = load("res://Sprites/"+img)
 	self.id = id
 	self.max = max_purchase
 	self.cost = cost

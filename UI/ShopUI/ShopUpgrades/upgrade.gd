@@ -16,9 +16,9 @@ func populate(parent_button,parent_id):
 			var button = e_button.instantiate()
 			
 			if i["isStatBoost"]:
-				button.set_upgrade_stat_increase(int(i["id"]),i["name"],i["description"],i["data"]["stat"], i["data"]["increase_value"], i["max_purchases"], i["cost"],i["data"]["isDecrease"])
+				button.set_upgrade_stat_increase(int(i["id"]),i["name"],i["description"],i["data"]["stat"], i["data"]["increase_value"], i["max_purchases"], i["cost"], i["img"], i["data"]["isDecrease"])
 			else:
-				button.set_upgrade_special(int(i["id"]),i["name"], i["description"], i["max_purchases"], i["cost"])
+				button.set_upgrade_special(int(i["id"]),i["name"], i["description"], i["max_purchases"], i["cost"], i["img"])
 			add_button(parent_button, button, i["pos"])
 			
 			if i["hasChildren"]:
