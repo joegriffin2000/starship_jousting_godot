@@ -3,6 +3,8 @@ extends CanvasLayer
 @onready var displayScore = $PanelContainer/MarginContainer/Rows/TotalScoreTxt
 @onready var req = $HTTPRequest
 
+@onready var shop_menu = get_tree().root.get_node("Game").get_node("ShopMenu")
+
 func _ready() -> void:
 	SignalBus.player_died.connect(_on_ship_player_died)
 
@@ -23,5 +25,5 @@ func _on_ship_player_died(score: Variant) -> void:
 
 func _on_main_menu_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://UI/TitleScreen/titleScreen.tscn")
-	ShopMenu.get_node("Panel/Upgrades/Upgrade").reset()
+	shop_menu.get_node("Panel/Upgrades/Upgrade").reset()
 	ShipData.reset()

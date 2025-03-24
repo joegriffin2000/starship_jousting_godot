@@ -12,11 +12,6 @@ const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
 @onready var arrow = $indicator_arrow
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
 
-var upgradeIDtoFunc = {
-	4:upgradeRegenHit
-	}
-
-var shielded = false
 var regenerting_dash = false
 
 var rotation_direction = 0
