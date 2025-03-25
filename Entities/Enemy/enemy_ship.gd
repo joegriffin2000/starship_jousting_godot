@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var playerName = "BOT"
+
 @onready var nameLabel = $Name_Label
 @onready var action = $Action_Timer
 @onready var dash = $Dash_Cooldown
@@ -23,6 +25,7 @@ var shielded = false
 var randomizer = RandomNumberGenerator.new()
 
 func _enter_tree() -> void:
+	$MultiplayerSynchronizer.set_multiplayer_authority(0)
 	#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	$Lance.deactivate()
 	#$Hurtbox.isEnabled = false #this makes the enemy ships unkillable
@@ -105,6 +108,9 @@ func death(killer: CollisionObject2D):
 	queue_free()
 	SignalBus.enemy_killed.emit(killer)
 	pass
+
+func is_local_authority():
+	return false
 
 #func _on_dmg_rock_took_damage() -> void:
 	#take_damage()

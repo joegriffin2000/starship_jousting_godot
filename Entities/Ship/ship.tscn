@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://e1bi5rviiufr"]
+[gd_scene load_steps=15 format=3 uid="uid://e1bi5rviiufr"]
 
 [ext_resource type="Script" path="res://Entities/Ship/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://om46hfkv7o05" path="res://Sprites/ship.png" id="2_g8wrt"]
@@ -8,9 +8,14 @@
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 [ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://Entities/Ship/shield.tscn" id="8_58v7v"]
+[ext_resource type="Texture2D" uid="uid://cixk7kdly776n" path="res://Sprites/loading3.png" id="8_euw0o"]
+[ext_resource type="Script" path="res://Entities/Ship/quest_timer_bar.gd" id="9_due0t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iyay"]
+radius = 65.0308
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl71k"]
-size = Vector2(142, 80)
+size = Vector2(130, 86)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t50ld"]
 font = ExtResource("7_5eqxg")
@@ -65,12 +70,13 @@ zoom = Vector2(0.4, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1.90735e-06, 1.90735e-06)
+position = Vector2(3.8147e-06, -8)
 scale = Vector2(7.875, 7.875)
 texture = ExtResource("2_g8wrt")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-9, -62, 8, -62, 67, 19, 67, 65, -66, 65, -66, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_7iyay")
 
 [node name="Action_Timer" type="Timer" parent="."]
 script = ExtResource("5_rp1k1")
@@ -80,36 +86,57 @@ one_shot = true
 script = ExtResource("4_aff75")
 
 [node name="Lance" parent="." instance=ExtResource("5_aex22")]
-position = Vector2(0, -101)
+position = Vector2(0, -109)
 
 [node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -10)
 script = ExtResource("6_cf3ti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, 30)
+position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_yl71k")
 
 [node name="Shield" parent="." instance=ExtResource("8_58v7v")]
+
+[node name="QuestTimerBar" type="TextureProgressBar" parent="."]
 visible = false
-position = Vector2(0, 14)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 92.0
+offset_top = -105.0
+offset_right = 156.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-92, 105)
+max_value = 10.0
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("8_euw0o")
+texture_progress = ExtResource("8_euw0o")
+tint_under = Color(0.425041, 0.63833, 0.898214, 1)
+tint_progress = Color(0.583015, 0.98291, 0.459545, 1)
+script = ExtResource("9_due0t")
 
 [node name="Name_Label" type="Label" parent="."]
-auto_translate_mode = 2
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -98.0
+offset_left = -100.0
 offset_top = 95.0
-offset_right = 102.0
-offset_bottom = 118.0
+offset_right = 100.0
+offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(99, -92)
+pivot_offset = Vector2(100, -95)
 size_flags_horizontal = 4
-text = "BOT"
+text = "player_0"
 label_settings = SubResource("LabelSettings_t50ld")
 horizontal_alignment = 1
 vertical_alignment = 1

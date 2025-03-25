@@ -21,6 +21,9 @@ extends Node
 
 # Called upon respawning
 func reset():
+	# Reset name and ID
+	playerName = "player_0"
+	
 	# Ship stats
 	dash_cd = 1.0
 	

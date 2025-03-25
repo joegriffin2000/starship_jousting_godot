@@ -9,7 +9,7 @@
 		{
 			"faction": "SEU",
 			"type": 2,
-			"desc": "Charge battery",
+			"desc": "Charge battery x times",
 			"credits": 10
 		},
 		{
@@ -17,6 +17,12 @@
 			"type": 1,
 			"desc": "Kill x players",
 			"credits": 20
+		},
+		{
+			"faction": "FJB",
+			"type": 2,
+			"desc": "Kill Player x",
+			"credits": 30
 		},
 		{
 			"faction": "GOAT",

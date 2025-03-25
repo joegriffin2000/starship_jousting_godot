@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg3eoe4hnoqna"]
+
+[ext_resource type="Script" path="res://Entities/EnergyStation/energy_station.gd" id="1_2d47a"]
+[ext_resource type="Texture2D" uid="uid://deak4o1xsi0rn" path="res://Sprites/icon.svg" id="1_enspt"]
+[ext_resource type="Texture2D" uid="uid://1u0ercldhh7v" path="res://Sprites/shop_bound.png" id="2_1hut2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnth7"]
+radius = 639.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sph7"]
+radius = 263.048
+
+[node name="EnergyStation" type="StaticBody2D"]
+script = ExtResource("1_2d47a")
+
+[node name="ChargingArea" type="Area2D" parent="."]
+
+[node name="ChargingAreaSprite" type="Sprite2D" parent="ChargingArea"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_1hut2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargingArea"]
+shape = SubResource("CircleShape2D_cnth7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_enspt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4sph7")
+
+[connection signal="body_entered" from="ChargingArea" to="." method="_on_charging_area_entered"]
+[connection signal="body_exited" from="ChargingArea" to="." method="_on_charging_area_exited"]

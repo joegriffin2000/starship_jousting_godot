@@ -9,71 +9,66 @@ extends VBoxContainer
 	]
 @onready var you = $You
 @onready var div = $Divider
+var myID
 
-@onready var TempPlayers = {
-	12343: {
-		"name":"joe",
-		"score":121
-	},
-	33421: {
-		"name":"ben",
-		"score":103
-	},
-	43321: {
-		"name":"finn",
-		"score":123
-	}
-}
+@export var playersAndScores = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.score_updated.connect(update_lb)
-	div.visible = true
-	you.visible = true
-	update_lb()
-
-# Temporary function used for testing while not using the the GameManager.Players dictionary
-# This function shouldn't be necessary if we keep GameManager up to date with everyone's scores on change
-func add_me():
-	if TempPlayers.has(multiplayer.get_unique_id()):
-		TempPlayers[multiplayer.get_unique_id()]["score"] = ShipData.totalScore
-	else:
-		TempPlayers[multiplayer.get_unique_id()] = {
-			"name":ShipData.playerName,
-			"score":ShipData.totalScore
-		}
-
-func update_lb():
-	#updating score in TempPlayers. Shouldn't be necessary when we have GameManager.Players updating with scores
-	add_me()
+	multiplayer.peer_disconnected.connect(remove_player_from_lb)
 	
-	#this is made in a way where you could just plug in GameManager.Players 
-	#and it will work
-	var players = TempPlayers.duplicate()
-	#var players = GameManager.Players.duplicate()
+	myID = multiplayer.get_unique_id()
+	playersAndScores.append([myID, ShipData.playerName, 0])
 	
+	display_top_5.rpc()
+	check_you_visible()
+
+func remove_player_from_lb(id):
+	# Update my score in playersAndScores
+	for i in range(len(playersAndScores)):
+		if id == playersAndScores[i][0]:
+			playersAndScores.pop_at(i)
+			break
+	display_top_5()
+
+@rpc("any_peer", "call_local")
+func check_you_visible():
+	var inTop5 = false
+	var num = 5 if len(playersAndScores) > 5 else len(playersAndScores)
+	for i in range(num):
+		if playersAndScores[i][0] == myID:
+			inTop5 = true
+			break
+	if not(inTop5):
+		set_you_visible()
+	
+# Show the player in the You spot
+func set_you_visible():
 	you.get_node_and_resource("MarginContainer/HBoxContainer/PlayerName")[0].text = str(ShipData.playerName, "  ")
 	you.get_node_and_resource("MarginContainer/HBoxContainer/Score")[0].text = str(ShipData.totalScore)
+	div.visible = true
+	you.visible = true
+
+@rpc("any_peer", "call_local")
+func display_top_5():
+	# Set top 5, or less than top 5 if less than 5 players
+	var num = 5 if len(playersAndScores) > 5 else len(playersAndScores)
 	
-	var num = 5 if len(players) > 5 else len(players)
+	for i in range(num):
+		rows[i].get_node_and_resource("MarginContainer/HBoxContainer/PlayerName")[0].text = str(playersAndScores[i][1])
+		rows[i].get_node_and_resource("MarginContainer/HBoxContainer/Score")[0].text = str(playersAndScores[i][2])
+		
+		rows[i].visible = true
+
+func update_lb():
+	# Update my score in playersAndScores
+	for player in playersAndScores:
+		if myID == player[0]:
+			player[2] = ShipData.totalScore
+			break
 	
-	for k in range(num):
-		var id = 0
-		var currentMax = -1
-		for i in players:
-			if players[i]["score"] > currentMax:
-				currentMax = players[i]["score"]
-				id = i
-				
-		rows[k].get_node_and_resource("MarginContainer/HBoxContainer/PlayerName")[0].text = str(players[id]["name"])
-		rows[k].get_node_and_resource("MarginContainer/HBoxContainer/Score")[0].text = str(players[id]["score"])
-		
-		players.erase(id)
-		
-		rows[k].visible = true
-		
-		# if the player is already on the leaderboard, 
-		# hide the "you" box and the divider.
-		if multiplayer.get_unique_id() == id:
-			div.visible = false
-			you.visible = false
+	# Re-sort playersAndScores
+	playersAndScores.sort_custom(func(a, b): return a[2] > b[2])
+	
+	display_top_5()

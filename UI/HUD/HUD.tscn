@@ -44,7 +44,7 @@ scale = Vector2(3, 3)
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="QContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = -1.0
@@ -57,41 +57,41 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="QContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="QuestStuff" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="QuestStuff" type="HBoxContainer" parent="QContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/QuestStuff"]
+[node name="MarginContainer" type="MarginContainer" parent="QContainer/VBoxContainer/QuestStuff"]
 layout_mode = 2
 theme_override_constants/margin_right = 10
 
-[node name="QuestIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/QuestStuff/MarginContainer"]
+[node name="QuestIcon" type="TextureRect" parent="QContainer/VBoxContainer/QuestStuff/MarginContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 texture = ExtResource("4_ormaa")
 expand_mode = 3
 
-[node name="QuestHUD" type="VBoxContainer" parent="MarginContainer/VBoxContainer/QuestStuff"]
+[node name="QuestHUD" type="VBoxContainer" parent="QContainer/VBoxContainer/QuestStuff"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 script = ExtResource("5_7fypj")
 
-[node name="QuestText" type="Label" parent="MarginContainer/VBoxContainer/QuestStuff/QuestHUD"]
+[node name="QuestText" type="Label" parent="QContainer/VBoxContainer/QuestStuff/QuestHUD"]
 layout_mode = 2
 text = "No active quest"
 label_settings = SubResource("LabelSettings_xg335")
 
-[node name="QuestProgress" type="Label" parent="MarginContainer/VBoxContainer/QuestStuff/QuestHUD"]
+[node name="QuestProgress" type="Label" parent="QContainer/VBoxContainer/QuestStuff/QuestHUD"]
 layout_mode = 2
 text = "Take a new quest at a carrier ship"
 label_settings = SubResource("LabelSettings_ublum")
 
-[node name="Divider" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Divider" type="TextureRect" parent="QContainer/VBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
@@ -99,7 +99,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("5_202o5")
 
-[node name="Credits" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Credits" type="Label" parent="QContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -109,7 +109,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("2_pk0r0")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="LBContainer" type="MarginContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -121,38 +121,38 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Leaderboard" type="VBoxContainer" parent="MarginContainer2"]
+[node name="Leaderboard" type="VBoxContainer" parent="LBContainer"]
 layout_mode = 2
 script = ExtResource("7_p7fkv")
 
-[node name="Label" type="Label" parent="MarginContainer2/Leaderboard"]
+[node name="Label" type="Label" parent="LBContainer/Leaderboard"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "Leaderboard"
 label_settings = SubResource("LabelSettings_upgdq")
 horizontal_alignment = 1
 
-[node name="First" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+[node name="First" parent="LBContainer/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2
 
-[node name="Second" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+[node name="Second" parent="LBContainer/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2
 
-[node name="Third" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+[node name="Third" parent="LBContainer/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2
 
-[node name="Fourth" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+[node name="Fourth" parent="LBContainer/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2
 
-[node name="Fifth" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+[node name="Fifth" parent="LBContainer/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2
 
-[node name="Divider" type="Label" parent="MarginContainer2/Leaderboard"]
+[node name="Divider" type="Label" parent="LBContainer/Leaderboard"]
 visible = false
 layout_mode = 2
 text = "..."
@@ -160,6 +160,6 @@ label_settings = SubResource("LabelSettings_g5odg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="You" parent="MarginContainer2/Leaderboard" instance=ExtResource("7_cihag")]
+[node name="You" parent="LBContainer/Leaderboard" instance=ExtResource("7_cihag")]
 visible = false
 layout_mode = 2

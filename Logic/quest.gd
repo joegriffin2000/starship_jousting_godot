@@ -27,7 +27,12 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 			1: # Mine rocks quest
 				self.progressSig = SignalBus.rock_mined
 			2: # Charge battery quest
-				self.progressSig = SignalBus.rock_mined
+				self.questTimer = Timer.new() # Create timer
+				self.questTimer.wait_time = 10
+				self.progressSig = self.questTimer.timeout
+				SignalBus.quest_received.connect(startQuestTimer)
+				SignalBus.start_charging_battery.connect(unpauseQuestTimer)
+				SignalBus.stop_charging_battery.connect(pauseQuestTimer)
 			_: #default
 				print("No type for quest of faction 'SEU'.")
 		pass
@@ -35,6 +40,8 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 		# Each of these is a different quest type
 		match int(type):
 			1: # Kill many enemies
+				self.progressSig = SignalBus.enemy_killed
+			2:
 				self.progressSig = SignalBus.enemy_killed
 			_: #default
 				print("No type for quest of faction 'FJB'.")
@@ -71,24 +78,43 @@ func deactivate():
 func update_progress(quester: CollisionObject2D = null):
 	#print("quest triggered, progress:",progress,"/",total)
 	if holder == quester or quester == null:
+		
 		if progress < total:
 			progress += 1
 			SignalBus.quest_progressed.emit()
+			print("quest progressed")
+			
+			# Restart energy station quest timer if we still need to charge the battery more. Otherwise it can stay timed out, as it is no longer useful.
+			if faction == "SEU" and type == 2:
+				self.questTimer.start(10)
+				
 		if progress == total:
 			if faction == "GOAT": # GOAT quests fail on condition met
 				print("quest failed")
 				SignalBus.quest_failed.emit()
 			else: # FJB and SEU quests succeed on condition met
 				SignalBus.quest_completed.emit()
+	
 	# else do nothing
 
 func startQuestTimer(_quest):
 	add_child(self.questTimer)
-	#get_child(0).timeout.connect()
-	#get_child(0).add_to_group("QuestTimer")
-	print(get_child(0).get_time_left())
-	#print(get_child(0).get_signal_connection_list("timeout"))
+	SignalBus.show_quest_timer.emit()
+
+func pauseQuestTimer():
+	print("Pausing timer")
+	self.questTimer.set_paused(true)
+	
+func unpauseQuestTimer():
+	self.questTimer.set_paused(false)
+	if self.questTimer.is_stopped():
+		self.questTimer.start(10)
+
+func isTimerStopped():
+	if self.questTimer != null:
+		if self.questTimer.is_stopped():
+			return true
 
 func getTimeLeft():
-	if questTimer != null:
-		return questTimer.time_left
+	if self.questTimer != null:
+		return self.questTimer.time_left

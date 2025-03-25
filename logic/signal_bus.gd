@@ -5,14 +5,17 @@ extends Node
 signal dash
 
 signal dash_regen
-# Connected from damage rock to ship
+# Connected from damage rock to Ship
 signal damage_taken
 
 # Quest signals
-# Connected from damage rock to ship
+# Connected from damage rock to Ship
 signal rock_mined(attacker)
-# Connected from enemy to ship
+# Connected from enemy to Ship
 signal enemy_killed(object)
+# Connected from Energy Stations to Quest class
+signal start_charging_battery
+signal stop_charging_battery
 
 # Other object signals
 
@@ -20,7 +23,7 @@ signal enemy_killed(object)
 signal new_player_connected(id)
 # Connected from ship to gameOverScreen
 signal player_died(score)
-# Connected from shop Quest menu to HUD Quest labels and ShipData
+# Connected from shop Quest menu to Ship and HUD Quest labels
 signal quest_received(content)
 # Connected from Quest class to HUD Quest labels and Ship
 signal quest_progressed
@@ -34,6 +37,8 @@ signal quest_removed
 signal credits_updated
 # Connected from Carrier to HUD leaderboard
 signal score_updated
+# Connected from Quest class to Ship's QuestTimerBar
+signal show_quest_timer
 
 signal upgrade_special(id,val)
 

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const gameOverScreen = preload("res://UI/GameOverScreen/gameOverScreen.tscn")
+const gameOverScreen = preload("res://UI/GameOverScreen/game_over_screen.tscn")
 
 @export var playerName : String = "player_0"
 
@@ -43,7 +43,6 @@ func is_local_authority():
 func set_player_name(playerName):
 	self.playerName = playerName
 	nameLabel.text = self.playerName
-	
 
 func get_input():
 	if is_local_authority():
@@ -70,6 +69,7 @@ func _physics_process(delta):
 		get_input()
 		rotation += rotation_direction * rotation_speed * delta
 		nameLabel.set_rotation(-1 * rotation)
+		$QuestTimerBar.set_rotation(-1 * rotation)
 
 		for i in get_slide_collision_count():
 			var c = get_slide_collision(i)
@@ -96,11 +96,15 @@ func dash_regen():
 
 # This function handles when the player reaches 0 HP.
 func death(_attacker: CollisionObject2D):
-	queue_free()
-	SignalBus.player_died.emit(ShipData.totalScore)
+	if is_local_authority():
+		queue_free()
+		SignalBus.player_died.emit(ShipData.totalScore)
 
 func _on_dmg_rock_took_damage(attacker) -> void:
 	take_damage(attacker)
+
+func energy_station_eligible():
+	pass
 
 func shop_entered():
 	$Hurtbox.isEnabled = false

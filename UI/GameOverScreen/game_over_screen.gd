@@ -22,5 +22,6 @@ func _on_ship_player_died(score: Variant) -> void:
 		#push_error("An error occurred in the HTTP request.")
 
 func _on_main_menu_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://UI/TitleScreen/titleScreen.tscn")
 	ShipData.reset()
+	NetworkState.disconnect_me()
+	get_tree().change_scene_to_file("res://UI/TitleScreen/title_screen.tscn")

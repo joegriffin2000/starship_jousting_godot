@@ -10,10 +10,9 @@ extends VBoxContainer
 var generatedQuests = []
 var selectedQuest = null
 
-func _ready():
-	pass
 
-func generateQuests() -> void:
+func generateQuests(carrier_name) -> void:
+	
 	# Display player's current quest, if they have one
 	if ShipData.quest != null:
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = ShipData.quest.description
@@ -39,24 +38,27 @@ func generateQuests() -> void:
 	
 	# Generate a quest for each quest faction
 	# Quest.new(faction, description, type, total, baseCredits)
-	# TODO: Replace quest[0] with randomizing from the list
 	
 	# SEU Quests
+	var qNum = rng.randi_range(0, 1)
 	var total = rng.randi_range(3, 7)
-	var seu = Quest.new(seuQuests[0].faction, seuQuests[0].desc.replace("x", str(total)), seuQuests[0].type, total, seuQuests[0].credits)
+	var seu = Quest.new(seuQuests[qNum].faction, seuQuests[qNum].desc.replace("x", str(total)), seuQuests[qNum].type, total, seuQuests[qNum].credits)
 	
 	# FJB Quests
+	qNum = rng.randi_range(0, 1)
 	total = rng.randi_range(2, 5)
-	var fjb = Quest.new(fjbQuests[0].faction, fjbQuests[0].desc.replace("x", str(total)), fjbQuests[0].type, total, fjbQuests[0].credits)
+	var fjb = Quest.new(fjbQuests[qNum].faction, fjbQuests[qNum].desc.replace("x", str(total)), fjbQuests[qNum].type, total, fjbQuests[qNum].credits)
 	
 	# GOAT Quests
-	var entityID = rng.randi_range(0, 2) # Carrier ship ID
-	var entityNames = ["ALPHA", "BETA", "GAMMA"]
-	var timeLimit = rng.randi_range(5, 15) # Time in seconds
-	var base = goatQuests[0].desc
+	qNum = rng.randi_range(0, 1)
+	var entityID = rng.randi_range(0, 3) # Carrier ship ID
+	var entityNames = ["ALPHA", "BETA", "GAMMA", "DELTA", "EPSILON"]
+	entityNames.erase(str(carrier_name)) # Remove the carrier name we accessed from the list
+	var timeLimit = rng.randi_range(30, 120) # Time in seconds
+	var base = goatQuests[qNum].desc
 	var updStr = base.replace("x", entityNames[entityID])
 	var updDesc = updStr.replace("y time", str(timeLimit, " seconds"))
-	var goat = Quest.new(goatQuests[0].faction, updDesc, goatQuests[0].type, 1, goatQuests[0].credits, entityNames[entityID], timeLimit)
+	var goat = Quest.new(goatQuests[qNum].faction, updDesc, goatQuests[qNum].type, 1, goatQuests[qNum].credits, entityNames[entityID], timeLimit)
 	
 	generatedQuests = []
 	generatedQuests.append(seu)
@@ -87,14 +89,23 @@ func _on_goat_quest_toggled(toggled_on: bool) -> void:
 		selectedQuest = generatedQuests[2]
 	else:
 		selectedQuest = null
+
+
 func _on_take_quest_pressed() -> void:
 	if selectedQuest != null:
+		
+		# Deactivate our past quest, if we already had one that we're overwriting
+		if ShipData.quest != null:
+			ShipData.quest.deactivate()
+		
 		# Receive selected quest
 		SignalBus.quest_received.emit(selectedQuest)
+		
 		# Update display to show current active quest
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestText.text = selectedQuest.description
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.text = str("Reward: ", selectedQuest.reward, " credits")
 		$CurrentQuest/MarginContainer/HBoxContainer/VBoxContainer/QuestReward.visible = true
+		
 		# Deselect quests in the menu
 		SEUQuest.set_pressed(false)
 		FJBQuest.set_pressed(false)
