@@ -1,28 +1,18 @@
 extends Node2D
 
 @export var player_scene = preload("res://Entities/Ship/ship.tscn")
+@onready var spawn_area = $PlayerSpawnArea
 signal player_created(id)
-@onready var spawn_area = $Players/SpawnArea
 
 func _ready():
-	#$PlayerSpawner.spawn_function = spawn_player
 	if NetworkState.is_server:
 		# Listen to peer connections, and create new ship for them
 		multiplayer.peer_connected.connect(spawn_player)
 		# Listen to peer disconnections, and remove their ships
 		multiplayer.peer_disconnected.connect(remove_player)
-		
 	else:
 		# Listen for new player's ID and name once they connect
-		player_created.connect(set_new_player_name)
-
-@rpc("any_peer")
-func newPlayerCreated(id):
-	player_created.emit(id)
-
-@rpc("any_peer", "call_local")
-func addNewPlayerToGroup(id):
-	$Players.get_node(str(id)).add_to_group("Players")
+		player_created.connect(set_up_player)
 
 func spawn_player(id: int) -> void:
 	# Instantiate a new player for this client.
@@ -30,39 +20,67 @@ func spawn_player(id: int) -> void:
 	# Set the name, so players can figure out their local authority
 	player.name = str(id)
 	# Add player to scene tree
-	#$PlayerSpawner.spawn(id)
 	$Players.add_child(player)
+	# Set player spawn position
 	set_player_position.rpc(id, spawn_area.position)
-	newPlayerCreated.rpc_id(id, id)
-	addNewPlayerToGroup.rpc(id)
-	
-func _physics_process(delta: float) -> void:
-	if NetworkState.is_server:
-		if ship_nearby(spawn_area.get_overlapping_bodies()):
-			var buffer = 50 # So that it doesn't spawn on top of border
-			var right_edge = $MapBorder/BottomBorderCollisionShape2.global_position.x
-			var bottom_edge = $MapBorder/BottomBorderCollisionShape2.global_position.y
-			spawn_area.global_position = Vector2(randf_range(buffer, right_edge - buffer), randf_range(buffer, bottom_edge - buffer))
-	
+	# Server tells player to finish their set-up
+	new_player_created.rpc_id(id, id)
+	# Server tells all clients to add new player to their enemy lists
+	add_to_enemy_list.rpc(id)
+
+func remove_player(id: int) -> void:
+	# Delete this player's node.
+	$Players.get_node(str(id)).queue_free()
+
+@rpc("any_peer", "call_local")
+func new_player_created(id):
+	player_created.emit(id)
+
 @rpc("call_local")
 func set_player_position(id, spawn_position):
-	print("called")
 	var player = get_node("Players/%s" % id)
-		
-	player.position = spawn_position
+	player.global_position = spawn_position
 	
 func ship_nearby(overlapping_bodies):
 	for body in overlapping_bodies:
 		if body is CharacterBody2D:
 			return true
 	return false
-	
-func remove_player(id: int) -> void:
-	# Delete this player's node.
-	$Players.get_node(str(id)).queue_free()
 
-func set_new_player_name(id):
-	print("Player created, setting their name")
+func set_up_player(id):
+	# Have new Player set their own display name
+	#print("Player created, setting their name")
 	$Players.get_node(str(id)).set_player_name(ShipData.playerName)
-	print("Set ", id, " to ", ShipData.playerName)
-	print("Confirming name: ", $Players.get_node(str(id)).playerName)
+	#print("Set ", id, " to ", ShipData.playerName)
+	#print("Confirming name: ", $Players.get_node(str(id)).playerName)
+	
+	# Have new Player set up their own Enemies list
+	set_up_enemy_list()
+
+# For the newest client only
+func set_up_enemy_list():
+	var listOfPlayers = $Players.get_children()
+	var listOfBots = $Bots.get_children()
+	
+	var myID = multiplayer.get_unique_id()
+	listOfPlayers.erase(get_node(str(myID)))
+	
+	# Add all other existing players to Enemies group
+	for p in listOfPlayers:
+		p.add_to_group("Enemies")
+	for b in listOfBots:
+		b.add_to_group("Enemies")
+
+@rpc("any_peer", "call_local")
+func add_to_enemy_list(id):
+	var myID = multiplayer.get_unique_id()
+	if id != myID:
+		$Players.get_node(str(id)).add_to_group("Enemies")
+
+func _physics_process(_delta: float) -> void:
+	if NetworkState.is_server:
+		if ship_nearby(spawn_area.get_overlapping_bodies()):
+			var buffer = 200 # So that it doesn't spawn on top of border
+			var right_edge = $MapBorder/BottomBorderCollisionShape.position.x
+			var bottom_edge = $MapBorder/BottomBorderCollisionShape.position.y
+			spawn_area.global_position = Vector2(randf_range(buffer, right_edge - buffer), randf_range(buffer, bottom_edge - buffer))

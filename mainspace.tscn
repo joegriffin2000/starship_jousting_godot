@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=14 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
@@ -40,11 +40,11 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Players" type="Node2D" parent="."]
-position = Vector2(13012, 4274)
 
-[node name="SpawnArea" type="Area2D" parent="Players"]
+[node name="PlayerSpawnArea" type="Area2D" parent="."]
+position = Vector2(12399, 4274)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/SpawnArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSpawnArea"]
 scale = Vector2(150, 85)
 shape = SubResource("RectangleShape2D_sq3l4")
 
@@ -185,6 +185,11 @@ position = Vector2(8660, 6792)
 [node name="DmgRock10" parent="Obstacles" instance=ExtResource("5_ysiwv")]
 position = Vector2(25765, 13150)
 
+[node name="Bots" type="Node2D" parent="."]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("10_ue055")]
+position = Vector2(5101, 7358)
+
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 
 [node name="ShopMenu" parent="." instance=ExtResource("8_u6klb")]
@@ -224,6 +229,3 @@ offset_bottom = 23000.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4dwt8")
-
-[node name="EnemySpawner" parent="." instance=ExtResource("10_ue055")]
-position = Vector2(5101, 7378)

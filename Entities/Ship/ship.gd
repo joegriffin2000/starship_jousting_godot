@@ -4,6 +4,8 @@ const gameOverScreen = preload("res://UI/GameOverScreen/game_over_screen.tscn")
 
 @export var playerName : String = "player_0"
 
+signal bounty_claimed(killer)
+
 @onready var nameLabel = $Name_Label
 @onready var camera = $Camera2D
 @onready var action = $Action_Timer
@@ -99,9 +101,10 @@ func dash_regen():
 	SignalBus.dash_regen.emit()
 
 # This function handles when the player reaches 0 HP.
-func death(_attacker: CollisionObject2D):
+func death(attacker: CollisionObject2D):
 	if is_local_authority():
 		queue_free()
+		bounty_claimed.emit(attacker)
 		SignalBus.player_died.emit(ShipData.totalScore)
 
 func _on_dmg_rock_took_damage(attacker) -> void:
@@ -121,7 +124,8 @@ func shop_exited():
 
 func _on_quest_received(q: Quest) -> void:
 	if q.faction == "FJB" and q.type == 2:
-		var enemy_list = get_tree().get_nodes_in_group("enemies")
+		var enemy_list = get_tree().get_nodes_in_group("Enemies")
+		print(str(enemy_list))
 		var chosen_enemy = enemy_list[randi() % enemy_list.size()]
 		print(chosen_enemy)
 		q.progressSig = chosen_enemy.bounty_claimed

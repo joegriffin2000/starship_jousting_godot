@@ -28,9 +28,8 @@ var randomizer = RandomNumberGenerator.new()
 
 func _enter_tree() -> void:
 	$MultiplayerSynchronizer.set_multiplayer_authority(0)
-	#SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
+	#self.add_to_group("Enemies")
 	$Lance.deactivate()
-	#$Hurtbox.isEnabled = false #this makes the enemy ships unkillable
 	$Shield.activate()
 
 func enemy_logic_process():

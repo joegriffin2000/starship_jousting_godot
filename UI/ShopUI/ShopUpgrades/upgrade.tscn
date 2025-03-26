@@ -18,7 +18,6 @@ grow_vertical = 2
 script = ExtResource("1_af2h2")
 
 [node name="BaseButton" parent="." instance=ExtResource("2_bb8r7")]
-self_modulate = Color(1.92523e-07, 0.665771, 0.957815, 1)
 layout_mode = 1
 offset_left = 2463.0
 offset_top = 1462.0
