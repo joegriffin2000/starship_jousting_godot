@@ -5,12 +5,25 @@ extends Hurtbox
 @export var in_iframe = false
 var my_lance
 
+var shield_texture = [
+	load("res://Sprites/shield_level_1.png"),
+	load("res://Sprites/shield_level_2.png"),
+	load("res://Sprites/shield_level_3.png"),
+]
+
 func activate():
 	visible = true
 	set_collision_mask_value(2, true)
 	ShipData.health = ShipData.maxHealth
 	ShipData.shielded = true
 	my_lance = owner.get_node("Lance")
+	
+	if ShipData.health == 2:
+		sprite.texture = shield_texture[0]
+	if ShipData.health == 3:
+		sprite.texture = shield_texture[1]
+	if ShipData.health == 4:
+		sprite.texture = shield_texture[2]
 	
 func deactivate():
 	visible = false
@@ -25,6 +38,13 @@ func on_area_entered(hitbox: Hitbox):
 			in_iframe = true
 			flicker()
 			
+		if ShipData.health == 2:
+			sprite.texture = shield_texture[0]
+		if ShipData.health == 3:
+			sprite.texture = shield_texture[1]
+		if ShipData.health == 4:
+			sprite.texture = shield_texture[2]
+			
 		if hitbox.owner.has_method("get_knockback"):
 			hitbox.owner.get_knockback()
 		
@@ -36,7 +56,7 @@ func flicker():
 	while in_iframe:
 		sprite.modulate = Color(sprite.modulate, randf_range(0, 1))
 		await get_tree().create_timer(0.05).timeout
-	sprite.modulate = Color(sprite.modulate, 0.44)
+	sprite.modulate = Color(sprite.modulate, 0.75)
 	
 func _on_iframe_timeout() -> void:
 	in_iframe = false

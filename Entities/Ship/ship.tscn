@@ -44,16 +44,16 @@ script = ExtResource("4_aff75")
 [node name="Lance" parent="." instance=ExtResource("5_aex22")]
 position = Vector2(0, -101)
 
+[node name="Shield" parent="." instance=ExtResource("8_58v7v")]
+visible = false
+position = Vector2(0, 14)
+
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("6_cf3ti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(1, 30)
 shape = SubResource("RectangleShape2D_yl71k")
-
-[node name="Shield" parent="." instance=ExtResource("8_58v7v")]
-visible = false
-position = Vector2(0, 14)
 
 [node name="Name_Label" type="Label" parent="."]
 auto_translate_mode = 2

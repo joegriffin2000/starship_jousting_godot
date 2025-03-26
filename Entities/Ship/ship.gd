@@ -90,6 +90,7 @@ func shop_exited():
 	# had to add this line because when you buy upgraded shields,
 	# it just increases your max health but doesn't  reset it.
 	ShipData.health = ShipData.maxHealth 
+	shield.activate()
 
 func _on_quest_received(q: Variant) -> void:
 	ShipData.quest = q
