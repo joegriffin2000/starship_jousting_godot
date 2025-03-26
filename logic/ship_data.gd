@@ -15,7 +15,7 @@ extends Node
 @export var health = 2
 @export var maxHealth = 2
 @export var quest = null
-@export var credits = 100
+@export var credits = 0
 @export var totalScore = 0
 @export var rocks = 0
 
@@ -35,7 +35,7 @@ func reset():
 	knock_back_time = 0.3
 	
 	# Ship resources
-	credits = 100
+	credits = 0
 	health = 2
 	maxHealth = 2
 	totalScore = 0
