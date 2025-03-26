@@ -3,6 +3,11 @@ extends StaticBody2D
 @onready var carrier_name = self.get_name()
 @onready var shop_menu = get_tree().root.get_node("Game").get_node("ShopMenu")
 
+@onready var shop_menu = get_tree().root.get_node("Game").get_node("ShopMenu")
+
+func _ready():
+	pass
+
 func _on_shop_area_entered(body):
 	if body.has_method("shop_entered") and body.is_local_authority():
 		body.shop_entered()

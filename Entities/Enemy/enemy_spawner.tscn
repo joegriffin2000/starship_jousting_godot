@@ -9,6 +9,7 @@ size = Vector2(500, 500)
 script = ExtResource("2_il5mi")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

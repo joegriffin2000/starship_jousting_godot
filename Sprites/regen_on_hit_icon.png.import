@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0da5rsu1ux30"
-path="res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"
+uid="uid://kscg2u2sjjnt"
+path="res://.godot/imported/regen_on_hit_icon.png-d4437ce2e5eeb42954db79b7c2dd1bb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Shield.png"
-dest_files=["res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"]
+source_file="res://Sprites/regen_on_hit_icon.png"
+dest_files=["res://.godot/imported/regen_on_hit_icon.png-d4437ce2e5eeb42954db79b7c2dd1bb1.ctex"]
 
 [params]
 

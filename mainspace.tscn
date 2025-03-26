@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://btbb3t0k66qi8" path="res://UI/ShopUI/shop_menu.tscn" id="8_u6klb"]
 [ext_resource type="PackedScene" uid="uid://b2o3ag10vnhyf" path="res://Entities/Enemy/enemy_spawner.tscn" id="10_ue055"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq3l4"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60dm5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dwt8"]
@@ -24,20 +26,27 @@ border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_coag6")
 
-[node name="SpaceBG" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 offset_left = -1500.0
 offset_top = -1000.0
 offset_right = 5000.0
 offset_bottom = 4000.0
 scale = Vector2(5, 5)
 texture = ExtResource("1_xb1gi")
-expand_mode = 2
+expand_mode = 1
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Players" type="Node2D" parent="."]
 position = Vector2(13012, 4274)
+
+[node name="SpawnArea" type="Area2D" parent="Players"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/SpawnArea"]
+scale = Vector2(150, 85)
+shape = SubResource("RectangleShape2D_sq3l4")
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Ship/ship.tscn")

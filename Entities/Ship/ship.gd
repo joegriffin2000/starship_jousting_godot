@@ -9,7 +9,10 @@ const gameOverScreen = preload("res://UI/GameOverScreen/game_over_screen.tscn")
 @onready var action = $Action_Timer
 @onready var dash_cd_timer = $Dash_Cooldown
 @onready var shield = $Shield
-@onready var iframes = 0
+@onready var arrow = $indicator_arrow
+@onready var iframes = 0 # Put a timer here I need to ask how to set that up
+
+var regenerting_dash = false
 
 var rotation_direction = 0
 var rotation_speed = 3
@@ -29,6 +32,7 @@ var knockback = false
 var dash = false
 
 func _ready() -> void:
+	#arrow.top_level = true
 	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
 	SignalBus.upgrade_special.connect(upgrade_bought)
@@ -115,12 +119,17 @@ func shop_exited():
 	# it just increases your max health but doesn't  reset it.
 	health = maxHealth 
 
-func _on_quest_received(q: Variant) -> void:
-	if is_local_authority():
-		ShipData.quest = q
-		q.holder = self
-		ShipData.quest.activate()
-		add_child(ShipData.quest)
+func _on_quest_received(q: Quest) -> void:
+	if q.faction == "FJB" and q.type == 2:
+		var enemy_list = get_tree().get_nodes_in_group("enemies")
+		var chosen_enemy = enemy_list[randi() % enemy_list.size()]
+		print(chosen_enemy)
+		q.progressSig = chosen_enemy.bounty_claimed
+		arrow.enable(chosen_enemy)
+	ShipData.quest = q
+	q.holder = self
+	ShipData.quest.activate()
+	add_child(ShipData.quest)
 	
 func upgrade_bought(id:int,value):
 	#this is a janky fix

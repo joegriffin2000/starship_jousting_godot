@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0da5rsu1ux30"
-path="res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"
+uid="uid://cy80xmuvuqa2s"
+path="res://.godot/imported/knockback_reduction_icon.png-1accf5a21969a775ebdd8ba7572004dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Shield.png"
-dest_files=["res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"]
+source_file="res://Sprites/knockback_reduction_icon.png"
+dest_files=["res://.godot/imported/knockback_reduction_icon.png-1accf5a21969a775ebdd8ba7572004dd.ctex"]
 
 [params]
 

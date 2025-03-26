@@ -33,7 +33,7 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 				SignalBus.quest_received.connect(startQuestTimer)
 				SignalBus.start_charging_battery.connect(unpauseQuestTimer)
 				SignalBus.stop_charging_battery.connect(pauseQuestTimer)
-			_: #default
+			_: # Default
 				print("No type for quest of faction 'SEU'.")
 		pass
 	elif (faction == "FJB"):
@@ -41,9 +41,9 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 		match int(type):
 			1: # Kill many enemies
 				self.progressSig = SignalBus.enemy_killed
-			2:
-				self.progressSig = SignalBus.enemy_killed
-			_: #default
+			2: # Bounty
+				self.total = 1
+			_: # Default
 				print("No type for quest of faction 'FJB'.")
 		pass
 	elif (faction == "GOAT"):
@@ -62,7 +62,7 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 			2: # Damageless delivery quest
 				self.progressSig = SignalBus.damage_taken
 				
-			_: #default
+			_: # Default
 				print("No type for quest of faction 'GOAT'.")
 	else:
 		print("No faction for quest.")

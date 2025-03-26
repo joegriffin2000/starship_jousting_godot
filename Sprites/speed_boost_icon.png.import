@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0da5rsu1ux30"
-path="res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"
+uid="uid://dk8ie0jywkl8l"
+path="res://.godot/imported/speed_boost_icon.png-99cf0bbceaffc6aca63fabc45d74667c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Shield.png"
-dest_files=["res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"]
+source_file="res://Sprites/speed_boost_icon.png"
+dest_files=["res://.godot/imported/speed_boost_icon.png-99cf0bbceaffc6aca63fabc45d74667c.ctex"]
 
 [params]
 

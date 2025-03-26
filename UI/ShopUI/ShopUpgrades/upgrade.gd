@@ -16,9 +16,9 @@ func populate(parent_button,parent_id):
 			var button = e_button.instantiate()
 			
 			if i["isStatBoost"]:
-				button.set_upgrade_stat_increase(int(i["id"]),i["name"],i["description"],i["data"]["stat"], i["data"]["increase_value"], i["max_purchases"], i["cost"],i["data"]["isDecrease"])
+				button.set_upgrade_stat_increase(int(i["id"]),i["name"],i["description"],i["data"]["stat"], i["data"]["increase_value"], i["max_purchases"], i["cost"], i["img"], i["data"]["isDecrease"])
 			else:
-				button.set_upgrade_special(int(i["id"]),i["name"], i["description"], i["max_purchases"], i["cost"])
+				button.set_upgrade_special(int(i["id"]),i["name"], i["description"], i["max_purchases"], i["cost"], i["img"])
 			add_button(parent_button, button, i["pos"])
 			
 			if i["hasChildren"]:
@@ -73,6 +73,7 @@ func add_button(parent_button, button_to_add, pos:String):
 		
 		button_to_add.position = parent_position + button_offset - end_line_offset
 		
+		add_child(button_to_add)
 		button_to_add.add_to_group("upgradeButtons")
 		parent_button.connections[pos] = button_to_add
 		# vv this grabs the inverse position and places it in the chosen button's 'connections' dictionary

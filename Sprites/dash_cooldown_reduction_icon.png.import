@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0da5rsu1ux30"
-path="res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"
+uid="uid://bl0awwdrkh20l"
+path="res://.godot/imported/dash_cooldown_reduction_icon.png-e77289546f8a5c4b2e5089c44e4efcbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Shield.png"
-dest_files=["res://.godot/imported/Shield.png-a2559542311b2c8401d0290c87e5661b.ctex"]
+source_file="res://Sprites/dash_cooldown_reduction_icon.png"
+dest_files=["res://.godot/imported/dash_cooldown_reduction_icon.png-e77289546f8a5c4b2e5089c44e4efcbf.ctex"]
 
 [params]
 
