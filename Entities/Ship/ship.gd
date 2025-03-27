@@ -91,16 +91,11 @@ func _physics_process(delta):
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage(attacker: CollisionObject2D):
-	if is_local_authority():
-		if not shield.in_iframe:
-			health -= 1
-			
-			SignalBus.damage_taken.emit()
-			
-			if health < 1:
-				death(attacker)
-		print(str(playerName, ": ", health))
-		print(str(playerName, ": ", maxHealth))
+	if not shield.in_iframe:
+		self.health -= 1
+		SignalBus.damage_taken.emit()
+		if self.health < 1:
+			death(attacker)
 			
 func dash_regen():
 	if is_local_authority():
@@ -109,11 +104,13 @@ func dash_regen():
 
 # This function handles when the player reaches 0 HP.
 func death(attacker: CollisionObject2D):
+	print(self.name + " perished")
 	if is_local_authority():
-		self.visible = false
-		bounty_claimed.emit(attacker)
 		SignalBus.player_died.emit(ShipData.totalScore)
-		queue_free()
+	bounty_claimed.emit(attacker)
+	self.visible = false
+	self.set_collision_layer_value(1, false)
+	self.set_collision_mask_value(1, false)
 
 func energy_station_eligible():
 	pass
@@ -127,7 +124,7 @@ func shop_exited():
 		$Hurtbox.isEnabled = true
 		# had to add this line because when you buy upgraded shields,
 		# it just increases your max health but doesn't reset it.
-		health = maxHealth
+		self.health = self.maxHealth
 		shield.activate()
 
 func _on_quest_received(q: Quest) -> void:
