@@ -18,11 +18,11 @@ func activate():
 	owner.shielded = true
 	my_lance = owner.get_node("Lance")
 	
-	if ShipData.health == 2:
+	if owner.health == 2:
 		sprite.texture = shield_texture[0]
-	if ShipData.health == 3:
+	if owner.health == 3:
 		sprite.texture = shield_texture[1]
-	if ShipData.health == 4:
+	if owner.health == 4:
 		sprite.texture = shield_texture[2]
 	
 func deactivate():
@@ -38,11 +38,11 @@ func on_area_entered(hitbox: Hitbox):
 			in_iframe = true
 			flicker()
 			
-		if ShipData.health == 2:
+		if owner.health == 2:
 			sprite.texture = shield_texture[0]
-		if ShipData.health == 3:
+		if owner.health == 3:
 			sprite.texture = shield_texture[1]
-		if ShipData.health == 4:
+		if owner.health == 4:
 			sprite.texture = shield_texture[2]
 			
 		if hitbox.owner.has_method("get_knockback"):

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://Entities/Ship/lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Entities/Ship/action.gd" id="5_rp1k1"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 [ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://Entities/Ship/shield.tscn" id="8_58v7v"]
 [ext_resource type="Texture2D" uid="uid://cixk7kdly776n" path="res://Sprites/loading3.png" id="8_euw0o"]
 [ext_resource type="Script" path="res://Entities/Ship/quest_timer_bar.gd" id="9_due0t"]
@@ -67,7 +67,7 @@ position = Vector2(-1, 0)
 script = ExtResource("1_i8hbr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -89,10 +89,6 @@ script = ExtResource("4_aff75")
 [node name="Lance" parent="." instance=ExtResource("5_aex22")]
 visible = false
 position = Vector2(0, -109)
-
-[node name="Shield" parent="." instance=ExtResource("8_58v7v")]
-visible = false
-position = Vector2(0, 14)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 visible = false

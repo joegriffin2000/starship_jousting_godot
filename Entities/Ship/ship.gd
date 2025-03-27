@@ -120,7 +120,7 @@ func shop_exited():
 	$Hurtbox.isEnabled = true
 	# had to add this line because when you buy upgraded shields,
 	# it just increases your max health but doesn't  reset it.
-	ShipData.health = ShipData.maxHealth 
+	health = maxHealth 
 	shield.activate()
 
 func _on_quest_received(q: Quest) -> void:
