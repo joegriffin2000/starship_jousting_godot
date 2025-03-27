@@ -11,7 +11,7 @@ signal bounty_claimed(killer)
 @onready var action = $Action_Timer
 @onready var dash_cd_timer = $Dash_Cooldown
 @onready var shield = $Shield
-@onready var arrow = $indicator_arrow
+@onready var arrow = $Indicator_Arrow
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
 
 var regenerting_dash = false
@@ -34,8 +34,6 @@ var knockback = false
 var dash = false
 
 func _ready() -> void:
-	#arrow.top_level = true
-	SignalBus.damage_taken.connect(_on_dmg_rock_took_damage)
 	SignalBus.quest_received.connect(_on_quest_received)
 	SignalBus.upgrade_special.connect(upgrade_bought)
 	shield.activate()
@@ -93,6 +91,9 @@ func _physics_process(delta):
 func take_damage(attacker: CollisionObject2D):
 	if not shield.in_iframe:
 		health -= 1
+		
+		SignalBus.damage_taken.emit()
+		
 		if health < 1:
 			death(attacker)
 			
@@ -103,12 +104,9 @@ func dash_regen():
 # This function handles when the player reaches 0 HP.
 func death(attacker: CollisionObject2D):
 	if is_local_authority():
-		queue_free()
 		bounty_claimed.emit(attacker)
 		SignalBus.player_died.emit(ShipData.totalScore)
-
-func _on_dmg_rock_took_damage(attacker) -> void:
-	take_damage(attacker)
+		queue_free()
 
 func energy_station_eligible():
 	pass
@@ -123,17 +121,15 @@ func shop_exited():
 	health = maxHealth 
 
 func _on_quest_received(q: Quest) -> void:
-	if q.faction == "FJB" and q.type == 2:
-		var enemy_list = get_tree().get_nodes_in_group("Enemies")
-		print(str(enemy_list))
-		var chosen_enemy = enemy_list[randi() % enemy_list.size()]
-		print(chosen_enemy)
-		q.progressSig = chosen_enemy.bounty_claimed
-		arrow.enable(chosen_enemy)
+	#if q.faction == "FJB" and q.type == 2:
+		#var enemy_list = get_tree().get_nodes_in_group("Enemies")
+		#var chosen_enemy = enemy_list[randi() % enemy_list.size()]
+		#q.progressSig = chosen_enemy.bounty_claimed
+		#arrow.enable_indicator_arrow(q.entityNode)
 	ShipData.quest = q
 	q.holder = self
-	ShipData.quest.activate()
 	add_child(ShipData.quest)
+	ShipData.quest.activate()
 	
 func upgrade_bought(id:int,value):
 	#this is a janky fix

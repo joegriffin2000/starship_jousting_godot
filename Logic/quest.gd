@@ -6,13 +6,16 @@ class_name Quest extends Node
 @export var total : int # number requirement for quest completion
 @export var progress : int # number progress for quest completion
 @export var reward : int # amount of credits they'll get
-@export var entityID : String # entity ID for quest, if needed
+
+@export var entityNode : Node2D # entity node for quest, if needed
+@export var entityName : String # entity name for quest, if needed
+
 var holder : CollisionObject2D
 var progressSig : Signal #number progress for quest completion
 var questTimer : Timer
 
 # Called when the node enters the scene tree for the first time.
-func _init(faction, description, type, total, baseCredits, entityID = null, timeLimit = null) -> void:
+func _init(faction, description, type, total, baseCredits, entityNode = null, timeLimit = null) -> void:
 	self.faction = faction
 	self.description = description
 	self.type = type
@@ -26,40 +29,43 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 		match int(type):
 			1: # Mine rocks quest
 				self.progressSig = SignalBus.rock_mined
+				
 			2: # Charge battery quest
 				self.questTimer = Timer.new() # Create timer
 				self.questTimer.wait_time = 10
 				self.progressSig = self.questTimer.timeout
-				SignalBus.quest_received.connect(startQuestTimer)
-				SignalBus.start_charging_battery.connect(unpauseQuestTimer)
-				SignalBus.stop_charging_battery.connect(pauseQuestTimer)
+				
 			_: # Default
 				print("No type for quest of faction 'SEU'.")
-		pass
+			
 	elif (faction == "FJB"):
 		# Each of these is a different quest type
 		match int(type):
 			1: # Kill many enemies
 				self.progressSig = SignalBus.enemy_killed
-			2: # Bounty
-				self.total = 1
+				
+			2: # Bounty quest
+				self.entityNode = entityNode
+				self.progressSig = entityNode.bounty_claimed
+				
 			_: # Default
 				print("No type for quest of faction 'FJB'.")
-		pass
 	elif (faction == "GOAT"):
 		# Each of these is a different quest type
 		match int(type):
 			1: # Timed delivery quest
 				self.reward -= timeLimit # Adjust reward based on time limit
-				self.entityID = entityID
+				self.entityNode = entityNode
+				self.entityName = self.entityNode.name
 				self.questTimer = Timer.new() # Create timer
 				self.questTimer.autostart = true
 				self.questTimer.one_shot = true
 				self.questTimer.wait_time = timeLimit as float
 				self.progressSig = self.questTimer.timeout
-				SignalBus.quest_received.connect(startQuestTimer)
 				
 			2: # Damageless delivery quest
+				self.entityNode = entityNode
+				self.entityName = self.entityNode.name
 				self.progressSig = SignalBus.damage_taken
 				
 			_: # Default
@@ -70,19 +76,29 @@ func _init(faction, description, type, total, baseCredits, entityID = null, time
 func activate():
 	self.progressSig.connect(update_progress)
 	
+	# Quest-specific activations
+	if self.faction == "SEU" and self.type == 2:
+		self.startQuestTimer()
+		SignalBus.start_charging_battery.connect(unpauseQuestTimer)
+		SignalBus.stop_charging_battery.connect(pauseQuestTimer)
+	elif self.faction == "FJB" and self.type == 2:
+		self.startIndicator(entityNode)
+	elif self.faction == "GOAT":
+		self.startIndicator(entityNode)
+		if self.type == 1:
+			self.startQuestTimer()
+	
 func deactivate():
 	self.progressSig.disconnect(update_progress)
 	queue_free()
 
 # Called everytime the signal is caught 
 func update_progress(quester: CollisionObject2D = null):
-	#print("quest triggered, progress:",progress,"/",total)
-	if holder == quester or quester == null:
+	if holder == quester or self.questTimer != null: # Timeout signals do not emit with a quester, but should update progress anyways
 		
 		if progress < total:
 			progress += 1
 			SignalBus.quest_progressed.emit()
-			print("quest progressed")
 			
 			# Restart energy station quest timer if we still need to charge the battery more. Otherwise it can stay timed out, as it is no longer useful.
 			if faction == "SEU" and type == 2:
@@ -90,19 +106,23 @@ func update_progress(quester: CollisionObject2D = null):
 				
 		if progress == total:
 			if faction == "GOAT": # GOAT quests fail on condition met
-				print("quest failed")
 				SignalBus.quest_failed.emit()
 			else: # FJB and SEU quests succeed on condition met
 				SignalBus.quest_completed.emit()
 	
+	elif faction == "FJB" and type == 2 and holder != quester: # Fail bounty quest immediately if bounty target dies without being killed by the quest holder
+		SignalBus.quest_failed.emit()
+	
 	# else do nothing
 
-func startQuestTimer(_quest):
+func startIndicator(entity: Node2D):
+	SignalBus.show_indicator_arrow.emit(entity)
+
+func startQuestTimer():
 	add_child(self.questTimer)
 	SignalBus.show_quest_timer.emit()
 
 func pauseQuestTimer():
-	print("Pausing timer")
 	self.questTimer.set_paused(true)
 	
 func unpauseQuestTimer():
@@ -118,3 +138,6 @@ func isTimerStopped():
 func getTimeLeft():
 	if self.questTimer != null:
 		return self.questTimer.time_left
+
+func _to_string():
+	return str("Faction: ", self.faction, "\nType: ", self.type, "\nProgress: ", self.progress, "\nTotal: ", self.total, "\nMisc: ", self.entityNode, ", ", self.entityName)
