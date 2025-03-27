@@ -2,11 +2,13 @@ extends TextureProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.show_quest_timer.connect(show_timer_bar)
-	SignalBus.quest_completed.connect(hide_timer_bar)
-	SignalBus.quest_failed.connect(hide_timer_bar)
+	SignalBus.show_quest_timer.connect(enable_timer_bar)
+	SignalBus.quest_completed.connect(disable_timer_bar)
+	SignalBus.quest_failed.connect(disable_timer_bar)
+	SignalBus.quest_removed.connect(disable_timer_bar)
 	
-func show_timer_bar():
+func enable_timer_bar():
+	print("showing timer")
 	self.visible = true
 	
 	if ShipData.quest.faction == "GOAT" and ShipData.quest.type == 1:
@@ -18,11 +20,11 @@ func show_timer_bar():
 		self.max_value = 10
 		self.value = 0
 
-func hide_timer_bar():
+func disable_timer_bar():
 	self.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ShipData.quest != null and ShipData.quest.questTimer != null: # We have a quest that needs a timer
 		if ShipData.quest.faction == "GOAT" and ShipData.quest.type == 1:
 			self.value = ShipData.quest.getTimeLeft()

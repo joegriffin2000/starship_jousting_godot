@@ -32,7 +32,7 @@ func remove_player(id: int) -> void:
 	# Delete this player's node.
 	$Players.get_node(str(id)).queue_free()
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer")
 func new_player_created(id):
 	player_created.emit(id)
 
@@ -63,7 +63,7 @@ func set_up_enemy_list():
 	var listOfBots = $Bots.get_children()
 	
 	var myID = multiplayer.get_unique_id()
-	listOfPlayers.erase(get_node(str(myID)))
+	listOfPlayers.erase($Players.get_node(str(myID)))
 	
 	# Add all other existing players to Enemies group
 	for p in listOfPlayers:

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var dash = $Dash_Cooldown
 @onready var shield = $Shield
 @onready var vision = $Vision
+
 var iframes = 0 # Put a timer here I need to ask how to set that up
 var speed = 300
 var rotation_speed = 3
@@ -31,6 +32,10 @@ func _enter_tree() -> void:
 	#self.add_to_group("Enemies")
 	$Lance.deactivate()
 	$Shield.activate()
+
+func set_enemy_name(playerName):
+	self.playerName = playerName
+	nameLabel.text = self.playerName
 
 func enemy_logic_process():
 	if health >= 1:
@@ -106,10 +111,9 @@ func take_damage(attacker: CollisionObject2D) -> bool:
 # This function handles when the player reaches 0 HP.
 func death(killer: CollisionObject2D):
 	# Need a better solution for how to freeze player inputs
-	queue_free()
 	SignalBus.enemy_killed.emit(killer)
 	bounty_claimed.emit(killer)
-	pass
+	queue_free()
 
 func is_local_authority():
 	return false

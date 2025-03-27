@@ -3,10 +3,7 @@ extends Node
 # Player signals
 # Connected from ship's action timer to HUD
 signal dash
-
 signal dash_regen
-# Connected from damage rock to Ship
-signal damage_taken
 
 # Quest signals
 # Connected from damage rock to Ship
@@ -16,6 +13,8 @@ signal enemy_killed(object)
 # Connected from Energy Stations to Quest class
 signal start_charging_battery
 signal stop_charging_battery
+# Connected from Ship to Quest class
+signal damage_taken
 
 # Other object signals
 
@@ -39,6 +38,8 @@ signal credits_updated
 signal score_updated
 # Connected from Quest class to Ship's QuestTimerBar
 signal show_quest_timer
+# Connected from Quest class to Ship's QuestTimerBar
+signal show_indicator_arrow
 
 signal upgrade_special(id,val)
 

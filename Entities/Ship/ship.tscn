@@ -125,6 +125,9 @@ tint_under = Color(0.425041, 0.63833, 0.898214, 1)
 tint_progress = Color(0.583015, 0.98291, 0.459545, 1)
 script = ExtResource("9_due0t")
 
+[node name="Indicator_Arrow" parent="." instance=ExtResource("9_t78cu")]
+visible = false
+
 [node name="Name_Label" type="Label" parent="."]
 layout_direction = 2
 anchors_preset = 8
@@ -144,9 +147,6 @@ text = "player_0"
 label_settings = SubResource("LabelSettings_t50ld")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="indicator_arrow" parent="." instance=ExtResource("9_t78cu")]
-visible = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.01
