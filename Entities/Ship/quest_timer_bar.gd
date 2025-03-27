@@ -2,7 +2,6 @@ extends TextureProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.show_quest_timer.connect(enable_timer_bar)
 	SignalBus.quest_completed.connect(disable_timer_bar)
 	SignalBus.quest_failed.connect(disable_timer_bar)
 	SignalBus.quest_removed.connect(disable_timer_bar)

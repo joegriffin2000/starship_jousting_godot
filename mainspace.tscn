@@ -190,6 +190,10 @@ position = Vector2(25765, 13150)
 [node name="EnemySpawner" parent="." instance=ExtResource("10_ue055")]
 position = Vector2(5101, 7358)
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Enemy/enemy_ship.tscn")
+spawn_path = NodePath("../Bots")
+
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 
 [node name="ShopMenu" parent="." instance=ExtResource("8_u6klb")]

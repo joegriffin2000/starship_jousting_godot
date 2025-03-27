@@ -13,8 +13,6 @@ func _on_shop_area_entered(body):
 			var awardQuest = false
 			# Check if we have a completed quest
 			
-			print(str(ShipData.quest))
-			
 			# For GOAT quests, progress < total:
 			if ShipData.quest.faction == "GOAT":
 				if carrier_name == ShipData.quest.entityName and (ShipData.quest.progress < ShipData.quest.total):
@@ -45,7 +43,7 @@ func _on_shop_area_entered(body):
 		shop_menu.get_node("Panel/Quests/QuestMenu").generateQuests(carrier_name)
 
 func _on_shop_area_exited(body):
-	if body.has_method("shop_exited"):
+	if body.has_method("shop_exited") and body.is_local_authority():
 		body.shop_exited()
 		shop_menu.get_node("Panel/Quests/QuestMenu").removeQuests()
 		body.get_node("Shield").in_iframe = false

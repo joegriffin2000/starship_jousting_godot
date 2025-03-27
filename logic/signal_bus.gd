@@ -38,7 +38,7 @@ signal credits_updated
 signal score_updated
 # Connected from Quest class to Ship's QuestTimerBar
 signal show_quest_timer
-# Connected from Quest class to Ship's QuestTimerBar
+# Connected from Quest class to Ship's IndicatorArrow
 signal show_indicator_arrow
 
 signal upgrade_special(id,val)

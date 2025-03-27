@@ -31,7 +31,6 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 func load_scene():
 	get_tree().change_scene_to_packed(map_scene)
 
-
 # Play game button, joins the server
 func _on_play_button_pressed() -> void:
 	assign_player_name() # Makes sure we have a name

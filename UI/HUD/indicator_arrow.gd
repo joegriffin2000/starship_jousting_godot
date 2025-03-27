@@ -4,8 +4,6 @@ var pointing_target: CollisionObject2D
 @onready var arrow = $Sprite
 
 func _ready() -> void:
-	#self.set_process(false)
-	SignalBus.show_indicator_arrow.connect(enable_indicator_arrow)
 	SignalBus.quest_completed.connect(disable_indicator_arrow)
 	SignalBus.quest_failed.connect(disable_indicator_arrow)
 	SignalBus.quest_removed.connect(disable_indicator_arrow)

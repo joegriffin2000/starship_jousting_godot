@@ -11,52 +11,54 @@ var shield_texture = [
 	load("res://Sprites/shield_level_3.png"),
 ]
 
+func _process(_delta):
+	match int(owner.health):
+		4:
+			sprite.texture = shield_texture[2]
+		3:
+			sprite.texture = shield_texture[1]
+		2:
+			sprite.texture = shield_texture[0]
+		_:
+			pass
+
 func activate():
-	visible = true
-	set_collision_mask_value(2, true)
-	owner.health = owner.maxHealth
-	owner.shielded = true
-	my_lance = owner.get_node("Lance")
-	
-	if owner.health == 2:
-		sprite.texture = shield_texture[0]
-	if owner.health == 3:
-		sprite.texture = shield_texture[1]
-	if owner.health == 4:
-		sprite.texture = shield_texture[2]
+	if owner.is_local_authority():
+		visible = true
+		set_collision_mask_value(2, true)
+		owner.health = owner.maxHealth
+		owner.shielded = true
+		my_lance = owner.get_node("Lance")
 	
 func deactivate():
-	visible = false
-	set_collision_mask_value(2, false)
-	owner.shielded = false
+	if owner.is_local_authority():
+		visible = false
+		set_collision_mask_value(2, false)
+		owner.shielded = false
 
 func on_area_entered(hitbox: Hitbox):
-	if hitbox != my_lance:
-		if not in_iframe:
-			owner.take_damage(hitbox.owner)
-			iframe_timer.start()
-			in_iframe = true
-			flicker()
+	if owner.is_local_authority():
+		if hitbox != my_lance:
+			if not in_iframe:
+				owner.take_damage(hitbox.owner)
+				iframe_timer.start()
+				in_iframe = true
+				flicker()
+				
+			if hitbox.owner.has_method("get_knockback"):
+				hitbox.owner.get_knockback()
 			
-		if owner.health == 2:
-			sprite.texture = shield_texture[0]
-		if owner.health == 3:
-			sprite.texture = shield_texture[1]
-		if owner.health == 4:
-			sprite.texture = shield_texture[2]
-			
-		if hitbox.owner.has_method("get_knockback"):
-			hitbox.owner.get_knockback()
-		
-		if owner.health <= 1:
-			await iframe_timer.timeout
-			deactivate()
+			if owner.health <= 1:
+				await iframe_timer.timeout
+				deactivate()
 
 func flicker():
-	while in_iframe:
-		sprite.modulate = Color(sprite.modulate, randf_range(0, 1))
-		await get_tree().create_timer(0.05).timeout
-	sprite.modulate = Color(sprite.modulate, 0.75)
+	if owner.is_local_authority():
+		while in_iframe:
+			sprite.modulate = Color(sprite.modulate, randf_range(0, 1))
+			await get_tree().create_timer(0.05).timeout
+		sprite.modulate = Color(sprite.modulate, 0.75)
 	
 func _on_iframe_timeout() -> void:
-	in_iframe = false
+	if owner.is_local_authority():
+		in_iframe = false

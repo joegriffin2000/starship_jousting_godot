@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqbhnlhp2nkmx" path="res://Entities/Ship/lance.tscn" id="5_aex22"]
 [ext_resource type="Script" path="res://Entities/Ship/action.gd" id="5_rp1k1"]
 [ext_resource type="Script" path="res://Logic/hurtbox.gd" id="6_cf3ti"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="7_5eqxg"]
 [ext_resource type="PackedScene" uid="uid://7o7u14iydxi0" path="res://Entities/Ship/shield.tscn" id="8_58v7v"]
 [ext_resource type="Texture2D" uid="uid://cixk7kdly776n" path="res://Sprites/loading3.png" id="8_euw0o"]
 [ext_resource type="Script" path="res://Entities/Ship/quest_timer_bar.gd" id="9_due0t"]
@@ -28,39 +28,45 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mfsuh"]
-properties/0/path = NodePath(".:position")
+properties/0/path = NodePath("Name_Label:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 2
-properties/1/path = NodePath(".:rotation")
+properties/1/path = NodePath("Lance:visible")
 properties/1/spawn = true
 properties/1/replication_mode = 2
-properties/2/path = NodePath("Name_Label:rotation")
+properties/2/path = NodePath("Lance:collision_layer")
 properties/2/spawn = true
 properties/2/replication_mode = 2
-properties/3/path = NodePath("Lance:visible")
+properties/3/path = NodePath("Lance:collision_mask")
 properties/3/spawn = true
 properties/3/replication_mode = 2
-properties/4/path = NodePath("Lance:collision_layer")
+properties/4/path = NodePath("Shield:visible")
 properties/4/spawn = true
 properties/4/replication_mode = 2
-properties/5/path = NodePath("Lance:collision_mask")
+properties/5/path = NodePath("Shield:collision_layer")
 properties/5/spawn = true
 properties/5/replication_mode = 2
-properties/6/path = NodePath("Shield:visible")
+properties/6/path = NodePath("Shield:collision_mask")
 properties/6/spawn = true
 properties/6/replication_mode = 2
-properties/7/path = NodePath("Shield:collision_layer")
+properties/7/path = NodePath("Name_Label:text")
 properties/7/spawn = true
 properties/7/replication_mode = 2
-properties/8/path = NodePath("Shield:collision_mask")
+properties/8/path = NodePath(".:playerName")
 properties/8/spawn = true
 properties/8/replication_mode = 2
-properties/9/path = NodePath("Name_Label:text")
+properties/9/path = NodePath(".:health")
 properties/9/spawn = true
 properties/9/replication_mode = 2
-properties/10/path = NodePath(".:playerName")
+properties/10/path = NodePath(".:maxHealth")
 properties/10/spawn = true
 properties/10/replication_mode = 2
+properties/11/path = NodePath(".:position")
+properties/11/spawn = true
+properties/11/replication_mode = 2
+properties/12/path = NodePath(".:rotation")
+properties/12/spawn = true
+properties/12/replication_mode = 2
 
 [node name="Ship" type="CharacterBody2D" groups=["Players"]]
 position = Vector2(-1, 0)

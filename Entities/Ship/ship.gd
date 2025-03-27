@@ -3,6 +3,8 @@ extends CharacterBody2D
 const gameOverScreen = preload("res://UI/GameOverScreen/game_over_screen.tscn")
 
 @export var playerName : String = "player_0"
+@export var health = 2
+@export var maxHealth = 2
 
 signal bounty_claimed(killer)
 
@@ -11,7 +13,6 @@ signal bounty_claimed(killer)
 @onready var action = $Action_Timer
 @onready var dash_cd_timer = $Dash_Cooldown
 @onready var shield = $Shield
-@onready var arrow = $Indicator_Arrow
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
 
 var regenerting_dash = false
@@ -20,12 +21,10 @@ var rotation_direction = 0
 var rotation_speed = 3
 var dash_mult = 3
 var dash_length = 0.3
-var health = 2
 
 var speed = 300
 var dash_cd = 1.0
 var knock_back_time = 0.3
-var maxHealth = 2
 
 #Ship states
 var shielded = false
@@ -34,19 +33,22 @@ var knockback = false
 var dash = false
 
 func _ready() -> void:
-	SignalBus.quest_received.connect(_on_quest_received)
-	SignalBus.upgrade_special.connect(upgrade_bought)
-	shield.activate()
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	if is_local_authority():
 		camera.make_current()
+		shield.activate()
+		SignalBus.quest_received.connect(_on_quest_received)
+		SignalBus.upgrade_special.connect(upgrade_bought)
+		SignalBus.show_indicator_arrow.connect(enable_indicator_arrow)
+		SignalBus.show_quest_timer.connect(enable_quest_timer_bar)
 
 func is_local_authority():
 	return $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 
 func set_player_name(playerName):
-	self.playerName = playerName
-	nameLabel.text = self.playerName
+	if is_local_authority():
+		self.playerName = playerName
+		nameLabel.text = self.playerName
 
 func get_input():
 	if is_local_authority():
@@ -89,21 +91,26 @@ func _physics_process(delta):
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
 func take_damage(attacker: CollisionObject2D):
-	if not shield.in_iframe:
-		health -= 1
-		
-		SignalBus.damage_taken.emit()
-		
-		if health < 1:
-			death(attacker)
+	if is_local_authority():
+		if not shield.in_iframe:
+			health -= 1
+			
+			SignalBus.damage_taken.emit()
+			
+			if health < 1:
+				death(attacker)
+		print(str(playerName, ": ", health))
+		print(str(playerName, ": ", maxHealth))
 			
 func dash_regen():
-	action.stop()
-	SignalBus.dash_regen.emit()
+	if is_local_authority():
+		action.stop()
+		SignalBus.dash_regen.emit()
 
 # This function handles when the player reaches 0 HP.
 func death(attacker: CollisionObject2D):
 	if is_local_authority():
+		self.visible = false
 		bounty_claimed.emit(attacker)
 		SignalBus.player_died.emit(ShipData.totalScore)
 		queue_free()
@@ -112,26 +119,30 @@ func energy_station_eligible():
 	pass
 
 func shop_entered():
-	$Hurtbox.isEnabled = false
+	if is_local_authority():
+		$Hurtbox.isEnabled = false
 
 func shop_exited():
-	$Hurtbox.isEnabled = true
-	# had to add this line because when you buy upgraded shields,
-	# it just increases your max health but doesn't  reset it.
-	health = maxHealth 
-	shield.activate()
+	if is_local_authority():
+		$Hurtbox.isEnabled = true
+		# had to add this line because when you buy upgraded shields,
+		# it just increases your max health but doesn't reset it.
+		health = maxHealth
+		shield.activate()
 
 func _on_quest_received(q: Quest) -> void:
-	#if q.faction == "FJB" and q.type == 2:
-		#var enemy_list = get_tree().get_nodes_in_group("Enemies")
-		#var chosen_enemy = enemy_list[randi() % enemy_list.size()]
-		#q.progressSig = chosen_enemy.bounty_claimed
-		#arrow.enable_indicator_arrow(q.entityNode)
 	ShipData.quest = q
 	q.holder = self
 	add_child(ShipData.quest)
 	ShipData.quest.activate()
 	
+func enable_quest_timer_bar():
+	if is_local_authority():
+		$QuestTimerBar.enable_timer_bar()	
+func enable_indicator_arrow(target: CollisionObject2D):
+	if is_local_authority():
+		$Indicator_Arrow.enable_indicator_arrow(target)
+
 func upgrade_bought(id:int,value):
 	#this is a janky fix
 	match id:
