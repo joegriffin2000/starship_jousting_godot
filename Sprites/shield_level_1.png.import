@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0da5rsu1ux30"
-path="res://.godot/imported/shield.png-ba6b179e86ce90a6d98a11d079123fee.ctex"
+uid="uid://cgtfhox34t0m0"
+path="res://.godot/imported/shield_level_1.png-e129942a6adac8c9058e6cb6c93e8146.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/shield.png"
-dest_files=["res://.godot/imported/shield.png-ba6b179e86ce90a6d98a11d079123fee.ctex"]
+source_file="res://Sprites/shield_level_1.png"
+dest_files=["res://.godot/imported/shield_level_1.png-e129942a6adac8c9058e6cb6c93e8146.ctex"]
 
 [params]
 

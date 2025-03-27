@@ -90,6 +90,10 @@ script = ExtResource("4_aff75")
 visible = false
 position = Vector2(0, -109)
 
+[node name="Shield" parent="." instance=ExtResource("8_58v7v")]
+visible = false
+position = Vector2(0, 14)
+
 [node name="Hurtbox" type="Area2D" parent="."]
 visible = false
 position = Vector2(0, -10)
