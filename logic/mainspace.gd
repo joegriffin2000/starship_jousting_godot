@@ -83,4 +83,4 @@ func _physics_process(_delta: float) -> void:
 			var buffer = 200 # So that it doesn't spawn on top of border
 			var right_edge = $MapBorder/BottomBorderCollisionShape.position.x
 			var bottom_edge = $MapBorder/BottomBorderCollisionShape.position.y
-			#spawn_area.global_position = Vector2(randf_range(buffer, right_edge - buffer), randf_range(buffer, bottom_edge - buffer))
+			spawn_area.global_position = Vector2(randf_range(buffer, right_edge - buffer), randf_range(buffer, bottom_edge - buffer))

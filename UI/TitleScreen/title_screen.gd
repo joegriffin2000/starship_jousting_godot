@@ -7,8 +7,8 @@ extends CanvasLayer
 @export var player_name: String
 @export var map_scene = preload("res://mainspace.tscn")
 
-var ip = "localhost" # <-- CHANGE THIS WITH "0.0.0.0" IP LATER
-var port = 5040 # <-- CHANGE THIS WITH OUR PORT LATER
+var ip = "wss://starshipjousting.space" # <-- CHANGE THIS WITH "0.0.0.0" IP LATER
+var port = 2302 # <-- CHANGE THIS WITH OUR PORT LATER
 var rng = RandomNumberGenerator.new()
 
 func _ready():

@@ -17,12 +17,12 @@ func _ready() -> void:
 	
 	# Create an HTTP request node and connect its completion signal.
 	req.request_completed.connect(_http_request_completed)
-	var client_trusted_cas = load("res://nginx_selfsigned.crt")
-	var client_tls_options = TLSOptions.client_unsafe(client_trusted_cas)
+	var client_trusted_cas = load("res://cert.pem")
+	var client_tls_options = TLSOptions.client(client_trusted_cas)
 	req.set_tls_options(client_tls_options)
 	
 	# GET Request for leaderboard data
-	var error = req.request("https://137.184.49.244/leaderboard_pull20")
+	var error = req.request("https://starship_jousting.space/leaderboard_pull20")
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
