@@ -117,4 +117,5 @@ func death(killer: CollisionObject2D):
 	# Need a better solution for how to freeze player inputs
 	SignalBus.enemy_killed.emit(killer)
 	bounty_claimed.emit(killer)
-	queue_free()
+	if is_local_authority():
+		queue_free()
