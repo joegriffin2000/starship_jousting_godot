@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bnhywq5k1e4jc" path="res://Sprites/dash icon.png" id="1_5kr8u"]
 [ext_resource type="Script" path="res://UI/upgrade_button.gd" id="2_uptse"]
-[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://fonts/PressStart2P-vaV7.ttf" id="3_j35tg"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="3_j35tg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q60s0"]
 
