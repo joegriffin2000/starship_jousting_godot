@@ -18,25 +18,28 @@ func deactivate():
 	owner.shielded = false
 
 func on_area_entered(hitbox: Hitbox):
-	if hitbox != my_lance:
-		if not in_iframe:
-			owner.take_damage(hitbox.owner)
-			iframe_timer.start()
-			in_iframe = true
-			flicker()
+	if owner.is_local_authority():
+		if hitbox != my_lance:
+			if not in_iframe:
+				owner.take_damage(hitbox.owner)
+				iframe_timer.start()
+				in_iframe = true
+				flicker()
+				
+			if hitbox.owner.has_method("get_knockback"):
+				hitbox.owner.get_knockback()
 			
-		if hitbox.owner.has_method("get_knockback"):
-			hitbox.owner.get_knockback()
-		
-		if owner.health <= 1:
-			await iframe_timer.timeout
-			deactivate()
+			if owner.health <= 1:
+				await iframe_timer.timeout
+				deactivate()
 
 func flicker():
-	while in_iframe:
-		sprite.modulate = Color(sprite.modulate, randf_range(0, 1))
-		await get_tree().create_timer(0.05).timeout
-	sprite.modulate = Color(sprite.modulate, 0.44)
+	if owner.is_local_authority():
+		while in_iframe:
+			sprite.modulate = Color(sprite.modulate, randf_range(0, 1))
+			await get_tree().create_timer(0.05).timeout
+		sprite.modulate = Color(sprite.modulate, 0.44)
 	
 func _on_iframe_timeout() -> void:
-	in_iframe = false
+	if owner.is_local_authority():
+		in_iframe = false

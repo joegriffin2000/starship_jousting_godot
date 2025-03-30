@@ -8,7 +8,7 @@ extends Node
 
 #Ship resources
 @export var quest = null
-@export var credits = 100
+@export var credits = 0
 @export var totalScore = 0
 
 #moved to ship

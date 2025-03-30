@@ -33,12 +33,13 @@ var knockback = false
 var dash = false
 
 func _ready() -> void:
-	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int(), 1)
 	if is_local_authority():
 		camera.make_current()
 		shield.activate()
 		SignalBus.quest_received.connect(_on_quest_received)
 		SignalBus.upgrade_special.connect(upgrade_bought)
+		SignalBus.enemy_killed.connect(killed_enemy_reward)
 		SignalBus.show_indicator_arrow.connect(enable_indicator_arrow)
 		SignalBus.show_quest_timer.connect(enable_quest_timer_bar)
 
@@ -90,12 +91,13 @@ func _physics_process(delta):
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.
-func take_damage(attacker: CollisionObject2D):
-	if not shield.in_iframe:
-		self.health -= 1
-		SignalBus.damage_taken.emit()
-		if self.health < 1:
-			death(attacker)
+func take_damage(myAttacker: CollisionObject2D):
+	if is_local_authority():
+		if not shield.in_iframe:
+			self.health -= 1
+			SignalBus.damage_taken.emit()
+			if self.health < 1:
+				death(myAttacker)
 			
 func dash_regen():
 	if is_local_authority():
@@ -103,14 +105,31 @@ func dash_regen():
 		SignalBus.dash_regen.emit()
 
 # This function handles when the player reaches 0 HP.
-func death(attacker: CollisionObject2D):
-	print(self.name + " perished")
+func death(myKiller: CollisionObject2D):
 	if is_local_authority():
+		broadcast_player_died.rpc(str(myKiller.name))
+		self.visible = false
+		self.set_collision_layer_value(1, false)
+		self.set_collision_mask_value(1, false)
+		
 		SignalBus.player_died.emit(ShipData.totalScore)
-	bounty_claimed.emit(attacker)
-	self.visible = false
-	self.set_collision_layer_value(1, false)
-	self.set_collision_mask_value(1, false)
+
+@rpc("any_peer")
+func broadcast_player_died(killerID):
+	# Bots and damage rocks will never have a quest, so there is no point emitting the enemy_killed or bounty_claimed signals since they are only used for quests
+	if not killerID.containsn("BOT") and not killerID.containsn("DmgRock"):
+		var killer = get_node("/root/Game/Players/%s" % killerID)
+		bounty_claimed.emit(killer)
+		SignalBus.enemy_killed.emit(killer)
+
+# Rewards player with a flat 5 credits for killing anything
+func killed_enemy_reward(killer):
+	if is_local_authority() and killer == self:
+		ShipData.credits += 5
+		ShipData.totalScore += 5
+		SignalBus.credits_updated.emit()
+		SignalBus.score_updated.emit()
+		
 
 func energy_station_eligible():
 	pass
@@ -128,10 +147,11 @@ func shop_exited():
 		shield.activate()
 
 func _on_quest_received(q: Quest) -> void:
-	ShipData.quest = q
-	q.holder = self
-	add_child(ShipData.quest)
-	ShipData.quest.activate()
+	if is_local_authority():
+		ShipData.quest = q
+		q.holder = self
+		add_child(ShipData.quest)
+		ShipData.quest.activate()
 	
 func enable_quest_timer_bar():
 	if is_local_authority():
@@ -140,19 +160,19 @@ func enable_indicator_arrow(target: CollisionObject2D):
 	if is_local_authority():
 		$Indicator_Arrow.enable_indicator_arrow(target)
 
-func upgrade_bought(id:int,value):
-	#this is a janky fix
-	match id:
-		0:
-			speed += value
-		1:
-			knock_back_time += value
-		2:
-			dash_cd += value
-		3:
-			maxHealth += value
-		4:
-			regenerating_dash = true
-		_:
-			pass
+func upgrade_bought(id:int, value):
+	if is_local_authority():
+		match id:
+			0:
+				speed += value
+			1:
+				knock_back_time += value
+			2:
+				dash_cd += value
+			3:
+				maxHealth += value
+			4:
+				regenerating_dash = true
+			_:
+				pass
 			

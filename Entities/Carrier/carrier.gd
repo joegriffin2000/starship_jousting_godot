@@ -3,9 +3,6 @@ extends StaticBody2D
 @onready var carrier_name = self.get_name()
 @onready var shop_menu = get_tree().root.get_node("Game").get_node("ShopMenu")
 
-func _ready():
-	pass
-
 func _on_shop_area_entered(body):
 	if body.has_method("shop_entered") and body.is_local_authority():
 		body.shop_entered()
@@ -25,8 +22,7 @@ func _on_shop_area_entered(body):
 			if awardQuest == true:
 				ShipData.credits += ShipData.quest.reward
 				#ShipData.totalScore += ShipData.quest.reward
-				ShipData.totalScore = ShipData.quest.reward
-				print("credits:",ShipData.credits)
+				ShipData.totalScore += ShipData.quest.reward
 				SignalBus.credits_updated.emit()
 				SignalBus.score_updated.emit()
 				
@@ -39,12 +35,12 @@ func _on_shop_area_entered(body):
 		body.get_node("Shield").in_iframe = true
 		
 		shop_menu.visible = true
-		print("Shop opened: Carrier ", carrier_name)
 		shop_menu.get_node("Panel/Quests/QuestMenu").generateQuests(carrier_name)
 
 func _on_shop_area_exited(body):
 	if body.has_method("shop_exited") and body.is_local_authority():
 		body.shop_exited()
 		shop_menu.get_node("Panel/Quests/QuestMenu").removeQuests()
+		shop_menu.get_node("Panel/Quests/QuestMenu").resetQuestMenu()
 		body.get_node("Shield").in_iframe = false
 		shop_menu.visible = false

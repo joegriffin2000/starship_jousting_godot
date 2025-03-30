@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlbxkgga6wdmi" path="res://UI/ShopUI/ShopQuests/quest_menu.tscn" id="6_l2uha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lomiv"]
-bg_color = Color(0.165554, 0.152498, 0.112399, 0.65098)
+bg_color = Color(0.17, 0.17, 0.17, 0.65098)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3

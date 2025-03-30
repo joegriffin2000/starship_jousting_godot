@@ -73,7 +73,7 @@ func _on_buy_button_pressed() -> void:
 	if ShipData.credits >= cost:
 		ShipData.credits -= cost
 		SignalBus.upgrade_special.emit(id,value)
-		print("upgrade_special")
+		#print("upgrade_special")
 		#if isStatBoost:
 			##print("old ", stat, " : ", ShipData.get(stat))
 			##ShipData.set(stat, ShipData.get(stat) + value)
@@ -89,7 +89,7 @@ func _on_buy_button_pressed() -> void:
 			disabled = true
 			purchase_menu.visible = false
 				
-		print("upgrade bought")
+		#print("upgrade bought")
 		SignalBus.credits_updated.emit()
 
 func _on_cancel_button_pressed() -> void:

@@ -10,6 +10,7 @@ extends CanvasLayer
 var ip = "localhost" # <-- CHANGE THIS WITH "0.0.0.0" IP LATER
 var port = 5040 # <-- CHANGE THIS WITH OUR PORT LATER
 var rng = RandomNumberGenerator.new()
+var regex = RegEx.new()
 
 func _ready():
 	if "--server" in OS.get_cmdline_args():
@@ -18,9 +19,12 @@ func _ready():
 
 # Assigns the playerName to the ShipData playerName upon game start
 func assign_player_name():
-	if player_name.is_empty(): # If no playerName, assign a random one
-		player_name = "player_"+ str(rng.randi_range(0,1000))
+	regex.compile("([^A-Za-z0-9_])+")
+	if player_name.is_empty() or regex.search(player_name) != null: # If no or invalid playerName, assign a random one
+		player_name = "player_"+ str(rng.randi_range(1,999))
 		print("No player name; assigned name ", player_name)
+	elif player_name.length() > 10: # If name is too long (10 character maximum), truncate it. Random player names will always be within the limit
+		player_name = player_name.left(10)
 	ShipData.playerName = player_name
 
 # Updates playerName to inputted text
@@ -37,7 +41,7 @@ func _on_play_button_pressed() -> void:
 	NetworkState.start_network(false, ip, port)
 	await multiplayer.connected_to_server
 	load_scene()
-	
+
 
 # Displays leaderboard
 func _on_lb_button_pressed() -> void:

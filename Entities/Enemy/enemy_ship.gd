@@ -29,16 +29,18 @@ var randomizer = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	self.add_to_group("Enemies")
-	$Lance.deactivate()
-	$Shield.activate()
-	$MultiplayerSynchronizer.set_multiplayer_authority(1)
+	$MultiplayerSynchronizer.set_multiplayer_authority(1, 1)
+	if is_local_authority():
+		$Lance.deactivate()
+		$Shield.activate()
 
 func is_local_authority():
 	return $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 
 func set_enemy_name(playerName):
-	self.playerName = playerName
-	nameLabel.text = self.playerName
+	if is_local_authority():
+		self.playerName = playerName
+		nameLabel.text = self.playerName
 
 func enemy_logic_process():
 	if is_local_authority():
@@ -68,18 +70,21 @@ func enemy_logic_process():
 	
 #start dash if not knocked back or currently dashing	
 func start_dash():
-	if !dash.is_in_cd() and knockback == false:
-		action.start_dash(dash_length)
-		dash.start_cd(dash_cd)
-		rotation_direction = 0
-		velocity = -transform.y * dash_speed 
-		$Lance.activate()
+	if is_local_authority():
+		if !dash.is_in_cd() and knockback == false:
+			action.start_dash(dash_length)
+			dash.start_cd(dash_cd)
+			rotation_direction = 0
+			velocity = -transform.y * dash_speed 
+			$Lance.activate()
 		
 func turn_left():
-	rotation_direction -= 1
+	if is_local_authority():
+		rotation_direction -= 1
 	
 func turn_right():
-	rotation_direction += 1
+	if is_local_authority():
+		rotation_direction += 1
 
 func _physics_process(delta):
 	if is_local_authority():
@@ -99,23 +104,29 @@ func _physics_process(delta):
 		move_and_slide()
 	
 func get_knockback():
-	action.start_knockback(knock_back_time)
-	velocity = -velocity
-
+	if is_local_authority():
+		action.start_knockback(knock_back_time)
+		velocity = -velocity
 
 # This function handles taking damage.
 func take_damage(attacker: CollisionObject2D) -> bool:
-	if not shield.in_iframe:
-		health -= 1
-		if health < 1:
-			death(attacker)
-		
-	return true if health <= 0 else false
+	if is_local_authority():
+		if not shield.in_iframe:
+			health -= 1
+			if health < 1:
+				death(attacker)
+		return true if health <= 0 else false
+	return false
 
 # This function handles when the player reaches 0 HP.
 func death(killer: CollisionObject2D):
-	# Need a better solution for how to freeze player inputs
-	SignalBus.enemy_killed.emit(killer)
-	bounty_claimed.emit(killer)
 	if is_local_authority():
+		broadcast_bot_died.rpc(killer.name)
 		queue_free()
+
+@rpc("any_peer")
+func broadcast_bot_died(killerID):
+	if not killerID.containsn("BOT") and not killerID.containsn("DmgRock"):
+		var killer = get_node("/root/Game/Players/%s" % killerID)
+		bounty_claimed.emit(killer)
+		SignalBus.enemy_killed.emit(killer)

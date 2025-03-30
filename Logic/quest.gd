@@ -74,53 +74,58 @@ func _init(faction, description, type, total, baseCredits, entityNode = null, ti
 		print("No faction for quest.")
 	
 func activate():
-	self.progressSig.connect(update_progress)
-	
-	# Quest-specific activations
-	if self.faction == "SEU" and self.type == 2:
-		self.startQuestTimer()
-		SignalBus.start_charging_battery.connect(unpauseQuestTimer)
-		SignalBus.stop_charging_battery.connect(pauseQuestTimer)
-	elif self.faction == "FJB" and self.type == 2:
-		self.startIndicator(entityNode)
-	elif self.faction == "GOAT":
-		self.startIndicator(entityNode)
-		if self.type == 1:
+	if holder.is_local_authority():
+		self.progressSig.connect(update_progress)
+		
+		# Quest-specific activations
+		if self.faction == "SEU" and self.type == 2:
 			self.startQuestTimer()
+			SignalBus.start_charging_battery.connect(unpauseQuestTimer)
+			SignalBus.stop_charging_battery.connect(pauseQuestTimer)
+		elif self.faction == "FJB" and self.type == 2:
+			self.startIndicator(entityNode)
+		elif self.faction == "GOAT":
+			self.startIndicator(entityNode)
+			if self.type == 1:
+				self.startQuestTimer()
 	
 func deactivate():
-	self.progressSig.disconnect(update_progress)
+	if not self.progressSig.is_null() and self.progressSig.is_connected(update_progress):
+		self.progressSig.disconnect(update_progress)
 	queue_free()
 
 # Called everytime the signal is caught 
 func update_progress(quester: CollisionObject2D = null):
-	if holder == quester or self.questTimer != null: # Timeout signals do not emit with a quester, but should update progress anyways
-		
-		if progress < total:
-			progress += 1
-			SignalBus.quest_progressed.emit()
+	if holder.is_local_authority():
+		if holder == quester or self.questTimer != null: # Timeout signals do not emit with a quester, but should update progress anyways
 			
-			# Restart energy station quest timer if we still need to charge the battery more. Otherwise it can stay timed out, as it is no longer useful.
-			if faction == "SEU" and type == 2:
-				self.questTimer.start(10)
+			if progress < total:
+				progress += 1
+				SignalBus.quest_progressed.emit()
 				
-		if progress == total:
-			if faction == "GOAT": # GOAT quests fail on condition met
-				SignalBus.quest_failed.emit()
-			else: # FJB and SEU quests succeed on condition met
-				SignalBus.quest_completed.emit()
-	
-	elif faction == "FJB" and type == 2 and holder != quester: # Fail bounty quest immediately if bounty target dies without being killed by the quest holder
-		SignalBus.quest_failed.emit()
+				# Restart energy station quest timer if we still need to charge the battery more. Otherwise it can stay timed out, as it is no longer useful.
+				if faction == "SEU" and type == 2:
+					self.questTimer.start(10)
+					
+			if progress == total:
+				if faction == "GOAT": # GOAT quests fail on condition met
+					SignalBus.quest_failed.emit()
+				else: # FJB and SEU quests succeed on condition met
+					SignalBus.quest_completed.emit()
+		
+		elif self.faction == "FJB" and self.type == 2 and holder != quester: # Fail bounty quest immediately if bounty target dies without being killed by the quest holder
+			SignalBus.quest_failed.emit()
 	
 	# else do nothing
 
 func startIndicator(entity: Node2D):
-	SignalBus.show_indicator_arrow.emit(entity)
+	if holder.is_local_authority():
+		SignalBus.show_indicator_arrow.emit(entity)
 
 func startQuestTimer():
-	add_child(self.questTimer)
-	SignalBus.show_quest_timer.emit()
+	if holder.is_local_authority():
+		add_child(self.questTimer)
+		SignalBus.show_quest_timer.emit()
 
 func pauseQuestTimer():
 	self.questTimer.set_paused(true)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://botoqa2vmlcar"]
+[gd_scene load_steps=5 format=3 uid="uid://botoqa2vmlcar"]
 
 [ext_resource type="PackedScene" uid="uid://e1bi5rviiufr" path="res://Entities/Ship/ship.tscn" id="1_cyaek"]
 [ext_resource type="Script" path="res://Entities/Enemy/enemy_ship.gd" id="2_mcaxm"]
 [ext_resource type="Script" path="res://Entities/Enemy/enemy_action.gd" id="3_guu5m"]
-[ext_resource type="Script" path="res://Entities/Enemy/enemy_shield.gd" id="4_qfvda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ougcu"]
 size = Vector2(189, 183)
@@ -26,7 +25,6 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Shield" parent="." index="7"]
-script = ExtResource("4_qfvda")
 metadata/_edit_lock_ = true
 
 [node name="Vision" type="Node2D" parent="." index="8"]

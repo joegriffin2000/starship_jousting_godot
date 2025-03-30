@@ -6,9 +6,9 @@ signal dash
 signal dash_regen
 
 # Quest signals
-# Connected from damage rock to Ship
+# Connected from Damage Rock to Ship
 signal rock_mined(attacker)
-# Connected from enemy to Ship
+# Connected from enemies (Players and Bots) to Ship
 signal enemy_killed(object)
 # Connected from Energy Stations to Quest class
 signal start_charging_battery
@@ -16,10 +16,9 @@ signal stop_charging_battery
 # Connected from Ship to Quest class
 signal damage_taken
 
-# Other object signals
-
 # UI signals
-signal new_player_connected(id)
+# Connected from mainspace to HUD Leaderboard
+signal player_finished_setup()
 # Connected from ship to gameOverScreen
 signal player_died(score)
 # Connected from shop Quest menu to Ship and HUD Quest labels
@@ -32,9 +31,9 @@ signal quest_completed
 signal quest_failed
 # Connected from Carrier to HUD Quest labels
 signal quest_removed
-# Connected from Carrier to HUD Credits label and Ship
+# Connected from Carrier and Ship to HUD Credits label
 signal credits_updated
-# Connected from Carrier to HUD leaderboard
+# Connected from Carrier and Ship to HUD Leaderboard
 signal score_updated
 # Connected from Quest class to Ship's QuestTimerBar
 signal show_quest_timer

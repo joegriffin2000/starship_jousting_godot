@@ -1,13 +1,15 @@
 extends Hitbox
 
 func _ready() -> void:
-	set_collision_layer_value(2, false)
-	#print(get_collision_layer_value(2))
+	if owner.is_local_authority():
+		set_collision_layer_value(2, false)
 	
 func activate():
-	visible = true
-	set_collision_layer_value(2, true)
+	if owner.is_local_authority():
+		visible = true
+		set_collision_layer_value(2, true)
 	
 func deactivate():
-	visible = false
-	set_collision_layer_value(2, false)
+	if owner.is_local_authority():
+		visible = false
+		set_collision_layer_value(2, false)

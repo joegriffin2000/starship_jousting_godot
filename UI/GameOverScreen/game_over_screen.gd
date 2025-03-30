@@ -11,7 +11,8 @@ func _ready() -> void:
 func _on_ship_player_died(score: Variant) -> void:
 	var newText = str("Total Score: ", score)
 	displayScore.set_text(newText)
-	visible = true
+	self.visible = true
+	get_node("/root/Game/HUD").visible = false
 	
 	#var data_to_send = {
 		#"user": str(ShipData.playerName),

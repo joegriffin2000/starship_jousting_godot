@@ -13,17 +13,29 @@ var myID
 
 @export var playersAndScores = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.score_updated.connect(update_lb)
-	multiplayer.peer_disconnected.connect(remove_player_from_lb)
-	
-	myID = multiplayer.get_unique_id()
-	playersAndScores.append([myID, ShipData.playerName, 0])
-	
-	display_top_5.rpc()
-	check_you_visible()
+	if NetworkState.is_server: # Server
+		multiplayer.peer_disconnected.connect(remove_player_from_lb)
+	else: # Clients
+		myID = multiplayer.get_unique_id()
+		SignalBus.score_updated.connect(update_my_score)
+		await SignalBus.player_finished_setup
+		new_player_created.rpc_id(1, myID, ShipData.playerName)
 
+# Called on server by new client
+@rpc("any_peer", "call_remote")
+func new_player_created(id, playerName):
+	playersAndScores.append([id, playerName, 0])
+	set_client_players_and_scores.rpc(playersAndScores)
+	display_top_5()
+
+# Called on all clients by server
+@rpc("any_peer", "call_remote")
+func set_client_players_and_scores(psList):
+	playersAndScores = psList
+	check_you_visible()
+	
+# Called on server upon client disconnection
 func remove_player_from_lb(id):
 	# Update my score in playersAndScores
 	for i in range(len(playersAndScores)):
@@ -32,7 +44,15 @@ func remove_player_from_lb(id):
 			break
 	display_top_5()
 
-@rpc("any_peer", "call_local")
+# Called on server
+func display_top_5():
+	for i in range(5):
+		if i < len(playersAndScores):
+			rows[i].set_lb_item.rpc(str(playersAndScores[i][1]), playersAndScores[i][2])
+		else:
+			rows[i].hide_item.rpc()
+
+# Called on clients
 func check_you_visible():
 	var inTop5 = false
 	var num = 5 if len(playersAndScores) > 5 else len(playersAndScores)
@@ -42,33 +62,26 @@ func check_you_visible():
 			break
 	if not(inTop5):
 		set_you_visible()
-	
-# Show the player in the You spot
 func set_you_visible():
-	you.get_node_and_resource("MarginContainer/HBoxContainer/PlayerName")[0].text = str(ShipData.playerName, "  ")
-	you.get_node_and_resource("MarginContainer/HBoxContainer/Score")[0].text = str(ShipData.totalScore)
+	you.set_lb_item(str(ShipData.playerName, "  "), ShipData.totalScore)
 	div.visible = true
 	you.visible = true
 
-@rpc("any_peer", "call_local")
-func display_top_5():
-	# Set top 5, or less than top 5 if less than 5 players
-	var num = 5 if len(playersAndScores) > 5 else len(playersAndScores)
-	
-	for i in range(num):
-		rows[i].get_node_and_resource("MarginContainer/HBoxContainer/PlayerName")[0].text = str(playersAndScores[i][1])
-		rows[i].get_node_and_resource("MarginContainer/HBoxContainer/Score")[0].text = str(playersAndScores[i][2])
-		
-		rows[i].visible = true
+# Called on clients upon receiving score_updated signal
+func update_my_score():
+	update_lb.rpc_id(1, myID, ShipData.totalScore)
 
-func update_lb():
-	# Update my score in playersAndScores
+# Called on server by clients
+@rpc("any_peer", "call_remote")
+func update_lb(id, score):
+	# Update received player's score in playersAndScores
 	for player in playersAndScores:
-		if myID == player[0]:
-			player[2] = ShipData.totalScore
+		if id == player[0]:
+			player[2] = score
 			break
 	
 	# Re-sort playersAndScores
 	playersAndScores.sort_custom(func(a, b): return a[2] > b[2])
 	
+	# Re-display the top 5
 	display_top_5()

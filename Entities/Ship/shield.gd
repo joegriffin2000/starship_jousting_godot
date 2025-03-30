@@ -13,12 +13,12 @@ var shield_texture = [
 
 func _process(_delta):
 	match int(owner.health):
-		4:
-			sprite.texture = shield_texture[2]
-		3:
-			sprite.texture = shield_texture[1]
 		2:
 			sprite.texture = shield_texture[0]
+		3:
+			sprite.texture = shield_texture[1]
+		4:
+			sprite.texture = shield_texture[2]
 		_:
 			pass
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://coywqf2w6d1yr"]
 
-[ext_resource type="Script" path="res://UI/HUD/indicator_arrow.gd" id="1_60wv8"]
-[ext_resource type="Texture2D" uid="uid://dqst3xrrso345" path="res://Sprites/Arrow.png" id="1_p2418"]
+[ext_resource type="Script" path="res://UI/HUD/indicator_arrow.gd" id="1_ldyy3"]
+[ext_resource type="Texture2D" uid="uid://dqst3xrrso345" path="res://Sprites/Arrow.png" id="2_v5go6"]
 
 [node name="indicator_arrow" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_60wv8")
+script = ExtResource("1_ldyy3")
 
 [node name="Sprite" type="TextureRect" parent="."]
 texture_filter = 1
@@ -21,4 +21,4 @@ offset_right = 628.0
 offset_bottom = 68.0
 rotation = 1.5708
 pivot_offset = Vector2(64, 64)
-texture = ExtResource("1_p2418")
+texture = ExtResource("2_v5go6")
