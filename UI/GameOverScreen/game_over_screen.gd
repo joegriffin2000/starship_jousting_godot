@@ -15,8 +15,8 @@ func _on_ship_player_died(score: Variant) -> void:
 	self.visible = true
 	get_node("/root/Game/HUD").visible = false
 	
-	client_trusted_cas.load("res://fullchain.pem")
-	#client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
+	#client_trusted_cas.load("res://fullchain.pem")
+	client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
 	var client_tls_options = TLSOptions.client(client_trusted_cas)
 	req.set_tls_options(client_tls_options)
 	

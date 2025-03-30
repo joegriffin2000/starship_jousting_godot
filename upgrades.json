@@ -14,7 +14,7 @@
 			"isDecrease":false
 		},
 		"max_purchases":3,
-		"cost":10
+		"cost":25
 	},
 	{
 		"name":"Knockback Reduction",
@@ -31,7 +31,7 @@
 			"isDecrease":true
 		},
 		"max_purchases":1,
-		"cost":10
+		"cost":15
 	},
 	{
 		"name":"Dash Cooldown Reduction",
@@ -48,7 +48,7 @@
 			"isDecrease":true
 		},
 		"max_purchases":2,
-		"cost":15
+		"cost":20
 	},
 	{
 		"name":"Shield Upgrade",
@@ -65,7 +65,7 @@
 			"isDecrease":false
 		},
 		"max_purchases":2,
-		"cost":20
+		"cost":30
 	},
 	{
 		"name":"Regen Dash on Hit",
@@ -80,6 +80,6 @@
 			"isDecrease":false
 		},
 		"max_purchases":1,
-		"cost":20
+		"cost":40
 	}
 ]
