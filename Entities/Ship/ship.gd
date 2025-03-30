@@ -95,7 +95,7 @@ func take_damage(myAttacker: CollisionObject2D):
 	if is_local_authority():
 		if not shield.in_iframe:
 			self.health -= 1
-			SignalBus.damage_taken.emit()
+			SignalBus.damage_taken.emit(self)
 			if self.health < 1:
 				death(myAttacker)
 			

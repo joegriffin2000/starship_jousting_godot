@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var req = $HTTPRequest
 @onready var client_trusted_cas = X509Certificate.new()
 
-@onready var shop_menu = get_tree().root.get_node("Game").get_node("ShopMenu")
+@onready var shop_menu = get_node("/root/Game/ShopMenu")
 
 func _ready() -> void:
 	SignalBus.player_died.connect(_on_ship_player_died)

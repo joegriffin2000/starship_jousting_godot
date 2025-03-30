@@ -1,39 +1,41 @@
 extends Node2D
 
 var is_server := false
-#var peer = ENetMultiplayerPeer.new()
 
+#var peer = ENetMultiplayerPeer.new()
 var peer = WebSocketMultiplayerPeer.new()
 
 func start_network(server: bool, ip: String = "", port: int = 2302) -> void:
 	is_server = server
 	
 	if server:
+		# ENET
 		#peer.create_server(port) #<< THIS NEEDS TO CHANGE
+		# WEBSOCKET
 		var server_certs = X509Certificate.new()
 		var server_key = CryptoKey.new()
 		server_certs.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
 		server_key.load("/home/systemduser/starship_jousting/static/js/privkey.pem")
-		
 		var server_tls_options = TLSOptions.server(server_key, server_certs)
 		peer.create_server(port,"*",server_tls_options)
 		
 		print("Server listening on port ", port)
 		multiplayer.peer_connected.connect(player_connected)
 		multiplayer.peer_disconnected.connect(player_disconnected)
+		
 	else:
 		print("Connecting...")
-		#peer.create_client(ip, port)  #<< THIS NEEDS TO CHANGE
-		#var client_trusted_cas = X509Certificate.new()
-		#client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
-		#var client_tls_options = TLSOptions.client(client_trusted_cas)
-		#peer.create_client(ip,client_tls_options)
+		
+		# ENET
+		#peer.create_client(ip, port)
+		# WEBSOCKET
 		peer.create_client(ip+":"+str(port)+"/")
+		
 		multiplayer.connected_to_server.connect(_on_connection_success)
 		multiplayer.connection_failed.connect(_on_connection_failed)
 	
-	# Compression for improved bandwidth usage
-	#peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER) #<< THIS NEEDS TO CHANGE
+	# Compression for improved bandwidth usage (on ENet only)
+	#peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	
 	multiplayer.set_multiplayer_peer(peer)
 

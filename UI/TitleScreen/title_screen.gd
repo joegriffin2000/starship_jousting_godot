@@ -8,6 +8,7 @@ extends CanvasLayer
 @export var map_scene = preload("res://mainspace.tscn")
 
 var ip = "wss://starshipjousting.space" # <-- CHANGE THIS WITH "0.0.0.0" IP LATER
+#var ip = "localhost"
 var port = 2302 # <-- CHANGE THIS WITH OUR PORT LATER
 var rng = RandomNumberGenerator.new()
 var regex = RegEx.new()

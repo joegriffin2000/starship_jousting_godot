@@ -14,7 +14,7 @@ signal enemy_killed(object)
 signal start_charging_battery
 signal stop_charging_battery
 # Connected from Ship to Quest class
-signal damage_taken
+signal damage_taken(player)
 
 # UI signals
 # Connected from mainspace to HUD Leaderboard

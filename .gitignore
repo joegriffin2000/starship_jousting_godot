@@ -4,6 +4,8 @@
 
 # Temp files
 .tmp/
-nginx-selfsigned.crt
+
+# Config
 /sj_export/
 export_presets.cfg
+*.pem
