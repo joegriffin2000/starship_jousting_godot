@@ -19,7 +19,7 @@ func _ready() -> void:
 	req.set_tls_options(client_tls_options)
 	
 	# GET Request for leaderboard data
-	var error = req.request("https://starship_jousting.space/leaderboard_pull20")
+	var error = req.request("https://starshipjousting.space/leaderboard_pull20")
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 

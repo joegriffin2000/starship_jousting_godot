@@ -26,7 +26,7 @@ func _on_ship_player_died(score: Variant) -> void:
 	}
 	var json = JSON.stringify(data_to_send)
 	var headers = ["Content-Type: application/json"]
-	var error = req.request("http://starship_jousting.space/leaderboard_push1", headers, HTTPClient.METHOD_POST, json)
+	var error = req.request("http://starshipjousting.space/leaderboard_push1", headers, HTTPClient.METHOD_POST, json)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
