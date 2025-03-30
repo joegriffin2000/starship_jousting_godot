@@ -4,6 +4,7 @@ extends VBoxContainer
 @onready var lbContainer = $MarginContainer2/ScrollContainer/LeaderboardContainer
 @onready var req = $HTTPRequest
 @onready var loading = $MarginContainer2/Loading
+@onready var client_trusted_cas = X509Certificate.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,8 +13,8 @@ func _ready() -> void:
 	
 	# Create an HTTP request node and connect its completion signal.
 	req.request_completed.connect(_http_request_completed)
-	var client_trusted_cas = X509Certificate.new()
-	client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
+	client_trusted_cas.load("res://fullchain.pem")
+	#client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
 	var client_tls_options = TLSOptions.client(client_trusted_cas)
 	req.set_tls_options(client_tls_options)
 	
