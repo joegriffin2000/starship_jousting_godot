@@ -7,8 +7,8 @@ extends CanvasLayer
 @export var player_name: String
 @export var map_scene: PackedScene
 
-#var ip = "wss://starshipjousting.space"
-var ip = "localhost"
+var ip = "wss://starshipjousting.space"
+#var ip = "localhost"
 var port = 2302
 var rng = RandomNumberGenerator.new()
 var regex = RegEx.new()
