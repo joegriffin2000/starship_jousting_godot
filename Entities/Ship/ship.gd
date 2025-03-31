@@ -32,8 +32,10 @@ var regenerating_dash = false
 var knockback = false
 var dash = false
 
+func _enter_tree() -> void:
+	self.set_multiplayer_authority(str(name).to_int())
+
 func _ready() -> void:
-	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int(), 1)
 	if is_local_authority():
 		camera.make_current()
 		shield.activate()
@@ -44,7 +46,7 @@ func _ready() -> void:
 		SignalBus.show_quest_timer.connect(enable_quest_timer_bar)
 
 func is_local_authority():
-	return $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
+	return self.get_multiplayer_authority() == multiplayer.get_unique_id()
 
 func set_player_name(playerName):
 	if is_local_authority():

@@ -14,9 +14,9 @@ func _ready() -> void:
 	# Create an HTTP request node and connect its completion signal.
 	req.request_completed.connect(_http_request_completed)
 	#client_trusted_cas.load("res://fullchain.pem")
-	client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
-	var client_tls_options = TLSOptions.client(client_trusted_cas)
-	req.set_tls_options(client_tls_options)
+	#client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
+	#var client_tls_options = TLSOptions.client(client_trusted_cas)
+	#req.set_tls_options(client_tls_options)
 	
 	# GET Request for leaderboard data
 	var error = req.request("https://starshipjousting.space/leaderboard_pull20")

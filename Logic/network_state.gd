@@ -10,7 +10,7 @@ func start_network(server: bool, ip: String = "", port: int = 2302) -> void:
 	
 	if server:
 		# ENET
-		#peer.create_server(port) #<< THIS NEEDS TO CHANGE
+		#peer.create_server(port)
 		# WEBSOCKET
 		var server_certs = X509Certificate.new()
 		var server_key = CryptoKey.new()

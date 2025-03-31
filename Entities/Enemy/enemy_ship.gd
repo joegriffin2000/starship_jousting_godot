@@ -27,15 +27,17 @@ signal bounty_claimed(killer)
 
 var randomizer = RandomNumberGenerator.new()
 
+func _enter_tree() -> void:
+	self.set_multiplayer_authority(1)
+
 func _ready() -> void:
 	self.add_to_group("Enemies")
-	$MultiplayerSynchronizer.set_multiplayer_authority(1, 1)
 	if is_local_authority():
 		$Lance.deactivate()
 		$Shield.activate()
 
 func is_local_authority():
-	return $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
+	return self.get_multiplayer_authority() == multiplayer.get_unique_id()
 
 func set_enemy_name(playerName):
 	if is_local_authority():
