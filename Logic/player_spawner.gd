@@ -6,6 +6,7 @@ func _ready() -> void:
 	set_spawn_function(self.spawn_player)
 
 func spawn_player(id: int) -> Node:
+	print("Spawning player")
 	# Instantiate a new player for this client.
 	var player = preload("res://Entities/Ship/ship.tscn").instantiate()
 	# Set the name, so players can figure out their local authority

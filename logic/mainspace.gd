@@ -5,6 +5,7 @@ extends Node2D
 signal player_created(id)
 
 func _ready():
+	
 	if NetworkState.is_server:
 		# Listen to peer connections, and create new ship for them
 		multiplayer.peer_connected.connect(spawn_player)
