@@ -15,7 +15,7 @@ func _ready():
 		player_created.connect(set_up_player)
 
 func spawn_player(id: int) -> void:
-	await get_tree().create_timer(1.0).timeout
+	#await get_tree().create_timer(1.0).timeout
 	# Instantiate a new player for this client.
 	var player = player_scene.instantiate()
 	# Set the name, so players can figure out their local authority
