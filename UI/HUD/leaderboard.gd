@@ -37,7 +37,6 @@ func set_client_players_and_scores(psList):
 	
 # Called on server upon client disconnection
 func remove_player_from_lb(id):
-	# Update my score in playersAndScores
 	for i in range(len(playersAndScores)):
 		if id == playersAndScores[i][0]:
 			playersAndScores.pop_at(i)
@@ -82,6 +81,9 @@ func update_lb(id, score):
 	
 	# Re-sort playersAndScores
 	playersAndScores.sort_custom(func(a, b): return a[2] > b[2])
+	
+	# Send all clients the new playersAndScores list
+	set_client_players_and_scores.rpc(playersAndScores)
 	
 	# Re-display the top 5
 	display_top_5()

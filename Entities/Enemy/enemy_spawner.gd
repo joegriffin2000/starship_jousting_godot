@@ -11,6 +11,7 @@ func _on_timer_timeout() -> void:
 		if has_overlapping_bodies():
 			pass
 		elif bots.get_child_count() < 5: # 5 or less bots alive at once
+			print("Spawning bot")
 			var new_enemy = enemy.instantiate()
 			
 			new_enemy.global_position.x = rng.randi_range(area.global_position.x - area.shape.size.x,area.global_position.x + area.shape.size.x)

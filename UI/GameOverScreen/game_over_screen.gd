@@ -16,9 +16,9 @@ func _on_ship_player_died(score: Variant) -> void:
 	get_node("/root/Game/HUD").visible = false
 	
 	#client_trusted_cas.load("res://fullchain.pem")
-	client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
-	var client_tls_options = TLSOptions.client(client_trusted_cas)
-	req.set_tls_options(client_tls_options)
+	#client_trusted_cas.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
+	#var client_tls_options = TLSOptions.client(client_trusted_cas)
+	#req.set_tls_options(client_tls_options)
 	
 	var data_to_send = {
 		"user": str(ShipData.playerName),
@@ -26,7 +26,7 @@ func _on_ship_player_died(score: Variant) -> void:
 	}
 	var json = JSON.stringify(data_to_send)
 	var headers = ["Content-Type: application/json"]
-	var error = req.request("http://starshipjousting.space/leaderboard_push1", headers, HTTPClient.METHOD_POST, json)
+	var error = req.request("https://starshipjousting.space/leaderboard_push1", headers, HTTPClient.METHOD_POST, json)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
