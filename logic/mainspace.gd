@@ -20,6 +20,8 @@ func spawn_player(id: int) -> void:
 	var player = player_scene.instantiate()
 	# Set the name, so players can figure out their local authority
 	player.name = str(id)
+	# Add player to scene tree
+	$Players.add_child(player)
 	# Set player spawn position
 	set_player_position.rpc(id, spawn_area.position)
 	# Server tells player to finish their set-up
