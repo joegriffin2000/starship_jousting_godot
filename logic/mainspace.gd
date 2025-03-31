@@ -16,12 +16,7 @@ func _ready():
 
 func spawn_player(id: int) -> void:
 	await get_tree().create_timer(1.0).timeout
-	# Instantiate a new player for this client.
-	var player = player_scene.instantiate()
-	# Set the name, so players can figure out their local authority
-	player.name = str(id)
-	# Add player to scene tree
-	$Players.add_child(player)
+	$PlayerSpawner.spawn(id)
 	# Set player spawn position
 	set_player_position.rpc(id, spawn_area.position)
 	# Server tells player to finish their set-up
