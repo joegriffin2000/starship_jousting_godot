@@ -5,8 +5,6 @@ extends Node2D
 signal player_created(id)
 
 func _ready():
-	$PlayerSpawner.set_multiplayer_authority(1)
-	$EnemySpawner.set_multiplayer_authority(1)
 	if NetworkState.is_server:
 		# Listen to peer connections, and create new ship for them
 		multiplayer.peer_connected.connect(spawn_player)
@@ -17,6 +15,7 @@ func _ready():
 		player_created.connect(set_up_player)
 
 func spawn_player(id: int) -> void:
+	await get_tree().create_timer(1.0).timeout
 	# Instantiate a new player for this client.
 	var player = player_scene.instantiate()
 	# Set the name, so players can figure out their local authority
