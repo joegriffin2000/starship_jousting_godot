@@ -5,7 +5,7 @@ extends CanvasLayer
 # • allow the user to put in a userName
 
 @export var player_name: String
-@export var map_scene = preload("res://mainspace.tscn")
+@export var map_scene: PackedScene
 
 var ip = "wss://starshipjousting.space"
 #var ip = "localhost"
@@ -40,9 +40,8 @@ func load_scene():
 func _on_play_button_pressed() -> void:
 	assign_player_name() # Makes sure we have a name
 	NetworkState.start_network(false, ip, port)
-	await multiplayer.connected_to_server
+	#await multiplayer.connected_to_server
 	load_scene()
-
 
 # Displays leaderboard
 func _on_lb_button_pressed() -> void:

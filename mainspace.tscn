@@ -1,9 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=14 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
-[ext_resource type="Script" path="res://Logic/enemy_spawner.gd" id="2_56jia"]
-[ext_resource type="Script" path="res://Logic/player_spawner.gd" id="2_64k5v"]
 [ext_resource type="PackedScene" uid="uid://cq1e813uoit5d" path="res://Entities/Obstacles/rock.tscn" id="3_ajql6"]
 [ext_resource type="PackedScene" uid="uid://bg3eoe4hnoqna" path="res://Entities/EnergyStation/energy_station.tscn" id="4_dreot"]
 [ext_resource type="PackedScene" uid="uid://csce5kf7ob4fa" path="res://UI/HUD/HUD.tscn" id="4_m7kfs"]
@@ -28,16 +26,6 @@ border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_coag6")
 
-[node name="EnemySpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Enemy/enemy_ship.tscn")
-spawn_path = NodePath("../Bots")
-script = ExtResource("2_56jia")
-
-[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Ship/ship.tscn")
-spawn_path = NodePath("../Players")
-script = ExtResource("2_64k5v")
-
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 offset_left = -1500.0
@@ -52,6 +40,10 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Ship/ship.tscn")
+spawn_path = NodePath("../Players")
 
 [node name="PlayerSpawnArea" type="Area2D" parent="."]
 position = Vector2(12399, 4274)
@@ -194,6 +186,10 @@ position = Vector2(8660, 6792)
 position = Vector2(25765, 13150)
 
 [node name="Bots" type="Node2D" parent="."]
+
+[node name="BotSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Enemy/enemy_ship.tscn")
+spawn_path = NodePath("../Bots")
 
 [node name="EnemySpawnArea" parent="." instance=ExtResource("10_ue055")]
 position = Vector2(14777, 12559)

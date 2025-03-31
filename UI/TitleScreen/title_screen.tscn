@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bes030ss6u4hd"]
+[gd_scene load_steps=10 format=3 uid="uid://bes030ss6u4hd"]
 
 [ext_resource type="Script" path="res://UI/TitleScreen/title_screen.gd" id="1_5f0a5"]
+[ext_resource type="PackedScene" uid="uid://di43x1lpcmhc6" path="res://mainspace.tscn" id="2_wdpi2"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="3_fvode"]
 [ext_resource type="Theme" uid="uid://drp3uvprkgbbd" path="res://UI/main_menu_theme.tres" id="4_bg5xk"]
 [ext_resource type="Texture2D" uid="uid://bxe2mamcjt73x" path="res://Sprites/logo.png" id="4_h7m65"]
@@ -16,6 +17,7 @@ font = ExtResource("5_2rsbu")
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_5f0a5")
+map_scene = ExtResource("2_wdpi2")
 
 [node name="SpaceBG" type="TextureRect" parent="."]
 anchors_preset = 15
