@@ -28,7 +28,8 @@ signal bounty_claimed(killer)
 var randomizer = RandomNumberGenerator.new()
 
 func _enter_tree() -> void:
-	self.set_multiplayer_authority(1)
+	#self.set_multiplayer_authority(1)
+	pass
 
 func _ready() -> void:
 	self.add_to_group("Enemies")

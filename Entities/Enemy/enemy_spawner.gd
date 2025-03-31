@@ -17,6 +17,7 @@ func _on_timer_timeout() -> void:
 			new_enemy.rotation = rng.randf_range(-PI, PI)
 			
 			new_enemy.name = "BOT" + str(spawnCounter)
+			new_enemy.set_multiplayer_authority(1)
 			
 			owner.get_node("Bots").add_child(new_enemy)
 			
