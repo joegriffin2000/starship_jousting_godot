@@ -33,6 +33,7 @@ func new_player_created(id, playerName):
 @rpc("any_peer", "call_remote")
 func set_client_players_and_scores(psList):
 	playersAndScores = psList
+	print(str(playersAndScores))
 	check_you_visible()
 	
 # Called on server upon client disconnection
@@ -41,6 +42,7 @@ func remove_player_from_lb(id):
 		if id == playersAndScores[i][0]:
 			playersAndScores.pop_at(i)
 			break
+	set_client_players_and_scores.rpc(playersAndScores)
 	display_top_5()
 
 # Called on server
@@ -73,8 +75,12 @@ func update_my_score():
 # Called on server by clients
 @rpc("any_peer", "call_remote")
 func update_lb(id, score):
+	print("Updating score for player ", id, " to score ", score)
+	print(str(playersAndScores))
+	
 	# Update received player's score in playersAndScores
 	for player in playersAndScores:
+		print("Player: ", player)
 		if id == player[0]:
 			player[2] = score
 			break

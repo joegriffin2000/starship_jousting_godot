@@ -3,6 +3,7 @@ extends Area2D
 var enemy = preload("res://Entities/Enemy/enemy_ship.tscn")
 @onready var area = $CollisionShape2D
 @onready var bots = get_node("/root/Game/Bots")
+@onready var players = get_node("/root/Game/Players")
 var rng = RandomNumberGenerator.new()
 var spawnCounter = 1
 
@@ -10,7 +11,7 @@ func _on_timer_timeout() -> void:
 	if NetworkState.is_server:
 		if has_overlapping_bodies():
 			pass
-		elif bots.get_child_count() < 5: # 5 or less bots alive at once
+		elif bots.get_child_count() + players.get_child_count() < 10: # 15 or less ships alive at once
 			print("Spawning bot")
 			var new_enemy = enemy.instantiate()
 			
