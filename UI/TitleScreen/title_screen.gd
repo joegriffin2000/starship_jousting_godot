@@ -41,7 +41,6 @@ func _on_play_button_pressed() -> void:
 	assign_player_name() # Makes sure we have a name
 	NetworkState.start_network(false, ip, port)
 	await multiplayer.connected_to_server
-	await get_tree().create_timer(1.0).timeout
 	load_scene()
 
 

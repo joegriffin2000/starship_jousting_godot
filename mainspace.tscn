@@ -27,6 +27,7 @@ border_color = Color(0.733333, 0.705882, 0.968627, 0.294118)
 script = ExtResource("1_coag6")
 
 [node name="EnemySpawner" type="MultiplayerSpawner" parent="."]
+process_priority = 1
 _spawnable_scenes = PackedStringArray("res://Entities/Enemy/enemy_ship.tscn")
 spawn_path = NodePath("../Bots")
 
