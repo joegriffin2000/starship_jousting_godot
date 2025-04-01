@@ -19,7 +19,7 @@ func _ready() -> void:
 	else: # Clients
 		SignalBus.score_updated.connect(update_my_score)
 		await SignalBus.player_finished_setup
-		myID = multiplayer.get_multiplayer_id()
+		myID = multiplayer.get_unique_id()
 		new_player_created.rpc_id(1, myID, ShipData.playerName)
 
 # Called on server by new client
@@ -33,7 +33,6 @@ func new_player_created(id, playerName):
 @rpc("any_peer", "call_remote")
 func set_client_players_and_scores(psList):
 	playersAndScores = psList
-	print(str(playersAndScores))
 	check_you_visible()
 	
 # Called on server upon client disconnection
@@ -75,12 +74,10 @@ func update_my_score():
 # Called on server by clients
 @rpc("any_peer", "call_remote")
 func update_lb(id, score):
-	print("Updating score for player ", id, " to score ", score)
 	print(str(playersAndScores))
 	
 	# Update received player's score in playersAndScores
 	for player in playersAndScores:
-		print("Player: ", player)
 		if id == player[0]:
 			player[2] = score
 			break

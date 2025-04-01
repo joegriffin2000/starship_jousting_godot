@@ -64,7 +64,6 @@ func set_up_enemy_list():
 	var listOfBots = $Bots.get_children()
 	
 	var myID = multiplayer.get_unique_id()
-	print("set_up_enemy_list myID ", myID)
 	listOfPlayers.erase($Players.get_node(str(myID)))
 	
 	# Add all other existing players to Enemies group
@@ -76,7 +75,6 @@ func set_up_enemy_list():
 @rpc("any_peer", "call_local")
 func add_to_enemy_list(id):
 	var myID = multiplayer.get_unique_id()
-	print("add_to_enemy_list myID ", myID)
 	if id != myID:
 		$Players.get_node(str(id)).add_to_group("Enemies")
 
