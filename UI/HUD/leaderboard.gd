@@ -17,7 +17,8 @@ func _ready() -> void:
 	if NetworkState.is_server: # Server
 		multiplayer.peer_disconnected.connect(remove_player_from_lb)
 	else: # Clients
-		myID = multiplayer.get_unique_id()
+		print("Leaderboard: ", multiplayer.get_unique_id())
+		myID = ShipData.playerID
 		SignalBus.score_updated.connect(update_my_score)
 		await SignalBus.player_finished_setup
 		new_player_created.rpc_id(1, myID, ShipData.playerName)

@@ -2,6 +2,7 @@ extends Node
 
 #Player name
 @export var playerName : String = "player_0"
+@export var playerID : int = 0
 
 #Ship stats
 @export var dash_cd = 1.0

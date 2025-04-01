@@ -52,6 +52,7 @@ func set_up_player(id):
 	# Have new Player set their own display name
 	#print("Player created, setting their name")
 	$Players.get_node(str(id)).set_player_name(ShipData.playerName)
+	ShipData.playerID = id
 	#print("Set ", id, " to ", ShipData.playerName)
 	#print("Confirming name: ", $Players.get_node(str(id)).playerName)
 	SignalBus.player_finished_setup.emit()
@@ -64,6 +65,7 @@ func set_up_enemy_list():
 	var listOfBots = $Bots.get_children()
 	
 	var myID = multiplayer.get_unique_id()
+	print("set_up_enemy_list myID ", myID)
 	listOfPlayers.erase($Players.get_node(str(myID)))
 	
 	# Add all other existing players to Enemies group
@@ -75,6 +77,7 @@ func set_up_enemy_list():
 @rpc("any_peer", "call_local")
 func add_to_enemy_list(id):
 	var myID = multiplayer.get_unique_id()
+	print("add_to_enemy_list myID ", myID)
 	if id != myID:
 		$Players.get_node(str(id)).add_to_group("Enemies")
 
