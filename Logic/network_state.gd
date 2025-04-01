@@ -14,6 +14,9 @@ func start_network(server: bool, ip: String = "", port: int = 2302) -> void:
 		# WEBSOCKET
 		var server_certs = X509Certificate.new()
 		var server_key = CryptoKey.new()
+		# We should be using these paths instead: 
+		# /etc/letsencrypt/live/starshipjousting.space/fullchain.pem
+		# /etc/letsencrypt/live/starshipjousting.space/privkey.pem
 		server_certs.load("/home/systemduser/starship_jousting/static/js/fullchain.pem")
 		server_key.load("/home/systemduser/starship_jousting/static/js/privkey.pem")
 		var server_tls_options = TLSOptions.server(server_key, server_certs)
