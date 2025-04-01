@@ -23,14 +23,14 @@ func _ready() -> void:
 		new_player_created.rpc_id(1, myID, ShipData.playerName)
 
 # Called on server by new client
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote")
 func new_player_created(id, playerName):
 	playersAndScores.append([id, playerName, 0])
 	set_client_players_and_scores.rpc(playersAndScores)
 	display_top_5()
 
 # Called on all clients by server
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote")
 func set_client_players_and_scores(psList):
 	playersAndScores = psList
 	print(str(playersAndScores))
@@ -73,7 +73,7 @@ func update_my_score():
 	update_lb.rpc_id(1, myID, ShipData.totalScore)
 
 # Called on server by clients
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote")
 func update_lb(id, score):
 	print("Updating score for player ", id, " to score ", score)
 	print(str(playersAndScores))
