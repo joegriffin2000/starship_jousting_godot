@@ -5,7 +5,6 @@ extends Node2D
 signal player_created(id)
 
 func _ready():
-	
 	if NetworkState.is_server:
 		# Listen to peer connections, and create new ship for them
 		multiplayer.peer_connected.connect(spawn_player)
@@ -33,7 +32,7 @@ func remove_player(id: int) -> void:
 	# Delete this player's node.
 	$Players.get_node(str(id)).queue_free()
 
-@rpc("call_local")
+@rpc("call_local", "reliable")
 func set_player_position(id, spawn_position):
 	var player = get_node("Players/%s" % id)
 	player.global_position = spawn_position
@@ -44,7 +43,7 @@ func ship_nearby(overlapping_bodies):
 			return true
 	return false
 
-@rpc("any_peer")
+@rpc("any_peer", "reliable")
 func new_player_created(id):
 	player_created.emit(id)
 
@@ -74,7 +73,7 @@ func set_up_enemy_list():
 	for b in listOfBots:
 		b.add_to_group("Enemies")
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func add_to_enemy_list(id):
 	var myID = multiplayer.get_unique_id()
 	print("add_to_enemy_list myID ", myID)

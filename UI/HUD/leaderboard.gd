@@ -17,21 +17,20 @@ func _ready() -> void:
 	if NetworkState.is_server: # Server
 		multiplayer.peer_disconnected.connect(remove_player_from_lb)
 	else: # Clients
-		print("Leaderboard: ", multiplayer.get_unique_id())
-		myID = ShipData.playerID
 		SignalBus.score_updated.connect(update_my_score)
 		await SignalBus.player_finished_setup
+		myID = multiplayer.get_multiplayer_id()
 		new_player_created.rpc_id(1, myID, ShipData.playerName)
 
 # Called on server by new client
-@rpc("any_peer", "call_remote")
+@rpc("any_peer", "call_remote", "reliable")
 func new_player_created(id, playerName):
 	playersAndScores.append([id, playerName, 0])
 	set_client_players_and_scores.rpc(playersAndScores)
 	display_top_5()
 
 # Called on all clients by server
-@rpc("any_peer", "call_remote")
+@rpc("any_peer", "call_remote", "reliable")
 func set_client_players_and_scores(psList):
 	playersAndScores = psList
 	print(str(playersAndScores))
@@ -74,7 +73,7 @@ func update_my_score():
 	update_lb.rpc_id(1, myID, ShipData.totalScore)
 
 # Called on server by clients
-@rpc("any_peer", "call_remote")
+@rpc("any_peer", "call_remote", "reliable")
 func update_lb(id, score):
 	print("Updating score for player ", id, " to score ", score)
 	print(str(playersAndScores))
