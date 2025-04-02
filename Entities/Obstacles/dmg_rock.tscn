@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://civgrrcpy8lw5"]
+[gd_scene load_steps=5 format=3 uid="uid://civgrrcpy8lw5"]
 
 [ext_resource type="Script" path="res://Logic/hitbox.gd" id="1_p4vno"]
-[ext_resource type="Texture2D" uid="uid://d1vdk68ikcdio" path="res://Sprites/rock.png" id="2_8nb51"]
+[ext_resource type="Texture2D" uid="uid://dng7u51fjedrk" path="res://Sprites/naval mine.png" id="2_rxnh3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_17pel"]
-size = Vector2(128, 129)
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ulpn"]
+radius = 64.6471
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqqr7"]
+radius = 64.7012
 
 [node name="Node2D" type="Area2D"]
 
@@ -12,14 +15,15 @@ size = Vector2(128, 129)
 script = ExtResource("1_p4vno")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
-modulate = Color(1, 0.331371, 0.387245, 1)
+texture_filter = 1
+position = Vector2(0, 30)
 scale = Vector2(8, 8)
-texture = ExtResource("2_8nb51")
+texture = ExtResource("2_rxnh3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_17pel")
+shape = SubResource("CircleShape2D_3ulpn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_17pel")
+shape = SubResource("CircleShape2D_gqqr7")

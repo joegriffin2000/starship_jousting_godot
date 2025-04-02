@@ -1,13 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://di43x1lpcmhc6"]
+[gd_scene load_steps=19 format=3 uid="uid://di43x1lpcmhc6"]
 
 [ext_resource type="Script" path="res://Logic/mainspace.gd" id="1_coag6"]
 [ext_resource type="Texture2D" uid="uid://bvjxnwg3c1sa3" path="res://Sprites/512x512_purple_nebula_1.png" id="1_xb1gi"]
 [ext_resource type="PackedScene" uid="uid://cq1e813uoit5d" path="res://Entities/Obstacles/rock.tscn" id="3_ajql6"]
 [ext_resource type="PackedScene" uid="uid://bg3eoe4hnoqna" path="res://Entities/EnergyStation/energy_station.tscn" id="4_dreot"]
 [ext_resource type="PackedScene" uid="uid://csce5kf7ob4fa" path="res://UI/HUD/HUD.tscn" id="4_m7kfs"]
+[ext_resource type="Texture2D" uid="uid://copv5ovrsx8ya" path="res://Sprites/carrier alpha.png" id="4_psee0"]
+[ext_resource type="Texture2D" uid="uid://bgkk35if0qnka" path="res://Sprites/carrier beta.png" id="5_bo1qa"]
 [ext_resource type="PackedScene" uid="uid://civgrrcpy8lw5" path="res://Entities/Obstacles/dmg_rock.tscn" id="5_ysiwv"]
+[ext_resource type="Texture2D" uid="uid://c24w4spn18v7c" path="res://Sprites/carrier gamma.png" id="6_apg2s"]
 [ext_resource type="PackedScene" uid="uid://b11glto6yoca8" path="res://UI/GameOverScreen/game_over_screen.tscn" id="6_bpwyg"]
 [ext_resource type="PackedScene" uid="uid://dwtvkp2vnyevp" path="res://Entities/Carrier/carrier.tscn" id="6_t3k5q"]
+[ext_resource type="Texture2D" uid="uid://cmvkkw6jhuudh" path="res://Sprites/carrier delta.png" id="7_6iicj"]
+[ext_resource type="Texture2D" uid="uid://b6vaqytx0a0ni" path="res://Sprites/carrier epsilon.png" id="8_8guj6"]
 [ext_resource type="PackedScene" uid="uid://btbb3t0k66qi8" path="res://UI/ShopUI/shop_menu.tscn" id="8_u6klb"]
 [ext_resource type="PackedScene" uid="uid://b2o3ag10vnhyf" path="res://Entities/Enemy/enemy_spawner.tscn" id="10_ue055"]
 
@@ -59,25 +64,40 @@ position = Vector2(1782, 1906)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
 
+[node name="CarrierSprite" parent="CarrierShips/ALPHA" index="1"]
+texture = ExtResource("4_psee0")
+
 [node name="BETA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
 position = Vector2(15751, 6001)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+
+[node name="CarrierSprite" parent="CarrierShips/BETA" index="1"]
+texture = ExtResource("5_bo1qa")
 
 [node name="GAMMA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
 position = Vector2(6596, 15738)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
 
+[node name="CarrierSprite" parent="CarrierShips/GAMMA" index="1"]
+texture = ExtResource("6_apg2s")
+
 [node name="DELTA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
 position = Vector2(25901, 9717)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
 
+[node name="CarrierSprite" parent="CarrierShips/DELTA" index="1"]
+texture = ExtResource("7_6iicj")
+
 [node name="EPSILON" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
 position = Vector2(23422, 19293)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+
+[node name="CarrierSprite" parent="CarrierShips/EPSILON" index="1"]
+texture = ExtResource("8_8guj6")
 
 [node name="EnergyStations" type="Node2D" parent="."]
 
@@ -155,6 +175,66 @@ position = Vector2(15545, 14318)
 [node name="Rock20" parent="Obstacles" instance=ExtResource("3_ajql6")]
 position = Vector2(22900, 9643)
 
+[node name="Rock21" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(5025, 19593)
+
+[node name="Rock22" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(2514, 19365)
+
+[node name="Rock23" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(10695, 21230)
+
+[node name="Rock24" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(19410, 17538)
+
+[node name="Rock25" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(20171, 16663)
+
+[node name="Rock26" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(25917, 17234)
+
+[node name="Rock27" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(1677, 7872)
+
+[node name="Rock28" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(2057, 7340)
+
+[node name="Rock29" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(2704, 7949)
+
+[node name="Rock30" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(2133, 21800)
+
+[node name="Rock31" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(11342, 20469)
+
+[node name="Rock32" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(11114, 19175)
+
+[node name="Rock33" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(12218, 18528)
+
+[node name="Rock34" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(13435, 18223)
+
+[node name="Rock35" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(15605, 18376)
+
+[node name="Rock36" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(24814, 13619)
+
+[node name="Rock37" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(27592, 21344)
+
+[node name="Rock38" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(19981, 1479)
+
+[node name="Rock39" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(18195, 3681)
+
+[node name="Rock40" parent="Obstacles" instance=ExtResource("3_ajql6")]
+position = Vector2(18040, 4258)
+
 [node name="DmgRock" parent="Obstacles" instance=ExtResource("5_ysiwv")]
 position = Vector2(5581, 3200)
 
@@ -184,6 +264,24 @@ position = Vector2(8660, 6792)
 
 [node name="DmgRock10" parent="Obstacles" instance=ExtResource("5_ysiwv")]
 position = Vector2(25765, 13150)
+
+[node name="DmgRock11" parent="Obstacles" instance=ExtResource("5_ysiwv")]
+position = Vector2(19281, 16139)
+
+[node name="DmgRock12" parent="Obstacles" instance=ExtResource("5_ysiwv")]
+position = Vector2(18900, 21999)
+
+[node name="DmgRock13" parent="Obstacles" instance=ExtResource("5_ysiwv")]
+position = Vector2(28147, 20210)
+
+[node name="DmgRock14" parent="Obstacles" instance=ExtResource("5_ysiwv")]
+position = Vector2(11441, 17547)
+
+[node name="DmgRock15" parent="Obstacles" instance=ExtResource("5_ysiwv")]
+position = Vector2(9577, 20705)
+
+[node name="DmgRock16" parent="Obstacles" instance=ExtResource("5_ysiwv")]
+position = Vector2(27653, 7614)
 
 [node name="Bots" type="Node2D" parent="."]
 
@@ -234,3 +332,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4dwt8")
 metadata/_edit_lock_ = true
+
+[editable path="CarrierShips/ALPHA"]
+[editable path="CarrierShips/BETA"]
+[editable path="CarrierShips/GAMMA"]
+[editable path="CarrierShips/DELTA"]
+[editable path="CarrierShips/EPSILON"]
