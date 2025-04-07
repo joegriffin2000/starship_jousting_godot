@@ -42,6 +42,8 @@ signal show_indicator_arrow
 
 signal upgrade_special(id,val)
 
+signal check_upgrade_locked(id)
+
 
 #vvvvv THIS IS FOR JOE vvvvv
 #ONLY DELETE IF YOU HATE HIM AND/OR WANT HIM DEAD.

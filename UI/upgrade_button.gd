@@ -18,10 +18,12 @@ var value = 0.0
 var max = 0
 var current = 0
 var cost = 0 
+var parent_id
 #enum upgrade_types {STAT, MODS}
 
 func _init():
 	pressed.connect(on_button_pressed)
+	SignalBus.check_upgrade_locked.connect(unlock)
 	
 func reset():
 	queue_free()
@@ -73,24 +75,19 @@ func _on_buy_button_pressed() -> void:
 	if ShipData.credits >= cost:
 		ShipData.credits -= cost
 		SignalBus.upgrade_special.emit(id,value)
-		#print("upgrade_special")
-		#if isStatBoost:
-			##print("old ", stat, " : ", ShipData.get(stat))
-			##ShipData.set(stat, ShipData.get(stat) + value)
-			#SignalBus.upgrade_special.emit(id,value)
-			##print("new ", stat, " : ", ShipData.get(stat))
-		#else:
-			#SignalBus.upgrade_special.emit(id)
-			#print("upgrade_special")
 		
 		current += 1
 		purchase_details.text = "(" + str(current) + "/" + str(max) + ")"
 		if current >= max:
 			disabled = true
 			purchase_menu.visible = false
-				
-		#print("upgrade bought")
+			SignalBus.check_upgrade_locked.emit(id)
+		
 		SignalBus.credits_updated.emit()
 
 func _on_cancel_button_pressed() -> void:
 	purchase_menu.visible = false
+
+func unlock(incoming_id):
+	if parent_id == incoming_id:
+		disabled = false

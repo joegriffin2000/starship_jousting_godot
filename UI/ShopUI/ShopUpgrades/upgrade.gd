@@ -8,7 +8,12 @@ var e_button = preload("res://UI/upgrade_button.tscn")
 func _ready() -> void:
 	super()
 	var baseButton = get_node("BaseButton")
+	baseButton.disabled = true
 	populate(baseButton,0)
+	
+	for i in baseButton.connections.keys():
+		if baseButton[i] != null:
+			baseButton[i].disabled = false
 	
 func populate(parent_button,parent_id):
 	for i in filecontents:
@@ -20,6 +25,9 @@ func populate(parent_button,parent_id):
 			else:
 				button.set_upgrade_special(int(i["id"]),i["name"], i["description"], i["max_purchases"], i["cost"], i["img"])
 			add_button(parent_button, button, i["pos"])
+			
+			button.parent_id = parent_id
+			button.disabled = true
 			
 			if i["hasChildren"]:
 				populate(button,i["id"])
