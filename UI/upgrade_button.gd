@@ -5,8 +5,6 @@ class_name UpgradeButton
 @onready var purchase_menu = $Panel
 @onready var purchase_details = $Panel/Details
 
-signal check_upgrade_locked
-
 var connections = {
 	"tl":null, "tc":null, "tr":null,
 	"ml":null, "mc":null, "mr":null,
@@ -25,7 +23,7 @@ var parent_id
 
 func _init():
 	pressed.connect(on_button_pressed)
-	check_upgrade_locked.connect(unlock)
+	SignalBus.check_upgrade_locked.connect(unlock)
 	
 func reset():
 	queue_free()
@@ -83,7 +81,7 @@ func _on_buy_button_pressed() -> void:
 		if current >= max:
 			disabled = true
 			purchase_menu.visible = false
-			check_upgrade_locked.emit(id)
+			SignalBus.check_upgrade_locked.emit(id)
 		
 		SignalBus.credits_updated.emit()
 

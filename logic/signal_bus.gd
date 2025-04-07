@@ -41,6 +41,8 @@ signal show_quest_timer
 signal show_indicator_arrow
 # Connected from Upgrade Button to Ship
 signal upgrade_special(id,val)
+# Connected from Upgrade Button to Upgrade Button (Every Button)
+signal check_upgrade_locked
 
 #vvvvv THIS IS FOR JOE vvvvv
 #ONLY DELETE IF YOU HATE HIM AND/OR WANT HIM DEAD.

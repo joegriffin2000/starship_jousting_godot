@@ -12,8 +12,8 @@ func _ready() -> void:
 	populate(baseButton,0)
 	
 	for i in baseButton.connections.keys():
-		if baseButton[i] != null:
-			baseButton[i].disabled = false
+		if baseButton.connections[i] != null:
+			baseButton.connections[i].disabled = false
 	
 func populate(parent_button,parent_id):
 	for i in filecontents:
