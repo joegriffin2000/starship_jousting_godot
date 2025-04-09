@@ -1,23 +1,20 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	SignalBus.credits_updated.connect(_on_credits_updated)
+
+func set_carrier_label(carrier_name: String) -> void:
+	$Panel/CarrierNameLabel.text = str("Carrier ", carrier_name)
+
+func _on_credits_updated() -> void:
+	$Panel/CreditsLabel.text = str("$", ShipData.credits)
 
 func _on_quest_button_pressed() -> void:
 	$Panel/Quests.visible = true
-	$Panel/Upgrades.visible = false
-	#print("quest pressed")
-
+	$Panel/UpgradeTree.visible = false
+	$Panel/UpgradePanel.visible = false
 
 func _on_upgrade_button_pressed() -> void:
 	$Panel/Quests.visible = false
-	$Panel/Upgrades.visible = true
-	#print("upgrade pressed")
-
-
-func _on_upgrade_pressed() -> void:
-	pass
-	#ShipData.speed += 1
-	#print("upgrade bought")
-
-
-#func _on_upgrades_gui_input(event: InputEvent) -> void:
-	#if event = InputEvent.
+	$Panel/UpgradeTree.visible = true
+	$Panel/UpgradePanel.visible = true

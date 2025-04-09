@@ -74,8 +74,6 @@ func update_my_score():
 # Called on server by clients
 @rpc("any_peer", "call_remote")
 func update_lb(id, score):
-	print(str(playersAndScores))
-	
 	# Update received player's score in playersAndScores
 	for player in playersAndScores:
 		if id == player[0]:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlbxkgga6wdmi"]
+[gd_scene load_steps=7 format=3 uid="uid://dlbxkgga6wdmi"]
 
 [ext_resource type="Script" path="res://UI/ShopUI/ShopQuests/shop_quests.gd" id="1_0yu5m"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="1_2go5a"]
 [ext_resource type="PackedScene" uid="uid://c45lo6t7ysxq2" path="res://UI/ShopUI/ShopQuests/quest_item.tscn" id="2_f8vuk"]
+[ext_resource type="Theme" uid="uid://drp3uvprkgbbd" path="res://UI/main_menu_theme.tres" id="4_7mpyo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ycwqb"]
 font = ExtResource("1_2go5a")
@@ -31,7 +32,7 @@ layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="AvailableQuests" type="Label" parent="MarginContainer2"]
+[node name="CurrentQuests" type="Label" parent="MarginContainer2"]
 layout_mode = 2
 text = "Current Quest:"
 label_settings = SubResource("LabelSettings_ycwqb")
@@ -75,7 +76,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="TakeQuest" type="Button" parent="MarginContainer3"]
 layout_mode = 2
-theme_override_constants/outline_size = 4
+theme = ExtResource("4_7mpyo")
 theme_override_fonts/font = SubResource("FontVariation_a2dqd")
 theme_override_font_sizes/font_size = 20
 text = "Accept Quest"

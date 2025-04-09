@@ -1,4 +1,20 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://drp3uvprkgbbd"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://drp3uvprkgbbd"]
+
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="1_c6efm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6ddc"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.226707, 0.226708, 0.226707, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbbkw"]
 content_margin_left = 8.0
@@ -20,7 +36,7 @@ content_margin_left = 8.0
 content_margin_top = 4.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
-bg_color = Color(0.377, 0.38715, 0.58, 0.529412)
+bg_color = Color(0.377, 0.38715, 0.58, 1)
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 border_blend = true
@@ -35,6 +51,20 @@ content_margin_top = 4.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7wai"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 border_blend = true
@@ -69,8 +99,13 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [resource]
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/styles/disabled = SubResource("StyleBoxFlat_t6ddc")
 Button/styles/focus = SubResource("StyleBoxFlat_hbbkw")
 Button/styles/hover = SubResource("StyleBoxFlat_wqe5s")
 Button/styles/normal = SubResource("StyleBoxFlat_5mbsc")
+Button/styles/pressed = SubResource("StyleBoxFlat_j7wai")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_c6efm")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_dpaxs")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_qckdr")
