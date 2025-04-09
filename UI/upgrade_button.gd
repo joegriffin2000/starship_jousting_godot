@@ -30,17 +30,14 @@ var description = ""
 func _init():
 	toggled.connect(_on_button_toggled)
 	SignalBus.check_upgrade_locked.connect(unlock)
-	
+
 func reset():
 	queue_free()
 	
-func get_connection_count():
-	var count = 0
-	for i in connections:
-		if connections[i] != null:
-			count += 1
-	return count
-	
+func unlock(incoming_id):
+	if parent_id == incoming_id:
+		self.disabled = false
+
 func set_upgrade_stat_increase(id:int, title:StringName, description:StringName, stat_to_increase: StringName, change: float, max_purchase: int, cost: int, img:StringName, isDecrease:bool = false):
 	self.stat = stat_to_increase
 	self.isStatBoost = true

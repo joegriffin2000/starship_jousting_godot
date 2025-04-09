@@ -114,11 +114,11 @@ func _on_buy_button_pressed() -> void:
 		selectedUpgrade.current += 1
 		purchase_details.text = "(" + str(selectedUpgrade.current) + "/" + str(selectedUpgrade.max) + ")"
 		if selectedUpgrade.current >= selectedUpgrade.max:
+			SignalBus.check_upgrade_locked.emit(selectedUpgrade.id)
 			selectedUpgrade.disabled = true
-			selectedUpgrade = null
 			purchase_title.text = "-"
 			purchase_desc.text = "Select an upgrade to view details." 
 			purchase_details.text = "(0/0)"
 			purchase_button.text = "$0"
 			purchase_button.disabled = true
-			SignalBus.check_upgrade_locked.emit(id)
+			selectedUpgrade = null
