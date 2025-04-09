@@ -166,4 +166,9 @@ replication_interval = 0.05
 delta_interval = 0.05
 replication_config = SubResource("SceneReplicationConfig_mfsuh")
 
+[node name="carrier_arrow" parent="." instance=ExtResource("9_t78cu")]
+modulate = Color(1, 0.4, 1, 1)
+max = 700
+dis_from_target = 700
+
 [connection signal="timeout" from="Action_Timer" to="Action_Timer" method="_on_action_timeout"]

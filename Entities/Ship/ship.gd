@@ -13,6 +13,7 @@ signal bounty_claimed(killer)
 @onready var action = $Action_Timer
 @onready var dash_cd_timer = $Dash_Cooldown
 @onready var shield = $Shield
+@onready var carrier_arrow = $carrier_arrow
 @onready var iframes = 0 # Put a timer here I need to ask how to set that up
 
 var regenerting_dash = false
@@ -90,6 +91,18 @@ func _physics_process(delta):
 			velocity = velocity.bounce(get_slide_collision(0).get_normal())
 				
 		move_and_slide()
+		
+func _process(delta: float) -> void:
+	if is_local_authority():
+		var closest_carrier
+		var min_dist = 100000
+		var cur_dist
+		for carrier in get_node("/root/Game/CarrierShips").get_children():
+			cur_dist = position.distance_to(carrier.position)
+			if cur_dist < min_dist:
+				min_dist = cur_dist
+				closest_carrier = carrier
+		carrier_arrow.enable_indicator_arrow(closest_carrier)
 
 # This function handles taking damage.
 # Note: Put timer here for i-frames.

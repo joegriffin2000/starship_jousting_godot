@@ -2,6 +2,9 @@ extends Control
 var pointing_target: CollisionObject2D
 
 @onready var arrow = $Sprite
+@export var max = 500
+@export var min = 40
+@export var dis_from_target = 200
 
 func _ready() -> void:
 	SignalBus.quest_completed.connect(disable_indicator_arrow)
@@ -25,7 +28,7 @@ func _process(_delta: float) -> void:
 		if pointing_target != null:
 			var target_position = pointing_target.global_position
 			var offset = owner.global_position - target_position
-			arrow.position.x = clampf(max(abs((offset).x),abs((offset).y)) - 200,40,500)
+			arrow.position.x = clampf(max(abs((offset).x),abs((offset).y)) - dis_from_target,min,max)
 			rotation = Vector2.LEFT.angle_to(offset) - owner.rotation
 		
 

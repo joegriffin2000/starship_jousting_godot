@@ -54,3 +54,6 @@ script = null
 [node name="Name_Label" parent="." index="11"]
 text = "BOT"
 metadata/_edit_lock_ = true
+
+[node name="carrier_arrow" parent="." index="13"]
+visible = false
