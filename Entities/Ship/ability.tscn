@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cumfp14w3h8un"]
 
-[ext_resource type="Texture2D" uid="uid://bnhywq5k1e4jc" path="res://Sprites/dash icon.png" id="1_aoea5"]
+[ext_resource type="Texture2D" uid="uid://b2pn3ks3rc3pn" path="res://Sprites/dash icon.png" id="1_aoea5"]
 [ext_resource type="Script" path="res://Entities/Ship/ability.gd" id="2_ln6lw"]
 [ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="3_pbfa5"]
 

@@ -33,6 +33,7 @@ func start_network(server: bool, ip: String = "", port: int = 2302) -> void:
 		
 		multiplayer.connected_to_server.connect(_on_connection_success)
 		multiplayer.connection_failed.connect(_on_connection_failed)
+		multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	# Compression for improved bandwidth usage (on ENet only)
 	#peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
@@ -61,3 +62,8 @@ func _on_connection_failed():
 # Called on CLIENT when client peer successfully connects to server
 func _on_connection_success():
 	print("Connected to server!")
+
+func _on_server_disconnected():
+	print("Server disconnected, returning to title screen.")
+	disconnect_me()
+	get_tree().change_scene_to_file("res://UI/TitleScreen/title_screen.tscn")

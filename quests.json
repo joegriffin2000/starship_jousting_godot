@@ -3,7 +3,7 @@
 		{
 			"faction": "SEU",
 			"type": 1,
-			"desc": "Mine x rocks",
+			"desc": "Mine x asteroids",
 			"credits": 10
 		},
 		{
@@ -15,25 +15,25 @@
 		{
 			"faction": "FJB",
 			"type": 1,
-			"desc": "Kill x players",
+			"desc": "Kill x enemies",
 			"credits": 20
 		},
 		{
 			"faction": "FJB",
 			"type": 2,
-			"desc": "Kill Player x",
+			"desc": "Kill enemy x",
 			"credits": 30
 		},
 		{
 			"faction": "GOAT",
 			"type": 1,
-			"desc": "Go to Carrier x in y time",
-			"credits": 150
+			"desc": "Fly to Carrier x in y time",
+			"credits": 120
 		},
 		{
 			"faction": "GOAT",
 			"type": 2,
-			"desc": "Go to x without taking damage",
+			"desc": "Fly to Carrier x without taking damage",
 			"credits": 40
 		}
 	]

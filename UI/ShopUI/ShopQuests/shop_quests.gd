@@ -81,7 +81,7 @@ func generate_goat_quest(goatQuests, carrier_name) -> Quest:
 	entity_list.erase(tree.root.get_node("Game").get_node("CarrierShips").get_node(str(carrier_name)))  # Remove the carrier name we accessed from the list
 	var selected_entity = entity_list[entityID]
 	
-	var timeLimit = rng.randi_range(30, 120) # Time in seconds
+	var timeLimit = rng.randi_range(30, 90) # Time in seconds
 	var base = goatQuests[qNum].desc
 	var updStr = base.replace("x", selected_entity.name)
 	var updDesc = updStr.replace("y time", str(timeLimit, " seconds"))

@@ -185,7 +185,7 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="GameOverTxt" type="Label" parent="LoadingContainer/MarginContainer"]
+[node name="LoadingTxt" type="Label" parent="LoadingContainer/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_211qs")
 theme_override_font_sizes/font_size = 64

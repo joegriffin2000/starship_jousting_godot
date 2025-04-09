@@ -19,7 +19,7 @@ signal damage_taken(player)
 # UI signals
 # Connected from mainspace to HUD Leaderboard
 signal player_finished_setup()
-# Connected from ship to gameOverScreen
+# Connected from ship to GameOverScreen
 signal player_died(score)
 # Connected from shop Quest menu to Ship and HUD Quest labels
 signal quest_received(content)
@@ -31,7 +31,7 @@ signal quest_completed
 signal quest_failed
 # Connected from Carrier to HUD Quest labels
 signal quest_removed
-# Connected from Carrier and Ship to HUD Credits label
+# Connected from Carrier and Ship to HUD Credits label and ShopMenu
 signal credits_updated
 # Connected from Carrier and Ship to HUD Leaderboard
 signal score_updated
@@ -39,9 +39,10 @@ signal score_updated
 signal show_quest_timer
 # Connected from Quest class to Ship's IndicatorArrow
 signal show_indicator_arrow
-
+# Connected from Upgrade Button to Ship
 signal upgrade_special(id,val)
-
+# Connected from Upgrade Button to Upgrade Button (Every Button)
+signal check_upgrade_locked
 
 #vvvvv THIS IS FOR JOE vvvvv
 #ONLY DELETE IF YOU HATE HIM AND/OR WANT HIM DEAD.

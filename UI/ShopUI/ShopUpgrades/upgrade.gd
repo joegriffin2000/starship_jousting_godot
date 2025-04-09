@@ -5,10 +5,22 @@ var e_button = preload("res://UI/upgrade_button.tscn")
 @onready var file = FileAccess.open("res://upgrades.json",FileAccess.READ).get_as_text()
 @onready var filecontents = JSON.parse_string(file)
 
+@onready var purchase_menu = get_node("/root/Game/ShopMenu/Panel/UpgradePanel/UpgradeMenu")
+@onready var purchase_title = purchase_menu.get_node("MarginContainerTitle/Title")
+@onready var purchase_desc = purchase_menu.get_node("Description")
+@onready var purchase_details = purchase_menu.get_node("Details")
+@onready var purchase_button = purchase_menu.get_node("MarginContainerBuy/BuyButton")
+
+@export var selectedUpgrade: Node
+
 func _ready() -> void:
 	super()
 	var baseButton = get_node("BaseButton")
 	populate(baseButton,0)
+	
+	for i in baseButton.connections.keys():
+		if baseButton.connections[i] != null:
+			baseButton.connections[i].disabled = false
 	
 func populate(parent_button,parent_id):
 	for i in filecontents:
@@ -21,11 +33,14 @@ func populate(parent_button,parent_id):
 				button.set_upgrade_special(int(i["id"]),i["name"], i["description"], i["max_purchases"], i["cost"], i["img"])
 			add_button(parent_button, button, i["pos"])
 			
+			button.parent_id = parent_id
+			button.disabled = true
+			
 			if i["hasChildren"]:
 				populate(button,i["id"])
 
 func reset():
-	get_tree().call_group("upgradeButtons","reset")
+	get_tree().call_group("UpgradeButtons", "reset")
 	var baseButton = get_node("BaseButton")
 	populate(baseButton,0)
 		
@@ -73,7 +88,7 @@ func add_button(parent_button, button_to_add, pos:String):
 		
 		button_to_add.position = parent_position + button_offset - end_line_offset
 		
-		button_to_add.add_to_group("upgradeButtons")
+		button_to_add.add_to_group("UpgradeButtons")
 		parent_button.connections[pos] = button_to_add
 		# vv this grabs the inverse position and places it in the chosen button's 'connections' dictionary
 		button_to_add.connections[
@@ -90,3 +105,20 @@ func add_button(parent_button, button_to_add, pos:String):
 			}[pos]] = parent_button
 		
 		add_child(button_to_add)
+
+func _on_buy_button_pressed() -> void:
+	if ShipData.credits >= selectedUpgrade.cost:
+		ShipData.credits -= selectedUpgrade.cost
+		SignalBus.credits_updated.emit()
+		SignalBus.upgrade_special.emit(selectedUpgrade.id, selectedUpgrade.value)
+		selectedUpgrade.current += 1
+		purchase_details.text = "(" + str(selectedUpgrade.current) + "/" + str(selectedUpgrade.max) + ")"
+		if selectedUpgrade.current >= selectedUpgrade.max:
+			SignalBus.check_upgrade_locked.emit(selectedUpgrade.id)
+			selectedUpgrade.disabled = true
+			purchase_title.text = "-"
+			purchase_desc.text = "Select an upgrade to view details." 
+			purchase_details.text = "(0/0)"
+			purchase_button.text = "$0"
+			purchase_button.disabled = true
+			selectedUpgrade = null
