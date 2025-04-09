@@ -35,7 +35,9 @@ func _on_shop_area_entered(body):
 		body.get_node("Shield").in_iframe = true
 		
 		shop_menu.visible = true
+		shop_menu.set_carrier_label(carrier_name)
 		shop_menu.get_node("Panel/Quests/QuestMenu").generateQuests(carrier_name)
+		get_node("/root/Game/HUD").visible = false
 
 func _on_shop_area_exited(body):
 	if body.has_method("shop_exited") and body.is_local_authority():
@@ -44,3 +46,4 @@ func _on_shop_area_exited(body):
 		shop_menu.get_node("Panel/Quests/QuestMenu").resetQuestMenu()
 		body.get_node("Shield").in_iframe = false
 		shop_menu.visible = false
+		get_node("/root/Game/HUD").visible = true

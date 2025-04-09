@@ -1,28 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://btbb3t0k66qi8"]
+[gd_scene load_steps=11 format=3 uid="uid://btbb3t0k66qi8"]
 
 [ext_resource type="Script" path="res://UI/ShopUI/shop_menu.gd" id="1_71syl"]
 [ext_resource type="PackedScene" uid="uid://c6qaubponwo3u" path="res://UI/ShopUI/ShopUpgrades/upgrade.tscn" id="3_5xn65"]
-[ext_resource type="Texture2D" uid="uid://dfo3dhjbefiga" path="res://Sprites/quest_btn.png" id="5_n2y5n"]
-[ext_resource type="Texture2D" uid="uid://bxe2outbioo87" path="res://Sprites/upgrade_btn.png" id="6_kyxv6"]
+[ext_resource type="Theme" uid="uid://drp3uvprkgbbd" path="res://UI/main_menu_theme.tres" id="4_dqm8s"]
+[ext_resource type="FontFile" uid="uid://cjg5r33t68mr1" path="res://Fonts/PressStart2P-vaV7.ttf" id="4_pxf7g"]
+[ext_resource type="Texture2D" uid="uid://cejtq6ig7py3d" path="res://Sprites/quest_btn_icon.png" id="5_e0vai"]
+[ext_resource type="Texture2D" uid="uid://c6lt6elagymvg" path="res://Sprites/upgrade_btn_icon.png" id="6_jdjxu"]
 [ext_resource type="PackedScene" uid="uid://dlbxkgga6wdmi" path="res://UI/ShopUI/ShopQuests/quest_menu.tscn" id="6_l2uha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lomiv"]
-bg_color = Color(0.17, 0.17, 0.17, 0.65098)
+bg_color = Color(0.23, 0.23, 0.23, 0.705882)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 0.843137)
-corner_radius_top_left = 16
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 16
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
 anti_aliasing = false
 anti_aliasing_size = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a8sy"]
+bg_color = Color(0.31, 0.31, 0.31, 0.568627)
+border_width_left = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_eh6pq"]
+line_spacing = 8.0
+font_size = 20
+shadow_size = 5
+shadow_color = Color(0.0196078, 0.0196078, 0.0196078, 0.247059)
+shadow_offset = Vector2(3, 3)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_71syl")
@@ -32,37 +48,41 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = 64.0
+offset_top = 74.0
 offset_right = -95.0
-offset_bottom = -72.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_lomiv")
 
-[node name="Upgrades" type="Panel" parent="Panel"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.133
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.32
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
+[node name="CarrierNameLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -30.0
+offset_right = 247.0
+offset_bottom = -7.0
+theme = ExtResource("4_dqm8s")
+theme_override_font_sizes/font_size = 20
+text = "Carrier NAME"
+vertical_alignment = 2
 
-[node name="Upgrade" parent="Panel/Upgrades" instance=ExtResource("3_5xn65")]
+[node name="CreditsLabel" type="Label" parent="Panel"]
 layout_mode = 1
-offset_left = -2142.88
-offset_top = -1251.0
-offset_right = 1705.12
-offset_bottom = 1101.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -247.0
+offset_top = -30.0
+offset_right = -7.0
+offset_bottom = -7.0
+grow_horizontal = 0
+theme = ExtResource("4_dqm8s")
+theme_override_font_sizes/font_size = 20
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="Quests" type="Panel" parent="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -81,29 +101,145 @@ size_flags_vertical = 4
 [node name="QuestMenu" parent="Panel/Quests" instance=ExtResource("6_l2uha")]
 layout_mode = 1
 
-[node name="QuestButton" type="TextureButton" parent="Panel"]
+[node name="UpgradeTree" type="Panel" parent="Panel"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.133
+anchor_right = 0.75
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+
+[node name="Upgrade" parent="Panel/UpgradeTree" instance=ExtResource("3_5xn65")]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="UpgradePanel" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 0.999847
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1a8sy")
+
+[node name="UpgradeMenu" type="VBoxContainer" parent="Panel/UpgradePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+
+[node name="MarginContainerTitle" type="MarginContainer" parent="Panel/UpgradePanel/UpgradeMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="Title" type="Label" parent="Panel/UpgradePanel/UpgradeMenu/MarginContainerTitle"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+theme = ExtResource("4_dqm8s")
+text = "-"
+label_settings = SubResource("LabelSettings_eh6pq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Panel/UpgradePanel/UpgradeMenu"]
+custom_minimum_size = Vector2(210, 210)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("4_dqm8s")
+theme_override_constants/line_spacing = 10
+theme_override_font_sizes/font_size = 16
+text = "Select an upgrade to view details."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Details" type="Label" parent="Panel/UpgradePanel/UpgradeMenu"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("4_dqm8s")
+theme_override_font_sizes/font_size = 20
+text = "(0/0)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainerBuy" type="MarginContainer" parent="Panel/UpgradePanel/UpgradeMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="BuyButton" type="Button" parent="Panel/UpgradePanel/UpgradeMenu/MarginContainerBuy"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+tooltip_text = "Buy Upgrade"
+theme = ExtResource("4_dqm8s")
+theme_override_fonts/font = ExtResource("4_pxf7g")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "$0"
+
+[node name="QuestButton" type="Button" parent="Panel"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.133
 anchor_bottom = 0.5
-offset_right = 0.32
+offset_left = 5.0
+offset_top = 5.0
+offset_bottom = -2.0
 grow_vertical = 2
-texture_normal = ExtResource("5_n2y5n")
-stretch_mode = 5
+theme = ExtResource("4_dqm8s")
 
-[node name="UpgradeButton" type="TextureButton" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Panel/QuestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_e0vai")
+
+[node name="UpgradeButton" type="Button" parent="Panel"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 0.133
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
 offset_right = 0.32
+offset_bottom = -5.0
 grow_vertical = 2
-texture_normal = ExtResource("6_kyxv6")
-stretch_mode = 5
+theme = ExtResource("4_dqm8s")
 
-[connection signal="gui_input" from="Panel/Upgrades" to="." method="_on_upgrades_gui_input"]
+[node name="TextureRect" type="TextureRect" parent="Panel/UpgradeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_jdjxu")
+
+[connection signal="pressed" from="Panel/UpgradePanel/UpgradeMenu/MarginContainerBuy/BuyButton" to="Panel/UpgradeTree/Upgrade" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="Panel/QuestButton" to="." method="_on_quest_button_pressed"]
 [connection signal="pressed" from="Panel/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

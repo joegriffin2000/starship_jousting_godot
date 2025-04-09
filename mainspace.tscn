@@ -33,9 +33,9 @@ script = ExtResource("1_coag6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
-offset_left = -1500.0
+offset_left = -1000.0
 offset_top = -1000.0
-offset_right = 5000.0
+offset_right = 4000.0
 offset_bottom = 4000.0
 scale = Vector2(5, 5)
 texture = ExtResource("1_xb1gi")
@@ -54,47 +54,53 @@ spawn_path = NodePath("../Players")
 position = Vector2(12399, 4274)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSpawnArea"]
+position = Vector2(-4192, 288)
 scale = Vector2(150, 85)
 shape = SubResource("RectangleShape2D_sq3l4")
 
 [node name="CarrierShips" type="Node2D" parent="."]
 
 [node name="ALPHA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
-position = Vector2(1782, 1906)
+position = Vector2(2230, 2258)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+metadata/_edit_group_ = true
 
 [node name="CarrierSprite" parent="CarrierShips/ALPHA" index="1"]
 texture = ExtResource("4_psee0")
 
 [node name="BETA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
-position = Vector2(15751, 6001)
+position = Vector2(10887, 8049)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+metadata/_edit_group_ = true
 
 [node name="CarrierSprite" parent="CarrierShips/BETA" index="1"]
 texture = ExtResource("5_bo1qa")
 
 [node name="GAMMA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
-position = Vector2(6596, 15738)
+position = Vector2(6500, 17850)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+metadata/_edit_group_ = true
 
 [node name="CarrierSprite" parent="CarrierShips/GAMMA" index="1"]
 texture = ExtResource("6_apg2s")
 
 [node name="DELTA" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
-position = Vector2(25901, 9717)
+position = Vector2(20589, 5493)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+metadata/_edit_group_ = true
 
 [node name="CarrierSprite" parent="CarrierShips/DELTA" index="1"]
 texture = ExtResource("7_6iicj")
 
 [node name="EPSILON" parent="CarrierShips" instance=ExtResource("6_t3k5q")]
-position = Vector2(23422, 19293)
+position = Vector2(19678, 19357)
 rotation = 0.390954
 scale = Vector2(2.5, 2.5)
+metadata/_edit_group_ = true
 
 [node name="CarrierSprite" parent="CarrierShips/EPSILON" index="1"]
 texture = ExtResource("8_8guj6")
@@ -102,16 +108,16 @@ texture = ExtResource("8_8guj6")
 [node name="EnergyStations" type="Node2D" parent="."]
 
 [node name="EnergyStation" parent="EnergyStations" instance=ExtResource("4_dreot")]
-position = Vector2(9907, 2507)
+position = Vector2(11507, 1387)
 
 [node name="EnergyStation2" parent="EnergyStations" instance=ExtResource("4_dreot")]
-position = Vector2(14696, 20239)
+position = Vector2(13512, 20751)
 
 [node name="EnergyStation3" parent="EnergyStations" instance=ExtResource("4_dreot")]
-position = Vector2(2352, 13911)
+position = Vector2(2512, 12887)
 
 [node name="EnergyStation4" parent="EnergyStations" instance=ExtResource("4_dreot")]
-position = Vector2(22280, 5728)
+position = Vector2(17640, 12704)
 
 [node name="Obstacles" type="Node2D" parent="."]
 
@@ -158,13 +164,13 @@ position = Vector2(13663, 10270)
 position = Vector2(13065, 11211)
 
 [node name="Rock15" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(12152, 9586)
+position = Vector2(15736, 11186)
 
 [node name="Rock16" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(11411, 9272)
+position = Vector2(6483, 12184)
 
 [node name="Rock17" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(11582, 7533)
+position = Vector2(7870, 12685)
 
 [node name="Rock18" parent="Obstacles" instance=ExtResource("3_ajql6")]
 position = Vector2(9786, 14147)
@@ -173,7 +179,7 @@ position = Vector2(9786, 14147)
 position = Vector2(15545, 14318)
 
 [node name="Rock20" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(22900, 9643)
+position = Vector2(22484, 9835)
 
 [node name="Rock21" parent="Obstacles" instance=ExtResource("3_ajql6")]
 position = Vector2(5025, 19593)
@@ -191,7 +197,7 @@ position = Vector2(19410, 17538)
 position = Vector2(20171, 16663)
 
 [node name="Rock26" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(25917, 17234)
+position = Vector2(21309, 15506)
 
 [node name="Rock27" parent="Obstacles" instance=ExtResource("3_ajql6")]
 position = Vector2(1677, 7872)
@@ -221,10 +227,10 @@ position = Vector2(13435, 18223)
 position = Vector2(15605, 18376)
 
 [node name="Rock36" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(24814, 13619)
+position = Vector2(21838, 12211)
 
 [node name="Rock37" parent="Obstacles" instance=ExtResource("3_ajql6")]
-position = Vector2(27592, 21344)
+position = Vector2(21736, 21376)
 
 [node name="Rock38" parent="Obstacles" instance=ExtResource("3_ajql6")]
 position = Vector2(19981, 1479)
@@ -248,22 +254,22 @@ position = Vector2(11739, 13121)
 position = Vector2(3329, 10185)
 
 [node name="DmgRock5" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(24739, 5566)
+position = Vector2(19011, 1342)
 
 [node name="DmgRock6" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(25366, 4084)
+position = Vector2(12694, 2548)
 
 [node name="DmgRock7" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(23570, 3057)
+position = Vector2(16018, 753)
 
 [node name="DmgRock8" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(9259, 5338)
+position = Vector2(11531, 3386)
 
 [node name="DmgRock9" parent="Obstacles" instance=ExtResource("5_ysiwv")]
 position = Vector2(8660, 6792)
 
 [node name="DmgRock10" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(25765, 13150)
+position = Vector2(2213, 16606)
 
 [node name="DmgRock11" parent="Obstacles" instance=ExtResource("5_ysiwv")]
 position = Vector2(19281, 16139)
@@ -272,7 +278,7 @@ position = Vector2(19281, 16139)
 position = Vector2(18900, 21999)
 
 [node name="DmgRock13" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(28147, 20210)
+position = Vector2(22387, 20114)
 
 [node name="DmgRock14" parent="Obstacles" instance=ExtResource("5_ysiwv")]
 position = Vector2(11441, 17547)
@@ -281,7 +287,7 @@ position = Vector2(11441, 17547)
 position = Vector2(9577, 20705)
 
 [node name="DmgRock16" parent="Obstacles" instance=ExtResource("5_ysiwv")]
-position = Vector2(27653, 7614)
+position = Vector2(18501, 8094)
 
 [node name="Bots" type="Node2D" parent="."]
 
@@ -290,7 +296,7 @@ _spawnable_scenes = PackedStringArray("res://Entities/Enemy/enemy_ship.tscn")
 spawn_path = NodePath("../Bots")
 
 [node name="EnemySpawnArea" parent="." instance=ExtResource("10_ue055")]
-position = Vector2(14777, 12559)
+position = Vector2(11641, 11887)
 
 [node name="HUD" parent="." instance=ExtResource("4_m7kfs")]
 
@@ -315,18 +321,18 @@ shape = SubResource("WorldBoundaryShape2D_60dm5")
 metadata/_edit_group_ = true
 
 [node name="RightBorderCollisionShape" type="CollisionShape2D" parent="MapBorder"]
-position = Vector2(29500, 23000)
+position = Vector2(23000, 23000)
 rotation = 4.71239
 shape = SubResource("WorldBoundaryShape2D_60dm5")
 metadata/_edit_group_ = true
 
 [node name="BottomBorderCollisionShape" type="CollisionShape2D" parent="MapBorder"]
-position = Vector2(29500, 23000)
+position = Vector2(23000, 23000)
 shape = SubResource("WorldBoundaryShape2D_60dm5")
 metadata/_edit_group_ = true
 
 [node name="Container" type="Panel" parent="MapBorder"]
-offset_right = 29500.0
+offset_right = 23000.0
 offset_bottom = 23000.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

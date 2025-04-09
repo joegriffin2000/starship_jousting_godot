@@ -1,0 +1,6 @@
+[gd_resource type="ButtonGroup" format=3 uid="uid://bila6jkx2fmtb"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = "UpgradeButtons"
+allow_unpress = true
