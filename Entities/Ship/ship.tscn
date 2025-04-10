@@ -143,6 +143,7 @@ script = ExtResource("9_due0t")
 visible = false
 
 [node name="carrier_arrow" parent="." instance=ExtResource("9_t78cu")]
+visible = false
 max = 700
 dis_from_target = 700
 
