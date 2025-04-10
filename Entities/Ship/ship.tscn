@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://e1bi5rviiufr"]
+[gd_scene load_steps=17 format=3 uid="uid://e1bi5rviiufr"]
 
 [ext_resource type="Script" path="res://Entities/Ship/ship.gd" id="1_i8hbr"]
 [ext_resource type="Texture2D" uid="uid://om46hfkv7o05" path="res://Sprites/ship.png" id="2_g8wrt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cixk7kdly776n" path="res://Sprites/loading3.png" id="8_euw0o"]
 [ext_resource type="Script" path="res://UI/HUD/quest_timer_bar.gd" id="9_due0t"]
 [ext_resource type="PackedScene" uid="uid://coywqf2w6d1yr" path="res://UI/HUD/indicator_arrow.tscn" id="9_t78cu"]
+[ext_resource type="Texture2D" uid="uid://wnxibwd1p3jd" path="res://Sprites/carrier_arrow.png" id="11_6jvky"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iyay"]
 radius = 65.0308
@@ -141,6 +142,13 @@ script = ExtResource("9_due0t")
 [node name="Indicator_Arrow" parent="." instance=ExtResource("9_t78cu")]
 visible = false
 
+[node name="carrier_arrow" parent="." instance=ExtResource("9_t78cu")]
+max = 700
+dis_from_target = 700
+
+[node name="Sprite" parent="carrier_arrow" index="0"]
+texture = ExtResource("11_6jvky")
+
 [node name="Name_Label" type="Label" parent="."]
 layout_direction = 2
 anchors_preset = 8
@@ -166,9 +174,6 @@ replication_interval = 0.05
 delta_interval = 0.05
 replication_config = SubResource("SceneReplicationConfig_mfsuh")
 
-[node name="carrier_arrow" parent="." instance=ExtResource("9_t78cu")]
-modulate = Color(1, 0.4, 1, 1)
-max = 700
-dis_from_target = 700
-
 [connection signal="timeout" from="Action_Timer" to="Action_Timer" method="_on_action_timeout"]
+
+[editable path="carrier_arrow"]
