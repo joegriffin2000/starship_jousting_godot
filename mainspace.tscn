@@ -51,10 +51,10 @@ _spawnable_scenes = PackedStringArray("res://Entities/Ship/ship.tscn")
 spawn_path = NodePath("../Players")
 
 [node name="PlayerSpawnArea" type="Area2D" parent="."]
-position = Vector2(12399, 4274)
+position = Vector2(8019, 4667)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSpawnArea"]
-position = Vector2(-4192, 288)
 scale = Vector2(150, 85)
 shape = SubResource("RectangleShape2D_sq3l4")
 
