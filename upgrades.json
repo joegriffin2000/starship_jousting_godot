@@ -2,7 +2,7 @@
 	{
 		"name":"Speed Boost",
 		"description":"Increase movement speed by 30%",
-		"id":0,
+		"id":1,
 		"img":"speed_boost_icon.png",
 		"pos":"tl",
 		"parent_id":0,
@@ -19,7 +19,7 @@
 	{
 		"name":"Knockback Reduction",
 		"description":"Decrease knockback by 30%",
-		"id":1,
+		"id":2,
 		"img":"knockback_reduction_icon.png",
 		"pos":"tr",
 		"parent_id":0,
@@ -36,7 +36,7 @@
 	{
 		"name":"Dash Cooldown Reduction",
 		"description":"Decrease dash cooldown by 20%",
-		"id":2,
+		"id":3,
 		"img":"dash_cooldown_reduction_icon.png",
 		"pos":"bl",
 		"parent_id":0,
@@ -53,7 +53,7 @@
 	{
 		"name":"Shield Upgrade",
 		"description":"Allow your shield to take one more hit before breaking.",
-		"id":3,
+		"id":4,
 		"img":"shield_upgrade_icon.png",
 		"pos":"br",
 		"parent_id":0,
@@ -70,10 +70,10 @@
 	{
 		"name":"Regen Dash on Hit",
 		"description":"Regain your dash if you land your joust.",
-		"id":4,
+		"id":5,
 		"img":"regen_on_hit_icon.png",
 		"pos":"bc",
-		"parent_id":2,
+		"parent_id":3,
 		"hasChildren":false,
 		"isStatBoost":false,
 		"data":{

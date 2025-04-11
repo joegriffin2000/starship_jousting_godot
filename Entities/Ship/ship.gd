@@ -178,15 +178,15 @@ func enable_indicator_arrow(target: CollisionObject2D):
 func upgrade_bought(id:int, value):
 	if is_local_authority():
 		match id:
-			0:
-				speed += value
 			1:
-				knock_back_time += value
+				speed += value
 			2:
-				dash_cd += value
+				knock_back_time += value
 			3:
-				maxHealth += value
+				dash_cd += value
 			4:
+				maxHealth += value
+			5:
 				regenerating_dash = true
 			_:
 				pass
