@@ -32,6 +32,6 @@ func _on_ship_player_died(score: Variant) -> void:
 
 func _on_main_menu_btn_pressed() -> void:
 	ShipData.reset()
-	shop_menu.get_node("Panel/Upgrades/Upgrade").reset()
+	shop_menu.get_node("Panel/UpgradeTree/Upgrade").reset()
 	NetworkState.disconnect_me()
 	get_tree().change_scene_to_file("res://UI/TitleScreen/title_screen.tscn")
